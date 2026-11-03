@@ -5,7 +5,7 @@
   // ---------- 36 React do Ullisses com rosto no círculo ----------
   // extra "rosto" = vídeo do Ullisses comentando; o fundo deve estar congelado no spec a partir de olha_em.
   MB.def("36", {
-    em: 0, extra: "rosto", nome: "ULLISSES REAGE", foco: "50% 28%", olha_em: 1.6, olha: "OLHA AQUI",
+    em: 0, extra: "rosto", nome: "ULLISSES REAGE", foco: "50% 50%", olha_em: 1.6, olha: "OLHA AQUI",
     lupa: { x: 560, y: 1000, de: [860, 1400], zoom: 2.1, raio: 210, etiqueta: "_COSTAS_|ARREDONDADAS", tipo: "x", dur: 2.4 }, x: 690, y: 240, tam: 330
   }, function (P, K) {
     const t0 = K.t(), X = K.extra(P.extra), S = P.tam;

@@ -2,7 +2,7 @@
 
 Biblioteca de 40 motions prontos para os Reels da MB Saldanha, já no padrão da marca: azul #1F66E5, marinho #0A1B3F, Montserrat em caixa alta, palavra-chave em faixa azul e logo branco no canto (sem "domiciliar", a não ser em post de domiciliar). Nada de flash ou tela branca, tela dividida ou linhas presas no corpo.
 
-A lista completa com os parâmetros de cada um está em [CATALOGO.md](CATALOGO.md). Prévias renderizadas: `previa-NN.mp4` na pasta "Motions MB" do Drive (separada por grupo) e em `/mnt/project-files/reels/motions-mb/previas/`.
+A lista completa com os parâmetros de cada um está em [CATALOGO.md](CATALOGO.md). O passo a passo de uso, com qual motion escolher para cada fala, está em [ROTEIRO.md](ROTEIRO.md). Prévias renderizadas: `previa-NN.mp4` na pasta "Motions MB" do Drive (separada por grupo) e em `/mnt/project-files/reels/motions-mb/previas/`.
 
 ## Grupos
 
@@ -50,6 +50,7 @@ Exemplo com três motions:
 - `motor/recorte.py ENTRADA.mp4 SAIDA.webm`: recorta a pessoa com fundo transparente (MediaPipe). O montar.py chama sozinho quando o extra tem `"recorte": true` (motion 26).
 - `motor/transcrever.py VIDEO --ss 2 --dur 6 --chaves dor,erro`: palavras com tempo para o motion 25.
 - `motor/sfx.py`: refaz os efeitos sonoros em `motor/assets/sfx`.
+- `motor/rosto.py ENTRADA.mp4 SAIDA.mp4`: corta um quadrado com o rosto centralizado (bolha do React). O montar.py usa sozinho no extra "rosto".
 - `motor/gerar_catalogo.py`: refaz o CATALOGO.md depois de mudar um modelo.
 
 ## Como criar um motion novo

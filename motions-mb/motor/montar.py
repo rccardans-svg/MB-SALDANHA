@@ -15,7 +15,8 @@ O SPEC diz:
                 {"tipo": "eco", "src": ..., "ss": 3, "dur": 1.5, "vel": 0.3, "copias": 3}  lento com rastro (cópias fantasmas atrás do movimento, sem clarear a imagem)
                 {"tipo": "cor", "dur": 3}                                    fundo marinho liso
   extras      vídeos que ficam por cima (rosto do react, "depois" do antes/depois, recorte da pessoa):
-                {"id": "rosto", "em": 1.0, "base": [peças...], "som": true}
+                {"id": "rosto", "em": 1.0, "base": [peças...], "som": true}   (o rosto é centralizado sozinho num quadrado;
+                                                                    "folga": 2.3 = tamanho do rosto, "enquadrar_rosto": false desliga)
                 {"id": "pessoa", "em": 0, "recorte": true, "base": [peças...]}   (pessoa recortada, fundo transparente)
   motions     lista de motions: {"id": "01", "em": 0.4, ...parâmetros do modelo}
   logo        "sem" (padrão, sem DOMICILIAR) | "domiciliar" | "nenhum"
@@ -255,6 +256,10 @@ def main():
         if x.get("recorte"):
             arq = "x-" + x["id"] + ".webm"
             sh([sys.executable, os.path.join(AQUI, "recorte.py"), mp4, os.path.join(proj, "assets", arq)])
+        elif x.get("enquadrar_rosto", x["id"] == "rosto"):
+            # rosto sempre centralizado no círculo (pedido do Paulo): corta um quadrado com o rosto no meio
+            sh([sys.executable, os.path.join(AQUI, "rosto.py"), mp4, os.path.join(proj, "assets", arq), "--lado", "600",
+                "--folga", str(x.get("folga", 2.3))])
         else:
             shutil.move(mp4, os.path.join(proj, "assets", arq))
         extras.append((x["id"], float(x.get("em", 0)), xd, arq))

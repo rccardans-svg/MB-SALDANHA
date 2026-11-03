@@ -5,7 +5,7 @@ description: "Use para colocar motion (animação, contadores, carimbos, lupa, a
 
 # Motions MB Saldanha
 
-A biblioteca fica em `motions-mb/` neste repo. Leia `motions-mb/README.md` e `motions-mb/CATALOGO.md` antes de montar. Responda sempre em português.
+A biblioteca fica em `motions-mb/` neste repo. Leia primeiro `motions-mb/ROTEIRO.md` (passo a passo, qual motion usar em cada fala, receitas e conferência final), depois `motions-mb/CATALOGO.md` para os parâmetros. Responda sempre em português.
 
 ## Quando o Paulo pedir "motion NN neste vídeo"
 1. Ache o vídeo bruto (Drive ou anexo) e confira duração e cor (iPhone HLG é convertido sozinho pelo montar.py).
@@ -18,6 +18,7 @@ A biblioteca fica em `motions-mb/` neste repo. Leia `motions-mb/README.md` e `mo
 - Logo sem "domiciliar" por padrão; `"logo": "domiciliar"` só em post do atendimento domiciliar.
 - Nunca flash ou tela branca, nunca lavar ou estourar a luz, nunca tela dividida, nunca linha ou rastreio preso no corpo.
 - Vídeos do Ullisses (com dois L) = performance, não dor; não fechar com "Avaliação com a Maria".
+- Rosto em círculo sempre centralizado e inteiro: o extra `rosto` usa `motor/rosto.py` sozinho.
 - Motion tem que fazer sentido com a fala (pesos, anilhas, contadores, elementos de academia), variado entre vídeos.
 
 ## Criar motion novo
