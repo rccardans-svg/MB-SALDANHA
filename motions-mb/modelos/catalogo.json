@@ -1,0 +1,135 @@
+{
+ "01": {
+  "arquivo": "A-academia.js"
+ },
+ "02": {
+  "arquivo": "A-academia.js"
+ },
+ "03": {
+  "arquivo": "A-academia.js"
+ },
+ "04": {
+  "arquivo": "A-academia.js"
+ },
+ "05": {
+  "arquivo": "A-academia.js"
+ },
+ "06": {
+  "arquivo": "A-academia.js"
+ },
+ "07": {
+  "arquivo": "A-academia.js"
+ },
+ "08": {
+  "arquivo": "A-academia.js",
+  "espelhos": 0
+ },
+ "09": {
+  "arquivo": "A-academia.js"
+ },
+ "10": {
+  "arquivo": "A-academia.js"
+ },
+ "11": {
+  "arquivo": "B-erro-certo.js"
+ },
+ "12": {
+  "arquivo": "B-erro-certo.js"
+ },
+ "13": {
+  "arquivo": "B-erro-certo.js"
+ },
+ "14": {
+  "arquivo": "B-erro-certo.js",
+  "espelhos": 1
+ },
+ "15": {
+  "arquivo": "B-erro-certo.js"
+ },
+ "16": {
+  "arquivo": "B-erro-certo.js"
+ },
+ "17": {
+  "arquivo": "C-corpo-maria.js",
+  "usa_arquivos": [
+   "anatomia.js"
+  ]
+ },
+ "18": {
+  "arquivo": "C-corpo-maria.js"
+ },
+ "19": {
+  "arquivo": "C-corpo-maria.js"
+ },
+ "20": {
+  "arquivo": "C-corpo-maria.js"
+ },
+ "21": {
+  "arquivo": "C-corpo-maria.js"
+ },
+ "22": {
+  "arquivo": "C-corpo-maria.js"
+ },
+ "23": {
+  "arquivo": "C-corpo-maria.js",
+  "usa_arquivos": [
+   "anatomia.js"
+  ]
+ },
+ "24": {
+  "arquivo": "C-corpo-maria.js"
+ },
+ "25": {
+  "arquivo": "D-texto.js"
+ },
+ "26": {
+  "arquivo": "D-texto.js"
+ },
+ "27": {
+  "arquivo": "D-texto.js"
+ },
+ "28": {
+  "arquivo": "D-texto.js"
+ },
+ "29": {
+  "arquivo": "D-texto.js"
+ },
+ "30": {
+  "arquivo": "D-texto.js"
+ },
+ "31": {
+  "arquivo": "E-transicoes.js"
+ },
+ "32": {
+  "arquivo": "E-transicoes.js"
+ },
+ "33": {
+  "arquivo": "E-transicoes.js"
+ },
+ "34": {
+  "arquivo": "E-transicoes.js",
+  "espelhos": 1
+ },
+ "35": {
+  "arquivo": "E-transicoes.js"
+ },
+ "36": {
+  "arquivo": "F-series-app.js",
+  "espelhos": 1,
+  "usa": [
+   "14"
+  ]
+ },
+ "37": {
+  "arquivo": "F-series-app.js"
+ },
+ "38": {
+  "arquivo": "F-series-app.js"
+ },
+ "39": {
+  "arquivo": "F-series-app.js"
+ },
+ "40": {
+  "arquivo": "F-series-app.js"
+ }
+}

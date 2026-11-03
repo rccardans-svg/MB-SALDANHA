@@ -1,0 +1,17 @@
+{
+ "nome": "previa-39",
+ "brutos": "PASTA_DOS_BRUTOS",
+ "base": [
+  {
+   "src": "IMG_0744.MOV",
+   "ss": 0,
+   "dur": 4.5
+  }
+ ],
+ "motions": [
+  {
+   "id": "39",
+   "em": 0
+  }
+ ]
+}

@@ -1,0 +1,30 @@
+{
+ "nome": "previa-33",
+ "brutos": "PASTA_DOS_BRUTOS",
+ "base": [
+  {
+   "src": "IMG_0743.MOV",
+   "ss": 1,
+   "dur": 1
+  },
+  {
+   "tipo": "eco",
+   "src": "IMG_0743.MOV",
+   "ss": 2,
+   "dur": 2.5,
+   "vel": 0.3
+  },
+  {
+   "src": "IMG_0743.MOV",
+   "ss": 2.75,
+   "dur": 1.2
+  }
+ ],
+ "motions": [
+  {
+   "id": "33",
+   "em": 1.0,
+   "ate": 3.5
+  }
+ ]
+}

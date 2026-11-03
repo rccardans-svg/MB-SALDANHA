@@ -1,0 +1,30 @@
+/* Base visual dos motions MB Saldanha: azul da Maria, Montserrat caixa alta, nada de branco estourado. */
+@font-face { font-family: "M"; font-weight: 100 900; font-style: normal; src: url("Montserrat.ttf"); }
+@font-face { font-family: "M"; font-weight: 100 900; font-style: italic; src: url("MontserratItalic.ttf"); }
+:root { --azul: #1f66e5; --azul2: #2f74f2; --marinho: #0a1b3f; --fundo: #08142f; --claro: #9fbcff; --erro: #e04646; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 1080px; height: 1920px; overflow: hidden; background: #0a1b3f; }
+#root { position: relative; width: 1080px; height: 1920px; overflow: hidden; font-family: "M", sans-serif; color: #fff; text-transform: uppercase; }
+.cam, .mir, .xv { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; overflow: hidden; }
+.cam video, .mir video, .xv video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.mir { opacity: 0; z-index: 30; }
+.xv { opacity: 0; z-index: 31; }
+#sombra { position: absolute; inset: 0; z-index: 8; pointer-events: none; background: linear-gradient(180deg, rgba(5,14,36,.35) 0%, rgba(5,14,36,0) 18%, rgba(5,14,36,0) 62%, rgba(5,14,36,.62) 100%); }
+#fx { position: absolute; inset: 0; z-index: 40; }
+#logo { position: absolute; right: 44px; bottom: 70px; width: 230px; z-index: 85; }
+/* peças comuns */
+.ab { position: absolute; }
+.o0 { opacity: 0; }
+.hl { display: inline-block; background: var(--azul); font-weight: 900; font-style: italic; padding: 0 .22em .06em .16em; margin: 0 .04em; }
+.hl.x { background: var(--erro); }
+.fina { font-weight: 400; }
+.forte { font-weight: 900; font-style: italic; }
+.sombra-txt { text-shadow: 0 3px 0 rgba(10,27,63,.55), 0 0 28px rgba(10,27,63,.85), 0 0 60px rgba(10,27,63,.5); }
+.sombra-txt .fina, .sombra-txt { font-weight: 500; }
+.sombra-txt .hl { text-shadow: none; }
+.vidro { position: absolute; border-radius: 30px; background: linear-gradient(160deg, rgba(31,102,229,.58), rgba(10,27,63,.82)); border: 2px solid rgba(255,255,255,.26); box-shadow: inset 0 2px 0 rgba(255,255,255,.22), 0 18px 50px rgba(0,0,0,.38); backdrop-filter: blur(16px) saturate(1.25); -webkit-backdrop-filter: blur(16px) saturate(1.25); }
+.vidro .bw { position: absolute; inset: 0; overflow: hidden; border-radius: inherit; pointer-events: none; }
+.vidro .brilho { position: absolute; left: -40%; top: -60%; width: 60%; height: 220%; background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,.10), rgba(255,255,255,0)); transform: rotate(20deg) translateX(-400px); }
+.pilula { display: inline-block; background: var(--azul); border-radius: 999px; padding: 10px 30px 14px; font-weight: 800; }
+.tela-azul { position: absolute; inset: 0; background: radial-gradient(120% 80% at 50% 25%, #2a5fd0 0%, #163e9c 45%, #0a1b3f 100%); }
+.passada { position: absolute; left: -300px; top: -300px; width: 1680px; height: 2520px; z-index: 95; pointer-events: none; transform: translateX(-1800px) skewX(-14deg); background: linear-gradient(90deg, rgba(31,102,229,0) 0%, #1f66e5 30%, #163e9c 55%, #0a1b3f 72%, rgba(10,27,63,0) 100%); }

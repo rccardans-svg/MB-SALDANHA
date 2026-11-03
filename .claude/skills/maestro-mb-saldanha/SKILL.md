@@ -13,7 +13,7 @@ Colocar para funcionar o centro de alta performance e o atendimento domiciliar d
 ## Pessoas
 - **Paulo**: desenvolvedor e quem pede e aprova. Agenda os posts (12h ou 19h), sobe os vídeos no Drive e manda o arquivo completo para a Maria pelo WhatsApp como Documento.
 - **Maria Beatriz**: dona e fisioterapeuta (CREFITO-3 381260/F, mais de 7 especializações, incluindo quiropraxia). Grava os roteiros, autoriza imagens e responde comentários na primeira hora. Instagram: @mbsaldanha.fisio. Site: https://mbfisioterapiahomecare.com/
-- **Ulisses**: treinador e rosto do app X1. Aparece só em foto real e aprova falas e cortes de patente.
+- **Ullisses**: treinador e rosto do app X1. Aparece só em foto real e aprova falas e cortes de patente.
 
 ## Roteiro de todo pedido
 1. Leia a memória do projeto (MEMORY.md e os arquivos ligados). Se for conteúdo, leia também o plano do Instagram: https://claude.ai/artifact/FF2X3CLQcahFiohRWWaT8n
@@ -28,7 +28,7 @@ Colocar para funcionar o centro de alta performance e o atendimento domiciliar d
 |---|---|---|---|
 | Pesquisa de virais | pesquisa-virais-mb (a criar) | 1 lista por semana | yt-dlp no YouTube Shorts com contagem de views; TikTok só por perfil. Serve só para estudo, nunca repostar |
 | Roteiros da Maria | roteiros-mb (a criar) | 5 a 6 por tarde de gravação | fala da Maria, gancho em 3 s, motion por trecho. Mix: 40% domiciliar, 20% clínica, 15% performance, 15% quiropraxia, 10% quem é a Maria |
-| Reels com motion | editar-reels-mb-saldanha | 3 por semana (seg, qua, sex) | gerador reels/modelo-mb/azul/gen_azul.py + specs JSON + HyperFrames. Modelo aprovado: Reel do ombro |
+| Reels com motion | editar-reels-mb-saldanha + motions-mb | 3 por semana (seg, qua, sex) | gerador reels/modelo-mb/azul/gen_azul.py + specs JSON + HyperFrames. Modelo aprovado: Reel do ombro. Motions prontos (01 a 40, pedidos pelo número) em motions-mb/ |
 | Carrosséis | carrosseis-mb-saldanha (a criar) | 2 por semana (ter, qui), 7 a 9 lâminas 1080x1350 | gerador carrosseis/modelo-azul/gen2.js. A capa é o gancho, uma ideia por lâmina, e a última pede para salvar e enviar |
 | Entrega e postagem | este maestro | completo + leve + capa | ver Entrega |
 | App X1 (flexão) | app-x1 (a criar) | MVP web na Vercel, depois loja | repo rccardans-svg/Mb-Saldanha-, uma fase por vez. Laranja e preto só no app. Subir o CACHE do sw.js a cada versão |

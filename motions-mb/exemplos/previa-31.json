@@ -1,0 +1,31 @@
+{
+ "nome": "previa-31",
+ "brutos": "PASTA_DOS_BRUTOS",
+ "base": [
+  {
+   "src": "IMG_0743.MOV",
+   "ss": 2,
+   "dur": 2
+  },
+  {
+   "src": "IMG_0747.MOV",
+   "ss": 1,
+   "dur": 2
+  },
+  {
+   "src": "IMG_0749.MOV",
+   "ss": 2,
+   "dur": 2
+  }
+ ],
+ "motions": [
+  {
+   "id": "31",
+   "em": 0,
+   "cortes": [
+    2,
+    4
+   ]
+  }
+ ]
+}

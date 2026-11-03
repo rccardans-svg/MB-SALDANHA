@@ -1,0 +1,28 @@
+{
+ "nome": "previa-03",
+ "brutos": "PASTA_DOS_BRUTOS",
+ "base": [
+  {
+   "src": "IMG_1038.MOV",
+   "ss": 8,
+   "dur": 1.5
+  },
+  {
+   "tipo": "congela",
+   "src": "IMG_1038.MOV",
+   "ss": 9.5,
+   "dur": 3
+  },
+  {
+   "src": "IMG_1038.MOV",
+   "ss": 9.5,
+   "dur": 1.5
+  }
+ ],
+ "motions": [
+  {
+   "id": "03",
+   "em": 1.5
+  }
+ ]
+}

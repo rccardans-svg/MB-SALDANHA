@@ -1,0 +1,18 @@
+{
+ "nome": "previa-21",
+ "brutos": "PASTA_DOS_BRUTOS",
+ "base": [
+  {
+   "src": "VID_20261008_101105.mp4",
+   "ss": 30,
+   "dur": 6.5
+  }
+ ],
+ "motions": [
+  {
+   "id": "21",
+   "em": 0
+  }
+ ],
+ "logo": "domiciliar"
+}

@@ -21,7 +21,7 @@ Formato padrão: 1080x1920, 30 fps, H.264 + AAC, até 90 s. Responda sempre em p
 ## 3. Legendas (whisper.cpp)
 - `whisper-cli -m /opt/whisper.cpp/models/ggml-small.bin -l pt -osrt -f audio.wav`
 - Queimar no vídeo: `ffmpeg -i in.mp4 -vf "subtitles=audio.wav.srt:force_style='FontSize=14,Alignment=2,MarginV=60'" out.mp4`
-- Revise nomes próprios (Ulisses, Maria Beatriz, MB Saldanha) no .srt antes de queimar.
+- Revise nomes próprios (Ullisses, Maria Beatriz, MB Saldanha) no .srt antes de queimar.
 
 ## 4. Motion graphics
 - HyperFrames (HTML + GSAP): `hyperframes init NOME --resolution portrait --non-interactive --skip-skills`, edite `index.html`, `npx hyperframes render -o out.mp4`. Se o CDN do GSAP estiver bloqueado, instale `gsap` via npm e aponte o `<script>` para o arquivo local. Também aceita `--video` para legendar e animar sobre um vídeo existente.
