@@ -78,7 +78,7 @@ Exemplo com três motions:
 
 ## Fundo verde (chroma key)
 
-Pedido do Paulo em 2026-11-04: cada motion também em fundo verde, para ele pôr por cima de qualquer vídeo no editor dele. Os 41 a 64 já estão prontos em `/mnt/project-files/reels/motions-mb/fundo-verde/` (`motion-NN-fundo-verde.mp4`, 1080 x 1920, 30 qps, com os efeitos sonoros), junto com o `COMO-USAR.md`.
+Pedido do Paulo em 2026-11-04: cada motion também em fundo verde, para ele pôr por cima de qualquer vídeo no editor dele. Os 41 a 64 já estão prontos aqui no repositório, em `fundo-verde/` (`motion-NN-fundo-verde.mp4`, 1080 x 1920, 30 qps, com os efeitos sonoros, uns 14 MB no total), junto com o `COMO-USAR.md`, e também em `/mnt/project-files/reels/motions-mb/fundo-verde/`. Ao refazer um verde, troque o arquivo nos dois lugares. As prévias montadas (bem maiores) não entram no repositório: gere de novo com `montar.py`.
 
 ```bash
 python3 motor/montar.py exemplos/previa-47.json --saida OUT --verde      # sai OUT/previa-47-verde.mp4
