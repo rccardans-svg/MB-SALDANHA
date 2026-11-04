@@ -133,33 +133,60 @@
   "arquivo": "F-series-app.js"
  },
  "41": {
-  "arquivo": "G-serie-historia.js"
+  "arquivo": "G-chamadas.js"
  },
  "42": {
-  "arquivo": "G-serie-historia.js"
+  "arquivo": "G-chamadas.js"
  },
  "43": {
-  "arquivo": "G-serie-historia.js"
+  "arquivo": "G-chamadas.js"
  },
  "44": {
-  "arquivo": "G-serie-historia.js"
+  "arquivo": "G-chamadas.js"
  },
  "45": {
-  "arquivo": "G-serie-historia.js",
-  "usa": [
-   "11"
-  ]
+  "arquivo": "G-chamadas.js"
  },
- "46": {
-  "arquivo": "G-serie-historia.js"
+ "px-fase": {
+  "arquivo": "P-pixel.js"
  },
- "47": {
-  "arquivo": "G-serie-historia.js"
+ "px-luta": {
+  "arquivo": "P-pixel.js"
  },
- "48": {
-  "arquivo": "G-serie-historia.js",
-  "usa": [
-   "41"
-  ]
+ "px-xp": {
+  "arquivo": "P-pixel.js"
+ },
+ "px-corte": {
+  "arquivo": "P-pixel.js"
+ },
+ "px-dialogo": {
+  "arquivo": "P-pixel.js"
+ },
+ "px-salvar": {
+  "arquivo": "P-pixel.js"
+ },
+ "lux-grade": {
+  "arquivo": "L-premium.js"
+ },
+ "lux-veu": {
+  "arquivo": "L-premium.js"
+ },
+ "lux-titulo": {
+  "arquivo": "L-premium.js"
+ },
+ "lux-reps": {
+  "arquivo": "L-premium.js"
+ },
+ "lux-frase": {
+  "arquivo": "L-premium.js"
+ },
+ "lux-passagem": {
+  "arquivo": "L-premium.js"
+ },
+ "lux-cracha": {
+  "arquivo": "L-premium.js"
+ },
+ "lux-salvar": {
+  "arquivo": "L-premium.js"
  }
 }

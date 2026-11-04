@@ -211,7 +211,7 @@
     let sv = linhas.map((d) => `<path class="pl" d="${d}" fill="none" stroke="#fff" stroke-width="8" stroke-linejoin="round" stroke-linecap="round"/>`).join("");
     sv += portas.map(([x, y, r, a]) => `<path class="pl" d="M${x} ${y} A${r} ${r} 0 0 ${a ? 0 : 1} ${x + (a ? r : r)} ${y + (a ? r : -r)}" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="4" stroke-dasharray="10 8"/>`).join("");
     const salas = { sala: [180, 210, "SALA"], quarto: [700, 150, "QUARTO"], corredor: [430, 700, "CORREDOR"], banheiro: [790, 730, "BANHEIRO"], cozinha: [170, 660, "COZINHA"], area: [610, 730, "ÁREA"] };
-    sv += Object.entries(salas).map(([k, [x, y, n]]) => `<text class="sl s-${k}" x="${x}" y="${y + 120}" text-anchor="middle" font-family="M" font-weight="700" font-size="28" letter-spacing="3" fill="rgba(255,255,255,.55)">${n}</text>`).join("");
+    sv += Object.entries(salas).map(([k, [x, y, n]]) => `<text class="sl s-${k}" x="${x}" y="${y + 120}" text-anchor="middle" font-family="M" font-weight="700" font-size="28" letter-spacing="3" fill="rgba(255,255,255,.55)" style="opacity:0">${n}</text>`).join("");
     const pl = K.svg(sv, 880, 900, `left:${ox}px;top:${oy}px;z-index:4`);
     pl.querySelectorAll(".pl").forEach((p, i) => K.desenha(p, t0 + 0.3 + i * 0.05, 0.6));
     K.ft(pl.querySelectorAll(".sl"), { opacity: 0 }, { opacity: 1, duration: 0.3, stagger: 0.05 }, t0 + 0.8);

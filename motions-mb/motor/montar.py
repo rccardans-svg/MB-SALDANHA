@@ -229,7 +229,9 @@ def main():
     brutos = a.brutos or spec.get("brutos") or os.environ.get("MB_BRUTOS", ".")
     a.work = os.path.abspath(a.work); proj = os.path.join(a.work, nome); shutil.rmtree(proj, ignore_errors=True)
     os.makedirs(os.path.join(proj, "assets")); os.makedirs(os.path.join(proj, "motions"))
-    for f in ("gsap.min.js", "Montserrat.ttf", "MontserratItalic.ttf", "logo_white.png", "logo_white_domiciliar.png", "logo_outline.png"):
+    for f in ("gsap.min.js", "Montserrat.ttf", "MontserratItalic.ttf", "JetBrainsMono-Regular.ttf", "JetBrainsMono-Medium.ttf",
+              "JetBrainsMono-Bold.ttf", "PressStart2P.woff2", "PixelifySans-400.woff2", "PixelifySans-500.woff2",
+              "PixelifySans-700.woff2", "logo_white.png", "logo_white_domiciliar.png", "logo_outline.png"):
         shutil.copy(os.path.join(ASSETS, f), os.path.join(proj, "assets", f))
     for f in ("mb.css", "mb.js"):
         shutil.copy(os.path.join(AQUI, f), os.path.join(proj, "assets", f))

@@ -1,0 +1,4 @@
+Fontes do estilo pixel (amostras dos motions):
+- Press Start 2P, de CodeMan38. SIL Open Font License 1.1. https://fonts.google.com/specimen/Press+Start+2P
+- Pixelify Sans, de Stefie Justprince. SIL Open Font License 1.1. https://fonts.google.com/specimen/Pixelify+Sans
+Arquivos .woff2 (subconjunto latin) baixados do pacote @fontsource no jsDelivr.

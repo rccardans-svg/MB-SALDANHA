@@ -1,0 +1,39 @@
+{
+ "nome": "previa-41",
+ "brutos": "PASTA_DOS_BRUTOS",
+ "base": [
+  {
+   "src": "IMG_1042.MOV",
+   "ss": 2,
+   "dur": 4.2
+  },
+  {
+   "src": "IMG_1043.MOV",
+   "ss": 2,
+   "dur": 4.4
+  },
+  {
+   "src": "IMG_0681.MOV",
+   "ss": 2,
+   "dur": 4.2
+  }
+ ],
+ "motions": [
+  {
+   "id": "41",
+   "em": 0.1,
+   "acao": "salvar"
+  },
+  {
+   "id": "41",
+   "em": 4.3,
+   "acao": "enviar"
+  },
+  {
+   "id": "41",
+   "em": 8.7,
+   "acao": "botao",
+   "texto": "DOR QUE NÃO PASSA|*MERECE AVALIAÇÃO*"
+  }
+ ]
+}

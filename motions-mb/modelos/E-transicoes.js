@@ -9,7 +9,7 @@
       const t = K.t(tc);
       const a = K.el("", "", root); a.className = "passada";
       const b = K.el("", "", root); b.className = "passada"; b.style.background = "linear-gradient(90deg,rgba(10,27,63,0),#0a1b3f 35%,#163e9c 60%,rgba(22,62,156,0))";
-      const linhas = K.el([0, 1, 2, 3, 4].map((i) => `<i style="position:absolute;left:0;top:${180 + i * 360}px;width:${400 + (i % 3) * 200}px;height:${10 + (i % 2) * 8}px;border-radius:9px;background:#9fbcff;opacity:.8"></i>`).join(""), "left:0;top:0;width:1080px;height:1920px;z-index:96;pointer-events:none", root);
+      const linhas = K.el([0, 1, 2, 3, 4].map((i) => `<i style="position:absolute;left:0;top:${180 + i * 360}px;width:${400 + (i % 3) * 200}px;height:${10 + (i % 2) * 8}px;border-radius:9px;background:#9fbcff;opacity:.8"></i>`).join(""), "left:0;top:0;width:1080px;height:1920px;z-index:96;pointer-events:none;opacity:0", root);
       K.ft(b, { x: -1800 }, { x: 1800, duration: 0.5, ease: "power2.inOut" }, t - 0.27);
       K.ft(a, { x: -1800 }, { x: 1800, duration: 0.46, ease: "power2.inOut" }, t - 0.21);
       K.ft(linhas, { x: -1200, opacity: 1 }, { x: 1400, opacity: 1, duration: 0.42, ease: "power2.inOut" }, t - 0.2);

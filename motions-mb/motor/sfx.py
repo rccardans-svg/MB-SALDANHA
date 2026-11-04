@@ -6,7 +6,7 @@ import os, sys, wave
 import numpy as np
 
 SR = 48000
-OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(os.path.dirname(os.path.abspath(__file__)), "assets", "sfx")
+OUT = sys.argv[1] if len(sys.argv) > 1 and not sys.argv[1].startswith("--") else os.path.join(os.path.dirname(os.path.abspath(__file__)), "assets", "sfx")
 rng = np.random.default_rng(7)
 
 
@@ -136,5 +136,102 @@ def build():
     save("trava", mix(metal(.25, 900, .05), thump(.25, 120, .03)))
 
 
+def quadrada(f, d, duty=0.5, vol=1.0):
+    """onda quadrada de videogame (8 bits) com frequência que pode variar no tempo (f = número ou array)"""
+    x = t(d); f = np.broadcast_to(np.asarray(f, dtype=float), x.shape)
+    ph = np.cumsum(f) / SR
+    return vol * np.where((ph % 1.0) < duty, 1.0, -1.0)
+
+
+def notas(seq, dur, duty=0.5, dec=0.9):
+    """sequência de notas quadradas: seq = [freq, ...], cada uma com 'dur' segundos"""
+    y = []
+    for f in seq:
+        n = quadrada(f, dur, duty) * np.exp(-t(dur) / (dur * dec))
+        y.append(n)
+    return np.concatenate(y)
+
+
+def crush(x, passo=6):
+    """reduz a taxa de amostragem (som de console antigo)"""
+    y = x.copy()
+    for i in range(0, len(y), passo):
+        y[i:i + passo] = y[i]
+    return y
+
+
+def pixel():
+    """efeitos de 8 bits para os motions em pixel art (prefixo px_)"""
+    os.makedirs(OUT, exist_ok=True)
+    save("px_blip", quadrada(880, .035, .25) * np.exp(-t(.035) / .02), .35)
+    d = .16; x = t(d); save("px_hit", crush(quadrada(420 * np.exp(-x / .05) + 90, d, .5) * .6 + noise(d) * .5, 8) * np.exp(-x / .07), .7)
+    save("px_dano", crush(quadrada(np.linspace(300, 120, int(SR * .22)), .22, .5), 6) * np.exp(-t(.22) / .12), .6)
+    save("px_moeda", np.concatenate([quadrada(988, .07, .5), quadrada(1319, .25, .5) * np.exp(-t(.25) / .1)]), .45)
+    save("px_levelup", notas([523, 659, 784, 1047, 784, 1047, 1319], .075, .5, 1.6), .5)
+    d = .9; x = t(d); save("px_ko", crush(noise(d), 24) * np.exp(-x / .3) * .9 + quadrada(np.linspace(220, 40, int(SR * d)), d, .5) * np.exp(-x / .25) * .5, .8)
+    save("px_salvar", notas([660, 880, 1320], .09, .5, 1.2), .45)
+    d = .3; x = t(d); save("px_corte", crush(quadrada(np.linspace(1600, 200, int(SR * d)), d, .5), 4) * np.minimum(1, (d - x) / .05), .35)
+    save("px_passo", quadrada(np.linspace(600, 900, int(SR * .06)), .06, .5) * np.exp(-t(.06) / .03), .3)
+
+
+def lp_var(x, fcs):
+    """passa-baixa de um polo com corte que muda no tempo (fcs = array do mesmo tamanho)"""
+    y = np.zeros_like(x); s = 0.0
+    a = np.exp(-2 * np.pi * np.asarray(fcs) / SR)
+    for i, v in enumerate(x):
+        s = (1 - a[i]) * v + a[i] * s; y[i] = s
+    return y
+
+
+def sino(f0, d, partes=((1, 1, 1.0), (2.0, .32, .55), (3.0, .12, .35), (4.2, .05, .25))):
+    """sino suave: parciais com decaimento próprio (mult, amplitude, decaimento em s)"""
+    x = t(d); y = np.zeros_like(x)
+    for m, a, r in partes:
+        y += a * np.sin(2 * np.pi * f0 * m * x) * np.exp(-x / r)
+    return y * np.minimum(1, x / .004)
+
+
+def luxo():
+    """sons discretos da linha premium (prefixo lux_): ar, grave, clique, sino. Nada de pop ou carimbo."""
+    os.makedirs(OUT, exist_ok=True)
+    # ar: sopro filtrado que cresce e some (entrada de título)
+    d = .8; x = t(d); e = np.sin(np.pi * np.clip(x / d, 0, 1)) ** 2
+    save("lux_ar", hp(lp(noise(d), 2200), 300) * e, .38)
+    # grave: batida funda e curta, com um harmônico para aparecer no celular
+    d = 1.3; x = t(d); f = 64 * (1 + .45 * np.exp(-x / .05))
+    ph = 2 * np.pi * np.cumsum(f) / SR
+    g = (np.sin(ph) + .28 * np.sin(2 * ph)) * np.exp(-x / .42) * np.minimum(1, x / .004)
+    save("lux_grave", g + .12 * lp(noise(d), 700) * np.exp(-x / .012), .8)
+    # clique: tique fino de relógio (contador)
+    d = .07; x = t(d)
+    save("lux_clique", np.sin(2 * np.pi * 2900 * x) * np.exp(-x / .009) + .35 * hp(noise(d), 4000) * np.exp(-x / .003), .32)
+    # rolo: três cliques rápidos que diminuem (número trocando)
+    y = np.zeros(int(SR * .2))
+    for i, (at, g2) in enumerate([(0, 1), (.055, .6), (.105, .35)]):
+        c = np.sin(2 * np.pi * (2600 - i * 200) * t(.05)) * np.exp(-t(.05) / .008) * g2
+        o = int(at * SR); y[o:o + len(c)] += c
+    save("lux_rolo", y, .3)
+    # traço: risco leve de linha sendo desenhada
+    d = .9; x = t(d); e = np.minimum(1, x / .25) * np.clip((d - x) / .45, 0, 1)
+    save("lux_traco", hp(noise(d), 3500) * e * (.6 + .4 * np.sin(2 * np.pi * 9 * x)), .14)
+    # passagem: sopro que desce de agudo para grave (troca de cena)
+    d = .55; x = t(d); fc = 7000 * np.exp(-x / .18) + 400
+    e = np.minimum(1, x / .22) * np.clip((d - x) / .33, 0, 1)
+    save("lux_passagem", lp_var(noise(d), fc) * e, .45)
+    # sino: duas notas suaves (assinatura sonora do salvar)
+    s1 = sino(1046.5, 1.9); s2 = sino(1318.5, 1.8) * .7
+    y = np.zeros(int(SR * 2.0)); y[:len(s1)] += s1; o = int(.12 * SR); y[o:o + len(s2)] += s2[:len(y) - o]
+    save("lux_sino", y, .42)
+    # toque: batida macia de botão (encaixe)
+    d = .22; x = t(d)
+    save("lux_toque", thump(d, 150, .045) + .25 * np.sin(2 * np.pi * 1800 * x) * np.exp(-x / .01), .5)
+
+
 if __name__ == "__main__":
-    build(); print("sfx em", OUT, sorted(os.listdir(OUT)))
+    if "--pixel" in sys.argv:
+        pixel()
+    elif "--luxo" in sys.argv:
+        luxo()
+    else:
+        build(); pixel(); luxo()
+    print("sfx em", OUT, sorted(os.listdir(OUT)))

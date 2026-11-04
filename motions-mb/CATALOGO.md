@@ -431,92 +431,234 @@ Prévia: `previa-40.mp4`. Exemplo de spec: `exemplos/previa-40.json`.
 - `sub`: `"CENTRO DE ALTA PERFORMANCE · MB SALDANHA"`
 - `domiciliar`: `false`
 
-## G. Série com história (vilões)
+## G. Chamadas e identidade (primeira versão; serão refeitas no estilo que o Paulo escolher)
 
-### 41. Vilão entra em cena
-Exemplo: episódio completo em `exemplos/ep1-gordurinha.json` (prévia `2026-11-04-ep1-gordurinha-ullisses.mp4`).
-
-- `em`: `0`
-- `vilao`: `"gordurinha"`
-- `alvo`: `"v"`
-- `x`: `800`
-- `y`: `1560`
-- `tam`: `340`
-- `entrada`: `"cai"`
-- `lado`: `"esq"`
-- `olhar`: `"esq"`
-- `falas`: `[[0.7, "HOJE VOCÊ|NÃO TREINA!", 1.8]]`
-- `vida`: `100`
-- `ate`: `null`
-- `kg`: `20`
-
-### 42. Barra de vida do vilão
-Exemplo: episódio completo em `exemplos/ep1-gordurinha.json` (prévia `2026-11-04-ep1-gordurinha-ullisses.mp4`).
+### 41. Botão que é tocado (salvar, enviar, curtir, seguir ou "Agende sua avaliação")
+Prévia: `previa-41.mp4`. Exemplo de spec: `exemplos/previa-41.json`.
 
 - `em`: `0`
-- `alvo`: `"v"`
-- `nome`: `null`
-- `y`: `200`
-- `episodio`: `""`
+- `dur`: `3.6`
+- `acao`: `"salvar"`
+- `texto`: `null`
+- `aviso`: `null`
+- `y`: `1230`
+- `toque_em`: `0.75`
+- `botao`: `"AGENDE SUA AVALIAÇÃO"`
+- `contatos`: `["A", "J", "M"]`
 
-### 43. Golpe da espada azul
-Exemplo: episódio completo em `exemplos/ep1-gordurinha.json` (prévia `2026-11-04-ep1-gordurinha-ullisses.mp4`).
-
-- `em`: `0`
-- `alvo`: `"v"`
-- `angulo`: `-24`
-- `dano`: `"tudo"`
-- `nome`: `"EXERCÍCIO *CERTO*"`
-- `mostra`: `0.9`
-
-### 44. Martelo de anilha (uma anilha cai no vilão a cada repetição)
-Exemplo: episódio completo em `exemplos/ep1-gordurinha.json` (prévia `2026-11-04-ep1-gordurinha-ullisses.mp4`).
+### 42. Comenta a palavra (ou marca o amigo)
+Prévia: `previa-42.mp4`. Exemplo de spec: `exemplos/previa-42.json`.
 
 - `em`: `0`
-- `alvo`: `"v"`
-- `golpes`: `[0, 1.2, 2.4, 3.6, 4.8]`
-- `dano`: `20`
+- `dur`: `4.4`
+- `modo`: `"palavra"`
+- `palavra`: `"CORE"`
+- `titulo`: `null`
+- `sub`: `"QUE EU TE MANDO O TREINO COMPLETO"`
+- `perfis`: `["@parceiro.de.treino", "@ana.corre", "@joao_supino"]`
+- `escolhe`: `0`
+- `usuario`: `"@voce"`
+- `y`: `1400`
 
-### 45. Vilão recupera vida (quando a pessoa erra)
-Exemplo: episódio completo em `exemplos/ep1-gordurinha.json` (prévia `2026-11-04-ep1-gordurinha-ullisses.mp4`).
-
-- `em`: `0`
-- `alvo`: `"v"`
-- `cura`: `20`
-- `carimbo`: `true`
-- `legenda`: `""`
-- `y`: `760`
-
-### 46. Placa VILÃO DERROTADO
-Exemplo: episódio completo em `exemplos/ep1-gordurinha.json` (prévia `2026-11-04-ep1-gordurinha-ullisses.mp4`).
+### 43. Crachá com nome e registro
+Prévia: `previa-43.mp4`. Exemplo de spec: `exemplos/previa-43.json`.
 
 - `em`: `0`
-- `dur`: `3`
-- `titulo`: `"VILÃO|*DERROTADO*"`
-- `estrelas`: `3`
-- `xp`: `150`
-- `licao`: `"CADA REPETIÇÃO|*CERTA* É UM GOLPE"`
-- `y`: `520`
+- `dur`: `3.8`
+- `cargo`: `"FISIOTERAPEUTA"`
+- `nome`: `"MARIA BEATRIZ"`
+- `registro`: `"CREFITO-3 381260/F"`
+- `indice`: `"MB/01"`
+- `x`: `60`
+- `y`: `1150`
+- `largura`: `800`
 
-### 47. Mapa da jornada (vilões vencidos e o próximo)
-Exemplo: episódio completo em `exemplos/ep1-gordurinha.json` (prévia `2026-11-04-ep1-gordurinha-ullisses.mp4`).
+### 44. Resposta a comentário
+Prévia: `previa-44.mp4`. Exemplo de spec: `exemplos/previa-44.json`.
+
+- `em`: `0`
+- `dur`: `4.2`
+- `rotulo`: `"RESPONDENDO A"`
+- `usuario`: `"@joana.treina"`
+- `pergunta`: `"Joelho pode passar da ponta do pé?"`
+- `y`: `170`
+- `largura`: `860`
+- `fica`: `true`
+- `canto_em`: `2.4`
+
+### 45. Enquete na tela
+Prévia: `previa-45.mp4`. Exemplo de spec: `exemplos/previa-45.json`.
+
+- `em`: `0`
+- `dur`: `4.8`
+- `rotulo`: `"ENQUETE"`
+- `pergunta`: `"QUAL VOCÊ *CONSEGUE*?"`
+- `opcoes`: `["FÁCIL", "DIFÍCIL"]`
+- `porcentagens`: `[41, 59]`
+- `escolha`: `1`
+- `toque_em`: `1.5`
+- `y`: `1040`
+
+## L. Linha premium (amostra de estilo: amostras-estilo/amostra-premium.mp4)
+
+### lux-cracha. nome em placa de vidro marinho, com a coluna do logo como emblema
+Aparece na amostra do grupo. Spec da amostra: `exemplos/amostra-premium.json`.
+
+- `em`: `0`
+- `dur`: `5`
+- `nome`: `"ULLISSES"`
+- `cargo`: `"PERSONAL TRAINER"`
+- `marca`: `"MB SALDANHA · PERFORMANCE"`
+- `x`: `56`
+- `y`: `1250`
+- `w`: `760`
+
+### lux-frase. frase de efeito com o vídeo congelado: véu marinho, coluna do logo e dois pesos
+Aparece na amostra do grupo. Spec da amostra: `exemplos/amostra-premium.json`.
 
 - `em`: `0`
 - `dur`: `3.4`
-- `titulo`: `"A *JORNADA*"`
-- `viloes`: `["gordurinha", "preguica", "plato", "dor", "torta", "desculpinha"]`
-- `vencidos`: `1`
-- `legenda`: `"PRÓXIMO VILÃO"`
+- `rotulo`: `"PRINCÍPIO 01"`
+- `texto`: `"A FORÇA|VEM DO|*QUADRIL.*"`
+- `y`: `760`
+- `tam`: `140`
+- `veu`: `0.52`
+- `zoom`: `1.06`
 
-### 48. Dor grudada num ponto do vídeo congelado (sem rastreio)
-Exemplo: episódio completo em `exemplos/ep1-gordurinha.json` (prévia `2026-11-04-ep1-gordurinha-ullisses.mp4`).
+### lux-grade. acabamento de cinema: vinheta, contraste leve e aproximação lenta da câmera
+Aparece na amostra do grupo. Spec da amostra: `exemplos/amostra-premium.json`.
 
 - `em`: `0`
-- `x`: `600`
-- `y`: `1150`
-- `tam`: `210`
-- `regiao`: `"LOMBAR"`
-- `alvo`: `"dor"`
-- `lado`: `"esq"`
-- `falas`: `[[0.7, "ESSA LOMBAR|É MINHA!", 1.8]]`
-- `ate`: `null`
+- `dur`: `10`
+- `vinheta`: `0.36`
+- `contraste`: `1.04`
+- `saturacao`: `0.96`
+- `empurra`: `[]`
+- `zoom`: `1.035`
+
+### lux-passagem. troca de cena com aproximação e desfoque rápidos (o corte fica no meio)
+Aparece na amostra do grupo. Spec da amostra: `exemplos/amostra-premium.json`.
+
+- `em`: `0`
+- `forca`: `1.1`
+- `desfoque`: `10`
+
+### lux-reps. contador de repetições em número fino (odômetro) + dica que troca a cada repetição
+Aparece na amostra do grupo. Spec da amostra: `exemplos/amostra-premium.json`.
+
+- `em`: `0`
+- `dur`: `10`
+- `entra`: `0`
+- `reps`: `[1, 2, 3, 4]`
+- `total`: `null`
+- `rotulo`: `"REPETIÇÕES"`
+- `dicas`: `["COLUNA NEUTRA", "BARRA COLADA NA PERNA", "EMPURRE O CHÃO", "CONTRAIA O GLÚTEO NO TOPO"]`
+- `rotulo_dica`: `"DICA"`
+- `x`: `72`
+- `y`: `236`
+- `largura`: `470`
+- `tam`: `200`
+
+### lux-salvar. chamada para salvar: marcador desenhado em traço fino que se preenche
+Aparece na amostra do grupo. Spec da amostra: `exemplos/amostra-premium.json`.
+
+- `em`: `0`
+- `dur`: `4`
+- `rotulo`: `"GUARDE ESTE TREINO"`
+- `feito`: `"SALVO"`
+- `verbo`: `"SALVE"`
+- `resto`: `"PARA O PRÓXIMO TREINO"`
+- `y`: `1230`
+- `w`: `880`
+- `sai`: `false`
+
+### lux-titulo. abertura editorial: índice, linha fina e título em dois pesos
+Aparece na amostra do grupo. Spec da amostra: `exemplos/amostra-premium.json`.
+
+- `em`: `0`
+- `dur`: `3`
+- `indice`: `"01"`
+- `rotulo`: `"MB SALDANHA · PERFORMANCE"`
+- `titulo`: `"LEVANTAMENTO|*TERRA*"`
+- `sub`: `""`
+- `x`: `72`
+- `y`: `236`
+- `largura`: `936`
+- `tam`: `120`
+
+### lux-veu. escurecimento suave atrás do texto (topo, base, esquerda ou tela toda)
+Aparece na amostra do grupo. Spec da amostra: `exemplos/amostra-premium.json`.
+
+- `em`: `0`
+- `dur`: `4`
+- `lado`: `"topo"`
+- `forca`: `0.66`
+- `tamanho`: `760`
+
+## P. Pixel art (amostra de estilo: amostras-estilo/amostra-pixel.mp4)
+
+### px-corte. transição em blocos de pixel
+Aparece na amostra do grupo. Spec da amostra: `exemplos/amostra-pixel.json`.
+
+- `em`: `0`
+- `tam`: `90`
+- `dur`: `0.36`
+- `cor`: `"#0a1b3f"`
+
+### px-dialogo. caixa de diálogo de RPG
+Aparece na amostra do grupo. Spec da amostra: `exemplos/amostra-pixel.json`.
+
+- `em`: `0`
+- `dur`: `5`
+- `nome`: `"ULLISSES"`
+- `texto`: `"COLUNA RETA E *FORÇA NO QUADRIL*."`
+- `vel`: `0.035`
+- `y`: `1290`
+- `altura`: `340`
+
+### px-fase. FASE 1 · PRONTO? VAI!
+Aparece na amostra do grupo. Spec da amostra: `exemplos/amostra-pixel.json`.
+
+- `em`: `0`
+- `fase`: `"FASE 1"`
+- `nome`: `"LEVANTAMENTO TERRA"`
+- `pronto`: `"PRONTO?"`
+- `vai`: `"VAI!"`
+- `y`: `700`
+
+### px-luta. vilão em pixel com barra de vida
+Aparece na amostra do grupo. Spec da amostra: `exemplos/amostra-pixel.json`.
+
+- `em`: `0`
+- `dur`: `9`
+- `golpes`: `[1, 2, 3, 4]`
+- `dano`: `25`
+- `vida`: `100`
+- `nome`: `"GORDURINHA"`
+- `nivel`: `3`
+- `x`: `812`
+- `y`: `128`
+- `u`: `10`
+
+### px-salvar. disquete: JOGO SALVO
+Aparece na amostra do grupo. Spec da amostra: `exemplos/amostra-pixel.json`.
+
+- `em`: `0`
+- `dur`: `4`
+- `texto`: `"SALVA PRO|PRÓXIMO TREINO"`
+- `y`: `1260`
+- `salvando`: `"SALVANDO"`
+- `salvo`: `"JOGO SALVO!"`
+
+### px-xp. barra de XP do aluno e LEVEL UP
+Aparece na amostra do grupo. Spec da amostra: `exemplos/amostra-pixel.json`.
+
+- `em`: `0`
+- `dur`: `10`
+- `reps`: `[1, 2, 3, 4]`
+- `xp`: `25`
+- `xp_max`: `100`
+- `nome`: `"ULLISSES"`
+- `nivel`: `7`
+- `sobe_em`: `null`
+- `y`: `1470`

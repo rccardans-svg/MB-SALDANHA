@@ -5,7 +5,14 @@ AQUI = os.path.dirname(os.path.abspath(__file__)); RAIZ = os.path.dirname(AQUI)
 d = json.loads(subprocess.run(["node", os.path.join(AQUI, "params.js"), os.path.join(RAIZ, "modelos")],
                               capture_output=True, text=True, check=True).stdout)
 GRUPOS = {"A": "Academia e performance", "B": "Erro x certo", "C": "Corpo e fisioterapia (Maria)",
-          "D": "Texto e legenda", "E": "Transições e câmera", "F": "Séries e app X1", "G": "Série com história (vilões)"}
+          "D": "Texto e legenda", "E": "Transições e câmera", "F": "Séries e app X1",
+          "G": "Chamadas e identidade (primeira versão; serão refeitas no estilo que o Paulo escolher)",
+          "H": "Dados com fonte (estilo editorial)", "I": "Desenho na tela", "J": "Formatos que viralizam",
+          "L": "Linha premium (amostra de estilo: amostras-estilo/amostra-premium.mp4)",
+          "P": "Pixel art (amostra de estilo: amostras-estilo/amostra-pixel.mp4)"}
+# só entra no catálogo o que o montar.py consegue usar (o que está em modelos/catalogo.json)
+CAT = json.load(open(os.path.join(RAIZ, "modelos", "catalogo.json")))
+d = {k: v for k, v in d.items() if k in CAT}
 linhas = ["# Catálogo dos motions MB Saldanha", "",
           "Gerado por `motor/gerar_catalogo.py`. Cada motion se pede pelo número. Os tempos são em segundos, contados a partir do `em`.",
           "Texto: `*palavra*` vira faixa azul, `_palavra_` vira faixa vermelha (erro) e `|` quebra a linha.", ""]
@@ -15,10 +22,10 @@ for k in sorted(d):
     if g != grupo:
         grupo = g; linhas += [f"## {g}. {GRUPOS[g]}", ""]
     linhas.append(f"### {k}. {m['__titulo']}")
-    if g == "G":
-        linhas.append("Exemplo: episódio completo em `exemplos/ep1-gordurinha.json` (prévia `2026-11-04-ep1-gordurinha-ullisses.mp4`).")
-    else:
+    if k[:1].isdigit():
         linhas.append(f"Prévia: `previa-{k}.mp4`. Exemplo de spec: `exemplos/previa-{k}.json`.")
+    else:
+        linhas.append(f"Aparece na amostra do grupo. Spec da amostra: `exemplos/amostra-{'premium' if k.startswith('lux') else 'pixel'}.json`.")
     linhas.append("")
     for p, v in m.items():
         if p.startswith("__"): continue

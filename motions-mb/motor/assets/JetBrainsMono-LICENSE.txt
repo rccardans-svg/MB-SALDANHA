@@ -1,0 +1,4 @@
+JetBrains Mono (Regular, Medium e Bold), usada nos rótulos em letra de máquina dos motions 41 a 60.
+Copyright 2020 JetBrains s.r.o. https://github.com/JetBrains/JetBrainsMono
+Licenciada pela Apache License, Version 2.0: http://www.apache.org/licenses/LICENSE-2.0
+(arquivos copiados do pacote fonts-jetbrains-mono do Debian/Ubuntu).

@@ -34,7 +34,7 @@
     const t0 = K.t(), t1 = t0 + P.dur, X = K.extra(P.extra);
     if (X) { X.style.zIndex = 45; K.set(X, { opacity: 1 }, t0); K.set(X, { opacity: 0 }, t1); }
     const letras = [...P.texto];
-    const tx = K.el(letras.map((c) => `<span style="display:inline-block">${c}</span>`).join(""),
+    const tx = K.el(letras.map((c) => `<span style="display:inline-block;opacity:0">${c}</span>`).join(""),
       `left:0;width:1080px;top:${P.y}px;text-align:center;font-weight:900;font-style:italic;font-size:${P.tam}px;line-height:1;letter-spacing:-.02em;color:${P.contorno ? "transparent" : P.cor};-webkit-text-stroke:${P.contorno ? "8px " + P.cor : "0"};text-shadow:0 12px 40px rgba(10,27,63,.45);z-index:2`);
     tx.style.zIndex = 41; tx.parentNode.removeChild(tx); document.getElementById("root").appendChild(tx);
     const sp = tx.querySelectorAll("span");

@@ -28,3 +28,38 @@ html, body { width: 1080px; height: 1920px; overflow: hidden; background: #0a1b3
 .pilula { display: inline-block; background: var(--azul); border-radius: 999px; padding: 10px 30px 14px; font-weight: 800; }
 .tela-azul { position: absolute; inset: 0; background: radial-gradient(120% 80% at 50% 25%, #2a5fd0 0%, #163e9c 45%, #0a1b3f 100%); }
 .passada { position: absolute; left: -300px; top: -300px; width: 1680px; height: 2520px; z-index: 95; pointer-events: none; transform: translateX(-1800px) skewX(-14deg); background: linear-gradient(90deg, rgba(31,102,229,0) 0%, #1f66e5 30%, #163e9c 55%, #0a1b3f 72%, rgba(10,27,63,0) 100%); }
+/* Peças editoriais (motions 41 a 60): rótulo em letra de máquina, moldura fina, grade e chips, no azul da MB */
+@font-face { font-family: "MONO"; font-weight: 400; src: url("JetBrainsMono-Regular.ttf"); }
+@font-face { font-family: "MONO"; font-weight: 500; src: url("JetBrainsMono-Medium.ttf"); }
+@font-face { font-family: "MONO"; font-weight: 700; src: url("JetBrainsMono-Bold.ttf"); }
+.mono { font-family: "MONO", monospace; font-style: normal; letter-spacing: .08em; }
+.rotulo { font-family: "MONO", monospace; font-weight: 500; font-style: normal; letter-spacing: .12em; color: var(--claro); white-space: nowrap; }
+.rotulo::before { content: ""; display: inline-block; width: .62em; height: .62em; background: var(--azul); margin-right: .55em; vertical-align: .06em; }
+.quadro { position: absolute; background: rgba(8, 20, 47, .9); border: 2px solid rgba(159, 188, 255, .38); box-shadow: 0 24px 60px rgba(0, 0, 0, .42); }
+.grade { background-image: linear-gradient(rgba(159, 188, 255, .07) 2px, transparent 2px), linear-gradient(90deg, rgba(159, 188, 255, .07) 2px, transparent 2px); background-size: 48px 48px; background-position: -1px -1px; }
+.chip { display: inline-flex; align-items: baseline; gap: .5em; padding: .42em .7em .5em; border-radius: 12px; background: rgba(31, 102, 229, .16); border: 2px solid rgba(159, 188, 255, .28); white-space: nowrap; }
+.chip i { font-family: "MONO", monospace; font-style: normal; font-weight: 500; font-size: .52em; letter-spacing: .14em; color: var(--claro); }
+.chip b { font-weight: 800; }
+/* Pixel art (amostras): fonte de fliperama, sombra dura e caixas com canto recortado. Tudo no grid de 8 px. */
+@font-face { font-family: "PX"; font-weight: 400; src: url("PressStart2P.woff2"); }
+@font-face { font-family: "PXS"; font-weight: 400; src: url("PixelifySans-400.woff2"); }
+@font-face { font-family: "PXS"; font-weight: 500; src: url("PixelifySans-500.woff2"); }
+@font-face { font-family: "PXS"; font-weight: 700; src: url("PixelifySans-700.woff2"); }
+.px { font-family: "PX", monospace; font-style: normal; font-weight: 400; line-height: 1.25; letter-spacing: 0; text-shadow: 4px 4px 0 #0a1b3f; }
+.pxs { font-family: "PXS", sans-serif; font-style: normal; font-weight: 500; letter-spacing: .02em; text-shadow: 4px 4px 0 #0a1b3f; }
+.pxcaixa { position: absolute; background: #0a1b3f; box-shadow: 0 -8px 0 0 #fff, 0 8px 0 0 #fff, -8px 0 0 0 #fff, 8px 0 0 0 #fff, 0 0 0 8px #1f66e5 inset, 0 16px 0 0 rgba(0,0,0,.35); }
+.pxs svg, .px svg, .pxsprite { shape-rendering: crispEdges; image-rendering: pixelated; }
+/* Linha premium (assinatura MB): pouco elemento, letra com respiro, linhas finas, entradas suaves sem quique.
+   Montserrat em pesos contrastantes (200 x 800), rótulos em letra de máquina com espaçamento largo, vidro marinho. */
+.lx { font-family: "M", sans-serif; font-style: normal; text-transform: uppercase; }
+.lx-rot { font-family: "MONO", monospace; font-style: normal; font-weight: 500; font-size: 26px; letter-spacing: .3em; color: rgba(255,255,255,.74); white-space: nowrap; }
+.lx-rot.az { color: #9fbcff; }
+.lx-tit { font-family: "M", sans-serif; font-style: normal; font-weight: 700; letter-spacing: -.01em; line-height: 1; white-space: nowrap; }
+.lx-fino { font-weight: 200; }
+.lx-b { font-weight: 800; }
+.lx-num { font-family: "M", sans-serif; font-style: normal; font-weight: 200; font-variant-numeric: tabular-nums; letter-spacing: -.03em; line-height: 1; }
+.lx-mask { display: block; overflow: hidden; padding: .1em 0 .14em; margin: -.1em 0 -.14em; }
+.lx-mask > span { display: inline-block; will-change: transform; }
+.lx-linha { position: absolute; height: 2px; background: rgba(255,255,255,.42); transform-origin: left center; }
+.lx-vidro { position: absolute; background: rgba(7,18,44,.66); border: 1.5px solid rgba(255,255,255,.16); border-radius: 6px; backdrop-filter: blur(26px) saturate(1.15); -webkit-backdrop-filter: blur(26px) saturate(1.15); box-shadow: 0 30px 80px rgba(2,8,22,.35); }
+.lx-sombra { text-shadow: 0 2px 30px rgba(4,10,26,.5); }

@@ -221,7 +221,9 @@
     const t = h.t, cx = V.x, cy = V.y - V.tam * 0.5, prep = h.mostra == null ? 0.9 : h.mostra;
     // ponto de espera da espada: atrás do corte, dentro da tela (se não couber, corta no sentido contrário)
     let a = h.angulo == null ? -24 : h.angulo, R0 = 0;
-    const cabe = (ang, r) => { const x = cx - Math.cos(ang * Math.PI / 180) * r, y = cy - Math.sin(ang * Math.PI / 180) * r; return x > 210 && x < 870 && y > 420 && y < 1640; };
+    // a espada inteira (do cabo à ponta, 300 px para cada lado do centro, mais o recuo antes do golpe) precisa caber na tela
+    const dentro = (x, y) => x > 20 && x < 1060 && y > 380 && y < 1720;
+    const cabe = (ang, r) => { const c = Math.cos(ang * Math.PI / 180), sn = Math.sin(ang * Math.PI / 180); return dentro(cx - c * (r + 345), cy - sn * (r + 345)) && dentro(cx - c * (r - 300), cy - sn * (r - 300)); };
     for (const ang of [a, a + 180]) { for (let r = 480; r >= 260; r -= 20) if (cabe(ang, r)) { R0 = r; break; } if (R0) { a = ang; break; } }
     if (!R0) R0 = 260;
     const rad = a * Math.PI / 180, dx = Math.cos(rad), dy = Math.sin(rad), hx = -dx * R0, hy = -dy * R0;

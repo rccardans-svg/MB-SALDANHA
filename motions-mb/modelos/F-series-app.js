@@ -154,7 +154,7 @@
     K.sfx("caneta", t0 + 0.3, 0.5);
     const palavras = [];
     P.frase.split("|").forEach((linha, li) => {
-      const ws = linha.trim().split(/\s+/);
+      const ws = linha.trim().match(/\*[^*]+\*|_[^_]+_|\S+/g) || [];   // *duas palavras* animam juntas
       const limpo = linha.replace(/[*_]/g, "").trim(), base = li ? 120 : 76, fs = Math.min(base, Math.floor(880 / (limpo.length * 0.8)));
       const l = K.el(ws.map((w) => `<span class="w" style="display:inline-block;margin:0 .12em">${K.rich(w)}</span>`).join(""), `left:40px;width:1000px;top:${720 + li * 130}px;text-align:center;font-weight:400;font-size:${fs}px;line-height:1.05;z-index:83`, root);
       l.querySelectorAll(".w").forEach((w) => palavras.push(w));
