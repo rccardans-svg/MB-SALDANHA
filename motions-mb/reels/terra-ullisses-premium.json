@@ -105,7 +105,7 @@
    ],
    "contraste": 1.0,
    "saturacao": 1.0,
-   "vinheta": 0.16
+   "vinheta": 0
   },
   {
    "id": "lux-veu",
@@ -227,5 +227,6 @@
    "dur": 3.4,
    "resto": "E TREINE COM O ULLISSES"
   }
- ]
+ ],
+ "sombra": "leve"
 }
