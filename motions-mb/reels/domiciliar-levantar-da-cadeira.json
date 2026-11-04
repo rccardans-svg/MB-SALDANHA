@@ -1,0 +1,183 @@
+{
+ "nome": "2026-11-04-domiciliar-levantar-da-cadeira",
+ "brutos": "PASTA_DOS_BRUTOS",
+ "sombra": "leve",
+ "logo": "domiciliar",
+ "capa": 10.8,
+ "base": [
+  {
+   "src": "VID_20261008_101105.mp4",
+   "ss": 9.0,
+   "dur": 0.6,
+   "som": false
+  },
+  {
+   "src": "VID_20261008_101105.mp4",
+   "ss": 15.0,
+   "dur": 0.6,
+   "som": false
+  },
+  {
+   "src": "VID_20261008_101105.mp4",
+   "ss": 18.5,
+   "dur": 0.5,
+   "som": false
+  },
+  {
+   "src": "VID_20261008_101105.mp4",
+   "ss": 24.0,
+   "dur": 0.8,
+   "som": false
+  },
+  {
+   "src": "VID_20261008_101105.mp4",
+   "ss": 27.0,
+   "dur": 0.5,
+   "som": false
+  },
+  {
+   "src": "VID_20261008_101105.mp4",
+   "ss": 36.0,
+   "dur": 1.2,
+   "som": false
+  },
+  {
+   "src": "VID_20261008_101105.mp4",
+   "ss": 40.5,
+   "dur": 1.2,
+   "som": false
+  },
+  {
+   "src": "VID_20261008_101105.mp4",
+   "ss": 54.0,
+   "dur": 1.2,
+   "som": false
+  },
+  {
+   "src": "VID_20261008_101105.mp4",
+   "ss": 60.0,
+   "dur": 1.2,
+   "som": false
+  },
+  {
+   "src": "VID_20261008_101105.mp4",
+   "ss": 66.0,
+   "dur": 1.2,
+   "som": false
+  },
+  {
+   "src": "VID_20261008_101105.mp4",
+   "ss": 72.0,
+   "dur": 0.5,
+   "som": false
+  },
+  {
+   "src": "VID_20261008_101105.mp4",
+   "ss": 90.0,
+   "dur": 0.6,
+   "som": false
+  },
+  {
+   "src": "VID_20261008_101105.mp4",
+   "ss": 99.0,
+   "dur": 3.1,
+   "som": false
+  },
+  {
+   "src": "VID_20261008_101105.mp4",
+   "ss": 105.0,
+   "dur": 3.8,
+   "som": false
+  }
+ ],
+ "motions": [
+  {
+   "id": "66",
+   "em": 0.0,
+   "dur": 13.2,
+   "y": 230,
+   "entrada": 0.3,
+   "saida": 0.16,
+   "linhas": [
+    [
+     0.0,
+     "Levantar",
+     120
+    ],
+    [
+     0.6,
+     "da cadeira",
+     80
+    ],
+    [
+     1.2,
+     "parece",
+     64
+    ],
+    [
+     1.7,
+     "_pouco_",
+     120
+    ],
+    [
+     2.5,
+     "mas é",
+     64
+    ],
+    [
+     3.0,
+     "independência",
+     96
+    ],
+    [
+     9.0,
+     "e isso",
+     64
+    ],
+    [
+     9.5,
+     "se treina",
+     72
+    ],
+    [
+     10.1,
+     "_em casa._",
+     128
+    ]
+   ],
+   "troca": {
+    "linha": 5,
+    "palavras": [
+     [
+      3.0,
+      "independência"
+     ],
+     [
+      4.2,
+      "o banheiro sozinho"
+     ],
+     [
+      5.4,
+      "o café na mesa"
+     ],
+     [
+      6.6,
+      "o abraço em pé"
+     ],
+     [
+      7.8,
+      "liberdade"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "41",
+   "em": 13.2,
+   "dur": 3.8,
+   "acao": "botao",
+   "texto": "TREINO FUNCIONAL|*EM CASA.*",
+   "botao": "CHAME NO DIRECT"
+  }
+ ]
+}

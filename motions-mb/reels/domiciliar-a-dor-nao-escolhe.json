@@ -1,0 +1,194 @@
+{
+ "nome": "2026-11-04-domiciliar-a-dor-nao-escolhe",
+ "brutos": "PASTA_DOS_BRUTOS",
+ "sombra": "leve",
+ "logo": "domiciliar",
+ "capa": 11.8,
+ "base": [
+  {
+   "src": "IMG_0547.MOV",
+   "ss": 0.2,
+   "dur": 0.6,
+   "som": false
+  },
+  {
+   "src": "IMG_0547.MOV",
+   "ss": 2.0,
+   "dur": 0.6,
+   "som": false
+  },
+  {
+   "src": "IMG_0547.MOV",
+   "ss": 36.0,
+   "dur": 0.8,
+   "som": false
+  },
+  {
+   "src": "IMG_0548.MOV",
+   "ss": 6.0,
+   "dur": 0.7,
+   "som": false
+  },
+  {
+   "src": "IMG_0547.MOV",
+   "ss": 18.0,
+   "dur": 0.6,
+   "som": false
+  },
+  {
+   "src": "IMG_0548.MOV",
+   "ss": 8.5,
+   "dur": 0.5,
+   "som": false
+  },
+  {
+   "src": "VID_20261008_101105.mp4",
+   "ss": 1.0,
+   "dur": 1.2,
+   "som": false
+  },
+  {
+   "src": "IMG_0548.MOV",
+   "ss": 0.2,
+   "dur": 1.2,
+   "som": false
+  },
+  {
+   "src": "IMG_0547.MOV",
+   "ss": 22.0,
+   "dur": 1.2,
+   "som": false
+  },
+  {
+   "src": "VID_20261008_101105.mp4",
+   "ss": 30.0,
+   "dur": 1.2,
+   "som": false
+  },
+  {
+   "src": "IMG_0547.MOV",
+   "ss": 48.2,
+   "dur": 1.2,
+   "som": false
+  },
+  {
+   "src": "VID_20261008_101105.mp4",
+   "ss": 45.0,
+   "dur": 0.6,
+   "som": false
+  },
+  {
+   "src": "VID_20261008_101105.mp4",
+   "ss": 63.0,
+   "dur": 0.8,
+   "som": false
+  },
+  {
+   "src": "VID_20261008_101105.mp4",
+   "ss": 84.0,
+   "dur": 2.8,
+   "som": false
+  },
+  {
+   "src": "VID_20261008_101105.mp4",
+   "ss": 100.0,
+   "dur": 3.8,
+   "som": false
+  }
+ ],
+ "motions": [
+  {
+   "id": "66",
+   "em": 0.0,
+   "dur": 14.0,
+   "y": 230,
+   "entrada": 0.3,
+   "saida": 0.16,
+   "linhas": [
+    [
+     0.0,
+     "A dor",
+     118
+    ],
+    [
+     0.6,
+     "não escolhe",
+     72
+    ],
+    [
+     1.2,
+     "_a hora_",
+     112
+    ],
+    [
+     2.0,
+     "mas o cuidado",
+     72
+    ],
+    [
+     2.7,
+     "pode chegar",
+     64
+    ],
+    [
+     3.3,
+     "até",
+     64
+    ],
+    [
+     3.8,
+     "a sua casa",
+     100
+    ],
+    [
+     9.8,
+     "então",
+     64
+    ],
+    [
+     10.4,
+     "se permita",
+     72
+    ],
+    [
+     11.2,
+     "ser _cuidado._",
+     128
+    ]
+   ],
+   "troca": {
+    "linha": 6,
+    "palavras": [
+     [
+      3.8,
+      "a sua casa"
+     ],
+     [
+      5.0,
+      "o seu sofá"
+     ],
+     [
+      6.2,
+      "a sua cama"
+     ],
+     [
+      7.4,
+      "a sua rotina"
+     ],
+     [
+      8.6,
+      "a sua família"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "41",
+   "em": 14.0,
+   "dur": 3.8,
+   "acao": "botao",
+   "texto": "FISIOTERAPIA|*EM CASA.*",
+   "botao": "CHAME NO DIRECT"
+  }
+ ]
+}

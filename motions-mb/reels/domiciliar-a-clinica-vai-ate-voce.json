@@ -1,0 +1,205 @@
+{
+ "nome": "2026-11-04-domiciliar-a-clinica-vai-ate-voce",
+ "brutos": "PASTA_DOS_BRUTOS",
+ "sombra": "leve",
+ "logo": "domiciliar",
+ "capa": 11.8,
+ "base": [
+  {
+   "src": "IMG_0547.MOV",
+   "ss": 48.6,
+   "dur": 0.7,
+   "som": false
+  },
+  {
+   "src": "IMG_0548.MOV",
+   "ss": 0.4,
+   "dur": 0.5,
+   "som": false
+  },
+  {
+   "src": "IMG_0547.MOV",
+   "ss": 49.6,
+   "dur": 0.8,
+   "som": false
+  },
+  {
+   "src": "IMG_0548.MOV",
+   "ss": 6.5,
+   "dur": 0.5,
+   "som": false
+  },
+  {
+   "src": "IMG_0548.MOV",
+   "ss": 9.0,
+   "dur": 0.7,
+   "som": false
+  },
+  {
+   "src": "IMG_0547.MOV",
+   "ss": 14.0,
+   "dur": 1.0,
+   "som": false
+  },
+  {
+   "src": "VID_20261008_101105.mp4",
+   "ss": 3.0,
+   "dur": 0.4,
+   "som": false
+  },
+  {
+   "src": "IMG_0547.MOV",
+   "ss": 26.0,
+   "dur": 1.0,
+   "som": false
+  },
+  {
+   "src": "IMG_0548.MOV",
+   "ss": 0.8,
+   "dur": 1.0,
+   "som": false
+  },
+  {
+   "src": "VID_20261008_101105.mp4",
+   "ss": 21.0,
+   "dur": 1.0,
+   "som": false
+  },
+  {
+   "src": "IMG_0547.MOV",
+   "ss": 40.0,
+   "dur": 1.0,
+   "som": false
+  },
+  {
+   "src": "VID_20261008_101105.mp4",
+   "ss": 51.0,
+   "dur": 1.2,
+   "som": false
+  },
+  {
+   "src": "VID_20261008_101105.mp4",
+   "ss": 75.0,
+   "dur": 0.6,
+   "som": false
+  },
+  {
+   "src": "VID_20261008_101105.mp4",
+   "ss": 93.0,
+   "dur": 0.6,
+   "som": false
+  },
+  {
+   "src": "VID_20261008_101105.mp4",
+   "ss": 102.0,
+   "dur": 2.6,
+   "som": false
+  },
+  {
+   "src": "VID_20261008_101105.mp4",
+   "ss": 110.0,
+   "dur": 3.8,
+   "som": false
+  }
+ ],
+ "motions": [
+  {
+   "id": "66",
+   "em": 0.0,
+   "dur": 13.6,
+   "y": 200,
+   "entrada": 0.3,
+   "saida": 0.16,
+   "linhas": [
+    [
+     0.0,
+     "Quando sair de casa",
+     80
+    ],
+    [
+     0.7,
+     "fica difícil",
+     64
+    ],
+    [
+     1.2,
+     "_a clínica_",
+     112
+    ],
+    [
+     2.0,
+     "vai",
+     64
+    ],
+    [
+     2.5,
+     "até",
+     64
+    ],
+    [
+     3.2,
+     "_você._",
+     116
+    ],
+    [
+     4.2,
+     "com",
+     64
+    ],
+    [
+     4.6,
+     "avaliação",
+     96
+    ],
+    [
+     9.8,
+     "e a gente",
+     64
+    ],
+    [
+     10.4,
+     "chama isso de",
+     64
+    ],
+    [
+     11.0,
+     "_cuidado em casa._",
+     104
+    ]
+   ],
+   "troca": {
+    "linha": 7,
+    "palavras": [
+     [
+      4.6,
+      "avaliação"
+     ],
+     [
+      5.6,
+      "terapia manual"
+     ],
+     [
+      6.6,
+      "exercício"
+     ],
+     [
+      7.6,
+      "paciência"
+     ],
+     [
+      8.6,
+      "carinho"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "41",
+   "em": 13.6,
+   "dur": 3.8,
+   "acao": "botao",
+   "texto": "FISIOTERAPIA|*DOMICILIAR.*",
+   "botao": "CHAME NO DIRECT"
+  }
+ ]
+}
