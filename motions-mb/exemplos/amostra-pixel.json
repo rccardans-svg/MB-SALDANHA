@@ -1,0 +1,90 @@
+{
+ "nome": "amostra-pixel",
+ "brutos": "PASTA_DOS_BRUTOS",
+ "base": [
+  {
+   "src": "IMG_1038.MOV",
+   "ss": 1.2,
+   "dur": 3.8
+  },
+  {
+   "src": "IMG_1038.MOV",
+   "ss": 7.0,
+   "dur": 2.2
+  },
+  {
+   "src": "IMG_1038.MOV",
+   "ss": 11.4,
+   "dur": 2.2
+  },
+  {
+   "src": "IMG_1038.MOV",
+   "ss": 15.7,
+   "dur": 2.4
+  },
+  {
+   "tipo": "congela",
+   "src": "IMG_1038.MOV",
+   "ss": 17.3,
+   "dur": 3.4
+  },
+  {
+   "src": "IMG_1042.MOV",
+   "ss": 3,
+   "dur": 5.6
+  },
+  {
+   "src": "IMG_1042.MOV",
+   "ss": 8.6,
+   "dur": 4.2
+  }
+ ],
+ "motions": [
+  {
+   "id": "px-fase",
+   "em": 0.0
+  },
+  {
+   "id": "px-luta",
+   "em": 0.2,
+   "dur": 13.6,
+   "golpes": [
+    2.73,
+    5.0,
+    7.2,
+    9.43
+   ]
+  },
+  {
+   "id": "px-xp",
+   "em": 0.2,
+   "dur": 13.6,
+   "reps": [
+    2.73,
+    5.0,
+    7.2,
+    9.43
+   ],
+   "sobe_em": 11.7
+  },
+  {
+   "id": "px-corte",
+   "em": 14.0
+  },
+  {
+   "id": "px-dialogo",
+   "em": 14.2,
+   "dur": 5.3,
+   "texto": "LEVANTAMENTO TERRA: *COLUNA RETA*, BARRA COLADA NA PERNA E A FORÇA VEM DO *QUADRIL*."
+  },
+  {
+   "id": "px-corte",
+   "em": 19.6
+  },
+  {
+   "id": "px-salvar",
+   "em": 19.75,
+   "dur": 4.0
+  }
+ ]
+}

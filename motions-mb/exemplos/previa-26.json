@@ -1,0 +1,32 @@
+{
+ "nome": "previa-26",
+ "brutos": "PASTA_DOS_BRUTOS",
+ "base": [
+  {
+   "src": "IMG_1038.MOV",
+   "ss": 7,
+   "dur": 3.5
+  }
+ ],
+ "motions": [
+  {
+   "id": "26",
+   "em": 0.3,
+   "dur": 2.9
+  }
+ ],
+ "extras": [
+  {
+   "id": "pessoa",
+   "em": 0,
+   "recorte": true,
+   "base": [
+    {
+     "src": "IMG_1038.MOV",
+     "ss": 7,
+     "dur": 3.5
+    }
+   ]
+  }
+ ]
+}

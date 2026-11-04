@@ -1,0 +1,79 @@
+/* Base visual dos motions MB Saldanha: azul da Maria, Montserrat caixa alta, nada de branco estourado. */
+@font-face { font-family: "M"; font-weight: 100 900; font-style: normal; src: url("Montserrat.ttf"); }
+@font-face { font-family: "M"; font-weight: 100 900; font-style: italic; src: url("MontserratItalic.ttf"); }
+:root { --azul: #1f66e5; --azul2: #2f74f2; --marinho: #0a1b3f; --fundo: #08142f; --claro: #9fbcff; --erro: #e04646; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 1080px; height: 1920px; overflow: hidden; background: #0a1b3f; }
+#root { position: relative; width: 1080px; height: 1920px; overflow: hidden; font-family: "M", sans-serif; color: #fff; text-transform: uppercase; }
+.cam, .mir, .xv { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; overflow: hidden; }
+.cam video, .mir video, .xv video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.mir { opacity: 0; z-index: 30; }
+.xv { opacity: 0; z-index: 31; }
+/* #sombra (degradê escuro em cima e embaixo da tela toda) desligado em 2026-11-04: o Paulo pediu a cor original do vídeo.
+   O logo ganha uma sombra própria e cada motion põe o escuro só atrás do próprio texto (MB.lux.fundo). */
+#sombra { display: none; }
+#fx { position: absolute; inset: 0; z-index: 40; }
+#logo { position: absolute; right: 44px; bottom: 70px; width: 230px; z-index: 85; filter: drop-shadow(0 2px 10px rgba(4,10,26,.5)); }
+/* peças comuns */
+.ab { position: absolute; }
+.o0 { opacity: 0; }
+.hl { display: inline-block; background: var(--azul); font-weight: 900; font-style: italic; padding: 0 .22em .06em .16em; margin: 0 .04em; }
+.hl.x { background: var(--erro); }
+.fina { font-weight: 400; }
+.forte { font-weight: 900; font-style: italic; }
+.sombra-txt { text-shadow: 0 3px 0 rgba(10,27,63,.55), 0 0 28px rgba(10,27,63,.85), 0 0 60px rgba(10,27,63,.5); }
+.sombra-txt .fina, .sombra-txt { font-weight: 500; }
+.sombra-txt .hl { text-shadow: none; }
+.vidro { position: absolute; border-radius: 30px; background: linear-gradient(160deg, rgba(31,102,229,.58), rgba(10,27,63,.82)); border: 2px solid rgba(255,255,255,.26); box-shadow: inset 0 2px 0 rgba(255,255,255,.22), 0 18px 50px rgba(0,0,0,.38); backdrop-filter: blur(16px) saturate(1.25); -webkit-backdrop-filter: blur(16px) saturate(1.25); }
+.vidro .bw { position: absolute; inset: 0; overflow: hidden; border-radius: inherit; pointer-events: none; }
+.vidro .brilho { position: absolute; left: -40%; top: -60%; width: 60%; height: 220%; background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,.10), rgba(255,255,255,0)); transform: rotate(20deg) translateX(-400px); }
+.pilula { display: inline-block; background: var(--azul); border-radius: 999px; padding: 10px 30px 14px; font-weight: 800; }
+.tela-azul { position: absolute; inset: 0; background: radial-gradient(120% 80% at 50% 25%, #2a5fd0 0%, #163e9c 45%, #0a1b3f 100%); }
+.passada { position: absolute; left: -300px; top: -300px; width: 1680px; height: 2520px; z-index: 95; pointer-events: none; transform: translateX(-1800px) skewX(-14deg); background: linear-gradient(90deg, rgba(31,102,229,0) 0%, #1f66e5 30%, #163e9c 55%, #0a1b3f 72%, rgba(10,27,63,0) 100%); }
+/* Peças editoriais (motions 41 a 60): rótulo em letra de máquina, moldura fina, grade e chips, no azul da MB */
+@font-face { font-family: "MONO"; font-weight: 400; src: url("JetBrainsMono-Regular.ttf"); }
+@font-face { font-family: "MONO"; font-weight: 500; src: url("JetBrainsMono-Medium.ttf"); }
+@font-face { font-family: "MONO"; font-weight: 700; src: url("JetBrainsMono-Bold.ttf"); }
+.mono { font-family: "MONO", monospace; font-style: normal; letter-spacing: .08em; }
+.rotulo { font-family: "MONO", monospace; font-weight: 500; font-style: normal; letter-spacing: .12em; color: var(--claro); white-space: nowrap; }
+.rotulo::before { content: ""; display: inline-block; width: .62em; height: .62em; background: var(--azul); margin-right: .55em; vertical-align: .06em; }
+.quadro { position: absolute; background: rgba(8, 20, 47, .9); border: 2px solid rgba(159, 188, 255, .38); box-shadow: 0 24px 60px rgba(0, 0, 0, .42); }
+.grade { background-image: linear-gradient(rgba(159, 188, 255, .07) 2px, transparent 2px), linear-gradient(90deg, rgba(159, 188, 255, .07) 2px, transparent 2px); background-size: 48px 48px; background-position: -1px -1px; }
+.chip { display: inline-flex; align-items: baseline; gap: .5em; padding: .42em .7em .5em; border-radius: 12px; background: rgba(31, 102, 229, .16); border: 2px solid rgba(159, 188, 255, .28); white-space: nowrap; }
+.chip i { font-family: "MONO", monospace; font-style: normal; font-weight: 500; font-size: .52em; letter-spacing: .14em; color: var(--claro); }
+.chip b { font-weight: 800; }
+/* Pixel art (amostras): fonte de fliperama, sombra dura e caixas com canto recortado. Tudo no grid de 8 px. */
+@font-face { font-family: "PX"; font-weight: 400; src: url("PressStart2P.woff2"); }
+@font-face { font-family: "PXS"; font-weight: 400; src: url("PixelifySans-400.woff2"); }
+@font-face { font-family: "PXS"; font-weight: 500; src: url("PixelifySans-500.woff2"); }
+@font-face { font-family: "PXS"; font-weight: 700; src: url("PixelifySans-700.woff2"); }
+.px { font-family: "PX", monospace; font-style: normal; font-weight: 400; line-height: 1.25; letter-spacing: 0; text-shadow: 4px 4px 0 #0a1b3f; }
+.pxs { font-family: "PXS", sans-serif; font-style: normal; font-weight: 500; letter-spacing: .02em; text-shadow: 4px 4px 0 #0a1b3f; }
+.pxcaixa { position: absolute; background: #0a1b3f; box-shadow: 0 -8px 0 0 #fff, 0 8px 0 0 #fff, -8px 0 0 0 #fff, 8px 0 0 0 #fff, 0 0 0 8px #1f66e5 inset, 0 16px 0 0 rgba(0,0,0,.35); }
+.pxs svg, .px svg, .pxsprite { shape-rendering: crispEdges; image-rendering: pixelated; }
+/* Linha premium (assinatura MB): pouco elemento, letra com respiro, linhas finas, entradas suaves sem quique.
+   Montserrat em pesos contrastantes (200 x 800), rótulos em letra de máquina com espaçamento largo, vidro marinho. */
+.lx { font-family: "M", sans-serif; font-style: normal; text-transform: uppercase; }
+.lx-rot { font-family: "MONO", monospace; font-style: normal; font-weight: 500; font-size: 26px; letter-spacing: .3em; color: rgba(255,255,255,.74); white-space: nowrap; }
+.lx-rot.az { color: #9fbcff; }
+.lx-tit { font-family: "M", sans-serif; font-style: normal; font-weight: 700; letter-spacing: -.01em; line-height: 1; white-space: nowrap; }
+.lx-fino { font-weight: 200; }
+.lx-b { font-weight: 800; }
+.lx-num { font-family: "M", sans-serif; font-style: normal; font-weight: 200; font-variant-numeric: tabular-nums; letter-spacing: -.03em; line-height: 1; }
+.lx-mask { display: block; overflow: hidden; padding: .26em 0 .14em; margin: -.26em 0 -.14em; }
+.lx-mask > span { display: inline-block; will-change: transform; }
+.lx-linha { position: absolute; height: 2px; background: rgba(255,255,255,.42); transform-origin: left center; }
+.lx-vidro { position: absolute; background: rgba(6,15,38,.8); border: 1.5px solid rgba(255,255,255,.16); border-radius: 6px; backdrop-filter: blur(26px); -webkit-backdrop-filter: blur(26px); box-shadow: 0 30px 80px rgba(2,8,22,.35); }
+.lx-sombra { text-shadow: 0 1px 4px rgba(4,10,26,.32), 0 2px 30px rgba(4,10,26,.55); }
+/* Fundo verde (montar.py --verde): o motion sai sozinho, sem o vídeo, para o Paulo usar com chroma key no editor.
+   Sem véu, sem sombra e sem desfoque de fundo (ficariam manchas escuras no verde); o vidro fica sólido no pós (verde.py). */
+html.verde, html.verde body { background: transparent; }
+.verde #cam, .verde #sombra { display: none; }
+.verde .mir { background: #00ff00; }
+.verde .mir video { display: none; }
+.verde .lx-veu { display: none !important; }
+.verde .lx-sombra, .verde .sombra-txt { text-shadow: none !important; }
+.verde [style*="drop-shadow"] { filter: none !important; }
+.verde .lx-vidro, .verde .vidro, .verde .quadro { box-shadow: none !important; }
+.verde .lx-vidro { background: rgb(7, 17, 41) !important; }   /* vidro sólido: por cima da janela verde do 58 ele viraria verde-escuro */
+.verde * { backdrop-filter: none !important; -webkit-backdrop-filter: none !important; }

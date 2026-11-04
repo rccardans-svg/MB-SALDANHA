@@ -1,0 +1,21 @@
+{
+ "nome": "previa-09",
+ "brutos": "PASTA_DOS_BRUTOS",
+ "base": [
+  {
+   "src": "IMG_0749.MOV",
+   "ss": 3,
+   "dur": 4
+  }
+ ],
+ "motions": [
+  {
+   "id": "09",
+   "em": 0,
+   "y": 1900,
+   "largura": 620,
+   "comprimento": 900,
+   "angulo": 66
+  }
+ ]
+}

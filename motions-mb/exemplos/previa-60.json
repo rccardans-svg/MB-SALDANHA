@@ -1,0 +1,41 @@
+{
+ "nome": "previa-60",
+ "brutos": "PASTA_DOS_BRUTOS",
+ "base": [
+  {
+   "src": "IMG_1043.MOV",
+   "ss": 0,
+   "dur": 7.6
+  }
+ ],
+ "motions": [
+  {
+   "id": "60",
+   "em": 0.1,
+   "dur": 7.4,
+   "titulo_y": 1180,
+   "capitulos": [
+    [
+     "ERRO 1",
+     "COLUNA|*DESALINHADA*",
+     0
+    ],
+    [
+     "ERRO 2",
+     "BARRA LONGE|*DO CORPO*",
+     3.0
+    ],
+    [
+     "ERRO 3",
+     "ABDÔMEN NÃO|*CONTRAÍDO*",
+     4.45
+    ],
+    [
+     "ERRO 4",
+     "OMBRO PARA|*FRENTE*",
+     5.95
+    ]
+   ]
+  }
+ ]
+}

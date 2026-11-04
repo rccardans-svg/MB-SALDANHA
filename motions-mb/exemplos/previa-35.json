@@ -1,0 +1,54 @@
+{
+ "nome": "previa-35",
+ "brutos": "PASTA_DOS_BRUTOS",
+ "base": [
+  {
+   "tipo": "ritmo",
+   "bpm": 120,
+   "batidas": 2,
+   "clipes": [
+    [
+     "IMG_0743.MOV",
+     2
+    ],
+    [
+     "IMG_0744.MOV",
+     4
+    ],
+    [
+     "IMG_0747.MOV",
+     1
+    ],
+    [
+     "IMG_0748.MOV",
+     2
+    ],
+    [
+     "IMG_0749.MOV",
+     3
+    ],
+    [
+     "IMG_0750.MOV",
+     6
+    ],
+    [
+     "IMG_0751.MOV",
+     3,
+     1.5
+    ]
+   ]
+  }
+ ],
+ "motions": [
+  {
+   "id": "35",
+   "em": 0,
+   "bpm": 120
+  }
+ ],
+ "batida": {
+  "bpm": 120,
+  "volume": 0.6
+ },
+ "voz": 0
+}

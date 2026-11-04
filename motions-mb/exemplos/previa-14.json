@@ -1,0 +1,26 @@
+{
+ "nome": "previa-14",
+ "brutos": "PASTA_DOS_BRUTOS",
+ "base": [
+  {
+   "src": "IMG_1037.MOV",
+   "ss": 6,
+   "dur": 0.6
+  },
+  {
+   "tipo": "congela",
+   "src": "IMG_1037.MOV",
+   "ss": 6.6,
+   "dur": 3
+  }
+ ],
+ "motions": [
+  {
+   "id": "14",
+   "em": 0.6,
+   "x": 540,
+   "y": 1000,
+   "etiqueta": "_COSTAS_|ARREDONDADAS"
+  }
+ ]
+}

@@ -1,0 +1,142 @@
+{
+ "nome": "2026-11-04-ep1-gordurinha-ullisses",
+ "brutos": "PASTA_DOS_BRUTOS",
+ "base": [
+  {
+   "src": "IMG_1038.MOV",
+   "ss": 0.3,
+   "dur": 4.0
+  },
+  {
+   "src": "IMG_1038.MOV",
+   "ss": 7.1,
+   "dur": 1.65
+  },
+  {
+   "src": "IMG_1037.MOV",
+   "ss": 15.7,
+   "dur": 2.0
+  },
+  {
+   "src": "IMG_1038.MOV",
+   "ss": 11.45,
+   "dur": 1.65
+  },
+  {
+   "src": "IMG_1038.MOV",
+   "ss": 15.8,
+   "dur": 1.65
+  },
+  {
+   "src": "IMG_1038.MOV",
+   "ss": 20.35,
+   "dur": 2.4
+  },
+  {
+   "tipo": "congela",
+   "src": "IMG_1038.MOV",
+   "ss": 22.6,
+   "dur": 3.2
+  },
+  {
+   "tipo": "cor",
+   "dur": 6.6
+  }
+ ],
+ "motions": [
+  {
+   "id": "41",
+   "em": 0.0,
+   "vilao": "gordurinha",
+   "alvo": "v",
+   "x": 230,
+   "y": 730,
+   "tam": 290,
+   "entrada": "cai",
+   "lado": "dir",
+   "olhar": "dir",
+   "vida": 100,
+   "falas": [
+    [
+     0.95,
+     "HOJE VOCÊ|NÃO TREINA!",
+     1.5
+    ],
+    [
+     10.65,
+     "CALMA! VAMOS|CONVERSAR!",
+     1.2
+    ]
+   ]
+  },
+  {
+   "id": "42",
+   "em": 2.5,
+   "alvo": "v",
+   "episodio": "EPISÓDIO 1 · ULLISSES"
+  },
+  {
+   "id": "44",
+   "em": 0,
+   "alvo": "v",
+   "golpes": [
+    3.63,
+    5.17
+   ],
+   "dano": 25
+  },
+  {
+   "id": "45",
+   "em": 6.5,
+   "alvo": "v",
+   "cura": 25,
+   "legenda": "COSTAS ARREDONDADAS",
+   "y": 1250
+  },
+  {
+   "id": "44",
+   "em": 0,
+   "alvo": "v",
+   "golpes": [
+    8.8,
+    10.43,
+    12.13
+   ],
+   "dano": 25
+  },
+  {
+   "id": "46",
+   "em": 13.3,
+   "dur": 3.1,
+   "titulo": "GORDURINHA|*DERROTADA*",
+   "xp": 150,
+   "licao": "CADA REPETIÇÃO|*CERTA* É UM GOLPE"
+  },
+  {
+   "id": "47",
+   "em": 16.55,
+   "dur": 3.2,
+   "titulo": "A *JORNADA*",
+   "viloes": [
+    "gordurinha",
+    "preguica",
+    "plato",
+    "desculpinha"
+   ],
+   "vencidos": 1,
+   "legenda": "PRÓXIMO VILÃO"
+  },
+  {
+   "id": "40",
+   "em": 19.55,
+   "dur": 3.4,
+   "frase": "TÉCNICA É|*PERFORMANCE*"
+  }
+ ],
+ "voz": 0.5,
+ "batida": {
+  "bpm": 120,
+  "volume": 0.45
+ },
+ "capa": 5.25
+}

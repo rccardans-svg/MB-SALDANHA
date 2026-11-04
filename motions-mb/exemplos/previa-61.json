@@ -1,0 +1,33 @@
+{
+ "nome": "previa-61",
+ "brutos": "PASTA_DOS_BRUTOS",
+ "base": [
+  {
+   "src": "IMG_1037.MOV",
+   "ss": 4,
+   "dur": 6.4
+  }
+ ],
+ "motions": [
+  {
+   "id": "61",
+   "em": 0.2,
+   "dur": 6
+  }
+ ],
+ "extras": [
+  {
+   "id": "rosto",
+   "em": 0.2,
+   "som": true,
+   "base": [
+    {
+     "src": "IMG_1043.MOV",
+     "ss": 0.9,
+     "dur": 6
+    }
+   ]
+  }
+ ],
+ "voz": 0
+}

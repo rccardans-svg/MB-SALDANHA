@@ -1,0 +1,29 @@
+{
+ "nome": "previa-42",
+ "brutos": "PASTA_DOS_BRUTOS",
+ "base": [
+  {
+   "src": "IMG_1048.MOV",
+   "ss": 2,
+   "dur": 4.6
+  },
+  {
+   "src": "IMG_1051.MOV",
+   "ss": 2,
+   "dur": 4.8
+  }
+ ],
+ "motions": [
+  {
+   "id": "42",
+   "em": 0.1,
+   "palavra": "CORE"
+  },
+  {
+   "id": "42",
+   "em": 4.7,
+   "modo": "marca",
+   "sub": "QUE TREINA TODO DIA SEM PARAR"
+  }
+ ]
+}

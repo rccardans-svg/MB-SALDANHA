@@ -1,0 +1,108 @@
+{
+ "nome": "amostra-premium",
+ "brutos": "PASTA_DOS_BRUTOS",
+ "base": [
+  {
+   "src": "IMG_1038.MOV",
+   "ss": 1.2,
+   "dur": 3.8
+  },
+  {
+   "src": "IMG_1038.MOV",
+   "ss": 7.0,
+   "dur": 2.2
+  },
+  {
+   "src": "IMG_1038.MOV",
+   "ss": 11.4,
+   "dur": 2.2
+  },
+  {
+   "src": "IMG_1038.MOV",
+   "ss": 15.7,
+   "dur": 2.4
+  },
+  {
+   "tipo": "congela",
+   "src": "IMG_1038.MOV",
+   "ss": 17.3,
+   "dur": 3.4
+  },
+  {
+   "src": "IMG_1042.MOV",
+   "ss": 3,
+   "dur": 5.6
+  },
+  {
+   "src": "IMG_1042.MOV",
+   "ss": 8.6,
+   "dur": 4.2
+  }
+ ],
+ "motions": [
+  {
+   "id": "lux-grade",
+   "em": 0,
+   "dur": 23.8,
+   "empurra": [
+    [
+     0,
+     10.6
+    ],
+    [
+     14.0,
+     19.6
+    ],
+    [
+     19.6,
+     23.8
+    ]
+   ]
+  },
+  {
+   "id": "lux-veu",
+   "em": 0,
+   "dur": 2.75,
+   "lado": "topo",
+   "tamanho": 820
+  },
+  {
+   "id": "lux-titulo",
+   "em": 0,
+   "dur": 2.55,
+   "sub": "TÉCNICA CERTA EM 4 PONTOS"
+  },
+  {
+   "id": "lux-reps",
+   "em": 0.2,
+   "entra": 2.3,
+   "dur": 10.3,
+   "reps": [
+    2.73,
+    5.0,
+    7.2,
+    9.43
+   ],
+   "fundo": 0.5
+  },
+  {
+   "id": "lux-frase",
+   "em": 10.6,
+   "dur": 3.4
+  },
+  {
+   "id": "lux-passagem",
+   "em": 14.0
+  },
+  {
+   "id": "lux-cracha",
+   "em": 14.4,
+   "dur": 5.0
+  },
+  {
+   "id": "lux-salvar",
+   "em": 19.75,
+   "dur": 4.05
+  }
+ ]
+}

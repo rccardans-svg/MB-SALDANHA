@@ -1,0 +1,30 @@
+{
+ "nome": "previa-12",
+ "brutos": "PASTA_DOS_BRUTOS",
+ "base": [
+  {
+   "src": "IMG_1037.MOV",
+   "ss": 6,
+   "dur": 1.5
+  },
+  {
+   "tipo": "reverso",
+   "src": "IMG_1037.MOV",
+   "ss": 6,
+   "dur": 1.0,
+   "vel": 1.5
+  },
+  {
+   "src": "IMG_1038.MOV",
+   "ss": 7,
+   "dur": 2.5
+  }
+ ],
+ "motions": [
+  {
+   "id": "12",
+   "em": 1.5,
+   "dur": 1.0
+  }
+ ]
+}

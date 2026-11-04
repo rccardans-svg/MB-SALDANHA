@@ -1,0 +1,49 @@
+{
+ "nome": "previa-11",
+ "brutos": "PASTA_DOS_BRUTOS",
+ "base": [
+  {
+   "src": "IMG_1037.MOV",
+   "ss": 6,
+   "dur": 0.8
+  },
+  {
+   "tipo": "congela",
+   "src": "IMG_1037.MOV",
+   "ss": 6.8,
+   "dur": 1.6
+  },
+  {
+   "src": "IMG_1038.MOV",
+   "ss": 7,
+   "dur": 0.7
+  },
+  {
+   "tipo": "congela",
+   "src": "IMG_1038.MOV",
+   "ss": 7.7,
+   "dur": 1.8
+  }
+ ],
+ "motions": [
+  {
+   "id": "11",
+   "em": 0,
+   "carimbos": [
+    [
+     0.85,
+     "ERRADO",
+     "x",
+     "COSTAS ARREDONDADAS"
+    ],
+    [
+     3.15,
+     "ASSIM",
+     "v",
+     "COLUNA NEUTRA"
+    ]
+   ],
+   "dura": 1.5
+  }
+ ]
+}

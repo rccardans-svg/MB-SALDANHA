@@ -1,0 +1,231 @@
+{
+ "nome": "2026-11-04-terra-ullisses-premium",
+ "brutos": "PASTA_DOS_BRUTOS",
+ "limpar_voz": true,
+ "capa": 1.7,
+ "base": [
+  {
+   "src": "IMG_1038.MOV",
+   "ss": 1.2,
+   "dur": 3.0,
+   "som": false
+  },
+  {
+   "src": "IMG_1037.MOV",
+   "ss": 2.5,
+   "dur": 6.8,
+   "som": false
+  },
+  {
+   "src": "IMG_1038.MOV",
+   "ss": 7.0,
+   "dur": 2.2,
+   "som": false
+  },
+  {
+   "src": "IMG_1038.MOV",
+   "ss": 11.4,
+   "dur": 2.2,
+   "som": false
+  },
+  {
+   "src": "IMG_1038.MOV",
+   "ss": 15.7,
+   "dur": 2.2,
+   "som": false
+  },
+  {
+   "src": "IMG_1038.MOV",
+   "ss": 19.4,
+   "dur": 2.0,
+   "som": false
+  },
+  {
+   "tipo": "congela",
+   "src": "IMG_1038.MOV",
+   "ss": 21.4,
+   "dur": 3.2
+  },
+  {
+   "src": "IMG_1038.MOV",
+   "ss": 22.6,
+   "dur": 3.8,
+   "som": false
+  }
+ ],
+ "extras": [
+  {
+   "id": "rosto",
+   "em": 3.0,
+   "som": true,
+   "base": [
+    {
+     "src": "IMG_1043.MOV",
+     "ss": 0.9,
+     "dur": 6.8
+    }
+   ]
+  },
+  {
+   "id": "rosto2",
+   "em": 9.8,
+   "som": true,
+   "enquadrar_rosto": true,
+   "base": [
+    {
+     "src": "IMG_1048.MOV",
+     "ss": 2.3,
+     "dur": 8.6
+    }
+   ]
+  }
+ ],
+ "motions": [
+  {
+   "id": "lux-grade",
+   "em": 0,
+   "dur": 25.4,
+   "empurra": [
+    [
+     0,
+     3.0
+    ],
+    [
+     3.0,
+     9.8
+    ],
+    [
+     18.4,
+     21.6
+    ],
+    [
+     21.6,
+     25.4
+    ]
+   ],
+   "contraste": 1.0,
+   "saturacao": 1.0,
+   "vinheta": 0.16
+  },
+  {
+   "id": "lux-veu",
+   "em": 0,
+   "dur": 3.0,
+   "lado": "topo",
+   "tamanho": 720,
+   "forca": 0.62
+  },
+  {
+   "id": "lux-titulo",
+   "em": 0,
+   "dur": 2.9,
+   "titulo": "LEVANTAMENTO|*TERRA*",
+   "sub": "4 ERROS QUE TIRAM SUA CARGA"
+  },
+  {
+   "id": "lux-veu",
+   "em": 3.0,
+   "dur": 6.8,
+   "lado": "topo",
+   "tamanho": 720,
+   "forca": 0.62
+  },
+  {
+   "id": "60",
+   "em": 3.0,
+   "dur": 6.8,
+   "capitulos": [
+    [
+     "ERRO 1",
+     "COLUNA|*DESALINHADA*",
+     0.2
+    ],
+    [
+     "ERRO 2",
+     "BARRA|*LONGE DO CORPO*",
+     2.0
+    ],
+    [
+     "ERRO 3",
+     "ABDÔMEN|*SOLTO*",
+     3.4
+    ],
+    [
+     "ERRO 4",
+     "OMBROS|*PARA FRENTE*",
+     5.1
+    ]
+   ]
+  },
+  {
+   "id": "61",
+   "em": 3.0,
+   "dur": 6.8,
+   "extra": "rosto"
+  },
+  {
+   "id": "lux-passagem",
+   "em": 9.8
+  },
+  {
+   "id": "lux-veu",
+   "em": 9.8,
+   "dur": 8.6,
+   "lado": "topo",
+   "forca": 0.62,
+   "tamanho": 780
+  },
+  {
+   "id": "lux-reps",
+   "em": 9.8,
+   "entra": 0.1,
+   "dur": 8.6,
+   "largura": 520,
+   "rotulo": "TÉCNICA CERTA",
+   "rotulo_dica": "PONTO",
+   "reps": [
+    1.7,
+    3.05,
+    4.5,
+    7.0
+   ],
+   "dicas": [
+    "BARRA *RENTE* AO CORPO",
+    "ABDÔMEN *TRAVADO*",
+    "GLÚTEO *CONTRAÍDO*",
+    "EMPURRE *O CHÃO*"
+   ],
+   "y": 236
+  },
+  {
+   "id": "61",
+   "em": 9.8,
+   "dur": 8.6,
+   "extra": "rosto2"
+  },
+  {
+   "id": "lux-frase",
+   "em": 18.4,
+   "dur": 3.2,
+   "rotulo": "PRINCÍPIO 01",
+   "texto": "TÉCNICA|É|*PERFORMANCE.*",
+   "veu": 0.32
+  },
+  {
+   "id": "lux-passagem",
+   "em": 21.6
+  },
+  {
+   "id": "lux-cracha",
+   "em": 21.8,
+   "dur": 3.6,
+   "y": 240
+  },
+  {
+   "id": "lux-salvar",
+   "em": 22.0,
+   "dur": 3.4,
+   "resto": "E TREINE COM O ULLISSES"
+  }
+ ]
+}

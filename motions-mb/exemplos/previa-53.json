@@ -1,0 +1,17 @@
+{
+ "nome": "previa-53",
+ "brutos": "PASTA_DOS_BRUTOS",
+ "base": [
+  {
+   "src": "VID_20261008_101105.mp4",
+   "ss": 30,
+   "dur": 5.2
+  }
+ ],
+ "motions": [
+  {
+   "id": "53",
+   "em": 0.2
+  }
+ ]
+}

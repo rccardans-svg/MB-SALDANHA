@@ -1,0 +1,30 @@
+{
+ "nome": "previa-43",
+ "brutos": "PASTA_DOS_BRUTOS",
+ "base": [
+  {
+   "src": "IMG_0681.MOV",
+   "ss": 1,
+   "dur": 4.2
+  },
+  {
+   "src": "IMG_1042.MOV",
+   "ss": 4,
+   "dur": 4
+  }
+ ],
+ "motions": [
+  {
+   "id": "43",
+   "em": 0.2
+  },
+  {
+   "id": "43",
+   "em": 4.3,
+   "cargo": "PERSONAL · ALTA PERFORMANCE",
+   "nome": "ULLISSES",
+   "registro": "CENTRO DE ALTA PERFORMANCE MB",
+   "indice": "MB/02"
+  }
+ ]
+}
