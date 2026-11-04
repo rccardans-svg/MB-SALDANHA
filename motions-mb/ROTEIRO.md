@@ -131,3 +131,4 @@ Quando precisar de um motion que só existe no estilo antigo (escada, estalo, m�
 - [ ] Começo sem "pronto?" ou erro de gravação.
 - [ ] Logo certo (sem domiciliar, a não ser em post de domiciliar).
 - [ ] Completo + leve + capa entregues no chat.
+- [ ] Fundo verde: o último quadro é só verde (nada de título que volta, fio de cartão ou de fundo). A exceção é o 44, que fica no canto de propósito.
