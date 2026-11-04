@@ -3,28 +3,177 @@
  "brutos": "PASTA_DOS_BRUTOS",
  "capa": 1.7,
  "base": [
-  {"src": "IMG_1050.MOV", "ss": 10.0, "dur": 3.0, "som": false},
-  {"src": "IMG_1050.MOV", "ss": 9.6, "dur": 8.0, "som": false},
-  {"src": "IMG_1051.MOV", "ss": 20.0, "dur": 10.5, "som": false},
-  {"tipo": "congela", "src": "IMG_1051.MOV", "ss": 29.5, "dur": 3.2},
-  {"src": "IMG_1050.MOV", "ss": 16.0, "dur": 3.6, "som": false}
+  {
+   "src": "IMG_1050.MOV",
+   "ss": 10.0,
+   "dur": 3.0,
+   "som": false
+  },
+  {
+   "src": "IMG_1050.MOV",
+   "ss": 9.6,
+   "dur": 8.0,
+   "som": false
+  },
+  {
+   "src": "IMG_1051.MOV",
+   "ss": 20.0,
+   "dur": 10.5,
+   "som": false
+  },
+  {
+   "tipo": "congela",
+   "src": "IMG_1051.MOV",
+   "ss": 29.5,
+   "dur": 3.2
+  },
+  {
+   "src": "IMG_1050.MOV",
+   "ss": 16.0,
+   "dur": 3.6,
+   "som": false
+  }
  ],
  "motions": [
-  {"id": "lux-grade", "em": 0, "dur": 28.3, "empurra": [[0, 3.0], [3.0, 11.0], [11.0, 21.5], [21.5, 24.7], [24.7, 28.3]]},
-  {"id": "lux-veu", "em": 0, "dur": 3.0, "lado": "topo", "tamanho": 820},
-  {"id": "lux-titulo", "em": 0, "dur": 2.9, "indice": "02", "titulo": "COSTAS|*E GLÚTEO*", "sub": "2 EXERCÍCIOS · FORÇA DE ATLETA"},
-  {"id": "lux-veu", "em": 3.0, "dur": 18.5, "lado": "topo", "tamanho": 700, "forca": 0.75},
-  {"id": "60", "em": 3.0, "dur": 18.5, "capitulos": [["EXERCÍCIO 1", "REMADA|*CURVADA*", 0], ["EXERCÍCIO 2", "ELEVAÇÃO|*PÉLVICA*", 8.0]]},
-  {"id": "lux-veu", "em": 3.0, "dur": 18.5, "lado": "base", "tamanho": 900, "forca": 0.8},
-  {"id": "lux-reps", "em": 3.0, "entra": 0.1, "dur": 8.0, "y": 1180, "largura": 520, "reps": [0.57, 2.57, 4.4, 6.4],
-   "dicas": ["TRONCO *FIRME*", "PUXE COM O *COTOVELO*", "BARRA ATÉ O *UMBIGO*", "DESCE *CONTROLANDO*"]},
-  {"id": "lux-passagem", "em": 11.0},
-  {"id": "lux-reps", "em": 11.0, "entra": 0.3, "dur": 10.5, "y": 1180, "largura": 520, "reps": [2.0, 6.0, 9.5],
-   "dicas": ["QUEIXO NO *PEITO*", "SOBE COM O *GLÚTEO*", "CORPO EM *LINHA* NO TOPO"]},
-  {"id": "lux-frase", "em": 21.5, "dur": 3.2, "rotulo": "PRINCÍPIO 02", "texto": "FORÇA QUE|VIRA|*PERFORMANCE.*"},
-  {"id": "lux-passagem", "em": 24.7},
-  {"id": "lux-veu", "em": 24.7, "dur": 3.6, "lado": "base", "tamanho": 900},
-  {"id": "lux-cracha", "em": 24.8, "dur": 3.5, "y": 240},
-  {"id": "lux-salvar", "em": 25.0, "dur": 3.3, "rotulo": "GUARDE ESTE TREINO", "resto": "E TREINE COM O ULLISSES"}
+  {
+   "id": "lux-grade",
+   "em": 0,
+   "dur": 28.3,
+   "empurra": [
+    [
+     0,
+     3.0
+    ],
+    [
+     3.0,
+     11.0
+    ],
+    [
+     11.0,
+     21.5
+    ],
+    [
+     21.5,
+     24.7
+    ],
+    [
+     24.7,
+     28.3
+    ]
+   ],
+   "contraste": 1.0,
+   "saturacao": 1.0,
+   "vinheta": 0.16
+  },
+  {
+   "id": "lux-veu",
+   "em": 0,
+   "dur": 3.0,
+   "lado": "topo",
+   "tamanho": 720,
+   "forca": 0.62
+  },
+  {
+   "id": "lux-titulo",
+   "em": 0,
+   "dur": 2.9,
+   "indice": "02",
+   "titulo": "COSTAS|*E GLÚTEO*",
+   "sub": "2 EXERCÍCIOS · FORÇA DE ATLETA"
+  },
+  {
+   "id": "lux-veu",
+   "em": 3.0,
+   "dur": 18.5,
+   "lado": "topo",
+   "tamanho": 900,
+   "forca": 0.55
+  },
+  {
+   "id": "60",
+   "em": 3.0,
+   "dur": 18.5,
+   "capitulos": [
+    [
+     "EXERCÍCIO 1",
+     "REMADA|*CURVADA*",
+     0
+    ],
+    [
+     "EXERCÍCIO 2",
+     "ELEVAÇÃO|*PÉLVICA*",
+     8.0
+    ]
+   ]
+  },
+  {
+   "id": "lux-reps",
+   "em": 3.0,
+   "entra": 0.1,
+   "dur": 8.0,
+   "y": 540,
+   "largura": 520,
+   "reps": [
+    0.57,
+    2.57,
+    4.4,
+    6.4
+   ],
+   "dicas": [
+    "TRONCO *FIRME*",
+    "PUXE COM O *COTOVELO*",
+    "BARRA ATÉ O *UMBIGO*",
+    "DESCE *CONTROLANDO*"
+   ],
+   "tam": 140
+  },
+  {
+   "id": "lux-passagem",
+   "em": 11.0
+  },
+  {
+   "id": "lux-reps",
+   "em": 11.0,
+   "entra": 0.3,
+   "dur": 10.5,
+   "y": 540,
+   "largura": 520,
+   "reps": [
+    2.0,
+    6.0,
+    9.5
+   ],
+   "dicas": [
+    "QUEIXO NO *PEITO*",
+    "SOBE COM O *GLÚTEO*",
+    "CORPO EM *LINHA* NO TOPO"
+   ],
+   "tam": 140
+  },
+  {
+   "id": "lux-frase",
+   "em": 21.5,
+   "dur": 3.2,
+   "rotulo": "PRINCÍPIO 02",
+   "texto": "FORÇA QUE|VIRA|*PERFORMANCE.*",
+   "veu": 0.32
+  },
+  {
+   "id": "lux-passagem",
+   "em": 24.7
+  },
+  {
+   "id": "lux-cracha",
+   "em": 24.8,
+   "dur": 3.5,
+   "y": 240
+  },
+  {
+   "id": "lux-salvar",
+   "em": 25.0,
+   "dur": 3.3,
+   "rotulo": "GUARDE ESTE TREINO",
+   "resto": "E TREINE COM O ULLISSES"
+  }
  ]
 }

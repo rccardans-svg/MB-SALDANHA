@@ -50,7 +50,7 @@
   MB.lux = { AZ, CL, ESC, rico, limpo, fenda, sobe, fecha, rotulo, linha, recolhe, apaga, coluna, colunaEntra, pesa, respira };
 
   // ---------- lux-grade  acabamento de cinema: vinheta, contraste leve e aproximação lenta da câmera ----------
-  MB.def("lux-grade", { em: 0, dur: 10, vinheta: 0.36, contraste: 1.04, saturacao: 0.96, empurra: [], zoom: 1.035 }, function (P, K) {
+  MB.def("lux-grade", { em: 0, dur: 10, vinheta: 0.16, contraste: 1, saturacao: 1, empurra: [], zoom: 1.035 }, function (P, K) {
     const t0 = K.t(), t1 = t0 + P.dur;
     const v = K.el("", `inset:0;z-index:0;opacity:0;background:radial-gradient(ellipse 82% 64% at 50% 46%, rgba(4,10,26,0) 50%, rgba(4,10,26,${P.vinheta}) 100%)`);
     K.set(v, { opacity: 1 }, t0); K.set(v, { opacity: 0 }, t1);
