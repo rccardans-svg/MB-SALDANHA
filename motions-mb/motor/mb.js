@@ -5,6 +5,8 @@
   const W = 1080, H = 1920;
   const MB = { defs: {}, sfx: [], W, H, _depois: [] };
   window.MB = MB;
+  // fundo verde (montar.py --verde): sem vídeo, sem véu e sem sombra, para usar com chroma key no editor
+  MB.verde = !!window.MB_VERDE;
   window.__timelines = window.__timelines || {};
 
   MB.def = function (id, padroes, fn) { MB.defs[id] = { padroes, fn }; };

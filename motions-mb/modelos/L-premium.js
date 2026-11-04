@@ -19,8 +19,11 @@
     const s = m.firstChild; gsap.set(s, { yPercent: 125 });
     return [m, s];
   }
-  const sobe = (K, s, at, d) => K.ft(s, { yPercent: 125 }, { yPercent: 0, duration: d || 1.0, ease: "expo.out" }, at);
-  const fecha = (K, s, at, d) => K.ft(s, { yPercent: 0 }, { yPercent: -125, duration: d || 0.5, ease: "power3.in" }, at);
+  const sobe = (K, s, at, d) => { K.set(s, { visibility: "visible" }, at); K.ft(s, { yPercent: 125 }, { yPercent: 0, duration: d || 1.0, ease: "expo.out" }, at); };
+  // sai por cima até -145%: a fenda tem folga em cima (.26em, para os acentos), e com -125% sobrava um fio da letra na borda.
+  // No fim da saída o texto fica escondido: se a entrada (sobe) ainda estiver correndo quando a saída termina (trecho
+  // curto), ela puxava o texto de volta para a tela (aconteceu no último título do 60).
+  const fecha = (K, s, at, d) => { K.ft(s, { yPercent: 0 }, { yPercent: -145, duration: d || 0.5, ease: "power3.in" }, at); K.set(s, { visibility: "hidden" }, at + (d || 0.5)); };
   // rótulo: entra apertando o espaçamento e tirando o desfoque
   const rotulo = (K, el, at, d, ls) => K.ft(el, { opacity: 0, letterSpacing: ((ls || 0.3) + 0.32).toFixed(2) + "em", filter: "blur(8px)" },
     { opacity: 1, letterSpacing: (ls || 0.3) + "em", filter: "blur(0px)", duration: d || 1.1, ease: "power3.out" }, at);
@@ -46,31 +49,47 @@
   }
   // respiro: o espaçamento do rótulo abre devagar enquanto ele está parado na tela (nada fica 100% estático)
   const respira = (K, el, a, b, de, ate) => { if (b - a > 0.3) K.ft(el, { letterSpacing: de || "0.3em" }, { letterSpacing: ate || "0.36em", duration: b - a, ease: "none" }, a); };
+  // fundo atrás do texto. Regra do Paulo (2026-11-04): a cor do vídeo não muda. Nada de véu na tela toda, nada de
+  // filtro no vídeo; o escuro fica só onde há texto. A caixa (x, y, w, h) é a área do texto: ali a força é quase cheia
+  // (no máximo 0,6) e ela esfuma uns "e" px para fora, com queda suave (desfoque gaussiano na própria camada, não no
+  // vídeo), como uma sombra larga atrás das letras. Criar antes do texto (fica atrás pela ordem).
+  function fundo(K, x, y, w, h, at, ate, forca, e) {
+    const f = Math.min(0.6, forca == null ? 0.5 : forca), s = Math.round((e == null ? 70 : e) / 2);
+    const v = K.el("", `left:${x - s}px;top:${y - s}px;width:${w + 2 * s}px;height:${h + 2 * s}px;opacity:0;z-index:0;border-radius:${s}px;background:rgba(5,13,32,${f.toFixed(3)});filter:blur(${s}px)`);
+    v.classList.add("lx-veu");
+    K.ft(v, { opacity: 0 }, { opacity: 1, duration: 0.6, ease: "power2.out" }, at);
+    K.ft(v, { opacity: 1 }, { opacity: 0, duration: 0.5, ease: "power2.inOut" }, ate);
+    return v;
+  }
   // ferramentas da linha premium para os outros arquivos de modelos (G, H, I, J usam com "usa_arquivos": ["L-premium.js"])
-  MB.lux = { AZ, CL, ESC, rico, limpo, fenda, sobe, fecha, rotulo, linha, recolhe, apaga, coluna, colunaEntra, pesa, respira };
+  MB.lux = { AZ, CL, ESC, rico, limpo, fenda, sobe, fecha, rotulo, linha, recolhe, apaga, coluna, colunaEntra, pesa, respira, fundo };
 
-  // ---------- lux-grade  acabamento de cinema: vinheta, contraste leve e aproximação lenta da câmera ----------
+  // ---------- lux-grade  acabamento de cinema: vinheta leve e aproximação lenta da câmera ----------
+  // A cor do vídeo não muda (Paulo, 2026-11-04: "deixe nos parâmetros"): contraste e saturação ficam em 1, e com 1
+  // nenhum filtro é aplicado no vídeo.
   MB.def("lux-grade", { em: 0, dur: 10, vinheta: 0.16, contraste: 1, saturacao: 1, empurra: [], zoom: 1.035 }, function (P, K) {
     const t0 = K.t(), t1 = t0 + P.dur;
-    const v = K.el("", `inset:0;z-index:0;opacity:0;background:radial-gradient(ellipse 82% 64% at 50% 46%, rgba(4,10,26,0) 50%, rgba(4,10,26,${P.vinheta}) 100%)`);
+    const v = K.el("", `inset:0;z-index:0;opacity:0;background:radial-gradient(ellipse 82% 64% at 50% 46%, rgba(4,10,26,0) 50%, rgba(4,10,26,${P.vinheta}) 100%)`); v.classList.add("lx-veu");
     K.set(v, { opacity: 1 }, t0); K.set(v, { opacity: 0 }, t1);
-    K.set(K.cam, { filter: `contrast(${P.contraste}) saturate(${P.saturacao})` }, t0);
-    K.set(K.cam, { filter: "none" }, t1);
+    if (+P.contraste !== 1 || +P.saturacao !== 1) {
+      K.set(K.cam, { filter: `contrast(${P.contraste}) saturate(${P.saturacao})` }, t0);
+      K.set(K.cam, { filter: "none" }, t1);
+    }
     (P.empurra || []).forEach(([a, b]) => {
       K.ft(K.cam, { scale: 1 }, { scale: P.zoom, duration: b - a, ease: "none" }, K.t(a));
       K.set(K.cam, { scale: 1 }, K.t(b));
     });
   });
 
-  // ---------- lux-veu  escurecimento suave atrás do texto (topo, base, esquerda ou tela toda) ----------
-  MB.def("lux-veu", { em: 0, dur: 4, lado: "topo", forca: 0.66, tamanho: 760 }, function (P, K) {
-    const t0 = K.t(), t1 = t0 + P.dur, f = P.forca, c = (a) => `rgba(5,13,32,${(a * f).toFixed(3)})`;
+  // ---------- lux-veu  escurecimento suave atrás do texto, no topo (ou na base) ----------
+  // Só atrás do texto (Paulo, 2026-11-04: a cor do vídeo não muda): força até 0,62, topo até 900 px e base até 560 px.
+  // "tudo" e "esquerda" saíram (escureciam o vídeo inteiro e deixavam a imagem "pastel"); se vierem, vira topo.
+  MB.def("lux-veu", { em: 0, dur: 4, lado: "topo", forca: 0.6, tamanho: 720 }, function (P, K) {
+    const t0 = K.t(), t1 = t0 + P.dur, f = Math.min(0.62, P.forca), c = (a) => `rgba(5,13,32,${(a * f).toFixed(3)})`;
     let css;
-    if (P.lado === "tudo") css = `inset:0;background:${c(1)}`;
-    else if (P.lado === "esquerda") css = `left:0;top:0;width:1080px;height:1920px;background:linear-gradient(90deg, ${c(1)} 0%, ${c(0.68)} 34%, ${c(0)} 58%)`;
-    else if (P.lado === "base") css = `left:0;bottom:0;width:1080px;height:${P.tamanho}px;background:linear-gradient(0deg, ${c(1)} 0%, ${c(0.5)} 45%, ${c(0)} 100%)`;
-    else css = `left:0;top:0;width:1080px;height:${P.tamanho}px;background:linear-gradient(180deg, ${c(1)} 0%, ${c(0.5)} 45%, ${c(0)} 100%)`;
-    const v = K.el("", css + ";opacity:0;z-index:0");
+    if (P.lado === "base") css = `left:0;bottom:0;width:1080px;height:${Math.min(560, P.tamanho)}px;background:linear-gradient(0deg, ${c(1)} 0%, ${c(0.5)} 45%, ${c(0)} 100%)`;
+    else css = `left:0;top:0;width:1080px;height:${Math.min(900, P.tamanho)}px;background:linear-gradient(180deg, ${c(1)} 0%, ${c(0.5)} 45%, ${c(0)} 100%)`;
+    const v = K.el("", css + ";opacity:0;z-index:0"); v.classList.add("lx-veu");
     K.ft(v, { opacity: 0 }, { opacity: 1, duration: 0.6, ease: "power2.out" }, t0);
     K.to(v, { opacity: 0, duration: 0.6, ease: "power2.inOut" }, t1 - 0.6);
   });
@@ -107,9 +126,11 @@
 
   // ---------- lux-reps  contador de repetições em número fino (odômetro) + dica que troca a cada repetição ----------
   MB.def("lux-reps", { em: 0, dur: 10, entra: 0, reps: [1, 2, 3, 4], total: null, rotulo: "REPETIÇÕES",
-    dicas: ["COLUNA NEUTRA", "BARRA COLADA NA PERNA", "EMPURRE O CHÃO", "CONTRAIA O GLÚTEO NO TOPO"], rotulo_dica: "DICA", x: 72, y: 236, largura: 470, tam: 200 }, function (P, K) {
+    dicas: ["COLUNA NEUTRA", "BARRA COLADA NA PERNA", "EMPURRE O CHÃO", "CONTRAIA O GLÚTEO NO TOPO"], rotulo_dica: "DICA", x: 72, y: 236, largura: 470, tam: 200, fundo: 0 }, function (P, K) {
     const t0 = K.t(P.entra), t1 = K.t(P.dur), X = P.x, Y = P.y, N = P.total || P.reps.length, LW = P.largura, FZ = P.tam;
     const dd = (n) => String(n).padStart(2, "0");
+    // fundo: 0,5 põe o escuro só atrás do contador e das dicas (em fundo claro, no lugar de um lux-veu grande)
+    if (P.fundo) fundo(K, X - 14, Y - 12, LW + 40, FZ + 314, t0, t1 - 0.5, P.fundo, 90);
     const rot = K.el(ESC(P.rotulo), `left:${X}px;top:${Y}px;opacity:0`); rot.classList.add("lx-rot", "lx-sombra");
     // número: uma fita 00..N que corre dentro de uma janela do tamanho de um algarismo
     const fila = K.el("", `left:${X - 8}px;top:${Y + 40}px;display:flex;align-items:flex-end;gap:16px`);
@@ -159,21 +180,21 @@
     recolhe(K, trilho, ts, 0.45); recolhe(K, barra, ts, 0.45);
   });
 
-  // ---------- lux-frase  frase de efeito com o vídeo congelado: véu marinho, coluna do logo e dois pesos ----------
-  MB.def("lux-frase", { em: 0, dur: 3.4, rotulo: "PRINCÍPIO 01", texto: "A FORÇA|VEM DO|*QUADRIL.*", y: 760, tam: 140, veu: 0.52, zoom: 1.06 }, function (P, K) {
+  // ---------- lux-frase  frase de efeito com o vídeo congelado: fundo só atrás da frase, coluna do logo e dois pesos ----------
+  // veu = força do fundo atrás da frase (até 0,6). Ele cobre só a área do texto: o resto do vídeo fica com a cor original.
+  MB.def("lux-frase", { em: 0, dur: 3.4, rotulo: "PRINCÍPIO 01", texto: "A FORÇA|VEM DO|*QUADRIL.*", y: 760, tam: 140, veu: 0.5, zoom: 1.06 }, function (P, K) {
     const t0 = K.t(), t1 = t0 + P.dur;
-    const veu = K.el("", `inset:0;z-index:0;background:rgba(5,13,32,${P.veu});opacity:0`);
-    K.ft(veu, { opacity: 0 }, { opacity: 1, duration: 0.7, ease: "power2.out" }, t0);
-    K.ft(veu, { opacity: 1 }, { opacity: 0, duration: 0.3, ease: "power2.in" }, t1 - 0.3);
-    if (P.zoom) { K.ft(K.cam, { scale: 1 }, { scale: P.zoom, duration: P.dur, ease: "power1.inOut" }, t0); K.set(K.cam, { scale: 1 }, t1); }
-    const [col, pts] = coluna(K, `left:${540 - 18}px;top:${P.y - 250}px`, 0.5, "#fff");
-    const rot = K.el(ESC(P.rotulo), `left:0;width:1080px;top:${P.y - 104}px;text-align:center;opacity:0`); rot.classList.add("lx-rot", "az");
     const linhas = P.texto.split("|");
     const nc = Math.max(...linhas.map((s) => limpo(s).length));
     const fz = Math.min(P.tam, Math.floor(940 / (0.72 * nc))), lh = Math.round(fz * 1.04);
+    const lt = Math.min(980, Math.round(0.72 * nc * fz) + 80);
+    if (P.veu) fundo(K, 540 - lt / 2, P.y - 262, lt, linhas.length * lh + 320, t0, t1 - 0.5, P.veu, 90);
+    if (P.zoom) { K.ft(K.cam, { scale: 1 }, { scale: P.zoom, duration: P.dur, ease: "power1.inOut" }, t0); K.set(K.cam, { scale: 1 }, t1); }
+    const [col, pts] = coluna(K, `left:${540 - 18}px;top:${P.y - 250}px`, 0.5, "#fff");
+    const rot = K.el(ESC(P.rotulo), `left:0;width:1080px;top:${P.y - 104}px;text-align:center;opacity:0`); rot.classList.add("lx-rot", "az");
     const cx = linhas.map((s, i) => {
       const r = fenda(K, rico(s), `left:0;width:1080px;top:${P.y + i * lh}px;text-align:center;font-size:${fz}px`);
-      r[0].classList.add("lx-tit", "lx-fino"); return r;
+      r[0].classList.add("lx-tit", "lx-fino", "lx-sombra"); return r;
     });
     const ul = K.el("", `left:${540 - 110}px;top:${P.y + linhas.length * lh + 34}px;width:220px;height:4px;background:${AZ};transform:scaleX(0)`);
     K.sfx("lux_ar", t0, 0.6);
@@ -274,6 +295,8 @@
       K.ft(V, { clipPath: "circle(50% at 50% 50%)" }, { clipPath: "circle(0% at 50% 50%)", duration: 0.5, ease: "power3.in" }, t1 - 0.5);
       K.set(V, { opacity: 0 }, t1);
     }
+    // sombra larga só atrás do cargo e do nome (o azul fino do cargo sumia sobre chão claro ou camisa branca); some no fundo verde
+    fundo(K, X - 4, Y + S + 24, S + 8, 96, t0 + 0.25, t1 - 0.55, 0.5, 60);
     const cg = K.el(ESC(P.cargo), `left:${X}px;top:${Y + S + 30}px;width:${S}px;text-align:center;opacity:0;z-index:49`); cg.classList.add("lx-rot", "az", "lx-sombra");
     cg.style.fontSize = "20px";
     const [nm, ns] = fenda(K, rico(P.nome), `left:${X}px;top:${Y + S + 60}px;width:${S}px;text-align:center;font-size:40px;z-index:49`);

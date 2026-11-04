@@ -56,13 +56,10 @@
     K.sfx("lux_ar", at, 0.55);
     return p;
   }
-  // faixa escura suave atrás do texto que fica direto sobre o vídeo (legibilidade sem caixa)
+  // fundo escuro suave só atrás do texto que fica direto sobre o vídeo (y0 a y1 = onde está o texto). A cor do
+  // vídeo não muda em volta (pedido do Paulo em 2026-11-04); a caixa e o botão já são vidro marinho.
   function faixa(K, y0, y1, at, ate) {
-    const h = y1 - y0, c = "rgba(5,13,32,";
-    const f = K.el("", `left:0;top:${y0}px;width:1080px;height:${h}px;opacity:0;z-index:0;background:linear-gradient(180deg, ${c}0) 0%, ${c}.5) 28%, ${c}.5) 72%, ${c}0) 100%)`);
-    K.ft(f, { opacity: 0 }, { opacity: 1, duration: 0.6, ease: "power2.out" }, at);
-    K.ft(f, { opacity: 1 }, { opacity: 0, duration: 0.6, ease: "power2.inOut" }, ate);
-    return f;
+    return MB.lux.fundo(K, 60, y0, 960, y1 - y0, at, ate, 0.5, 80);
   }
   // linhas de texto em dois pesos dentro de fendas (a palavra forte ganha peso ao chegar)
   function linhasTexto(K, txt, x, y, larg, tamMax, centro) {
@@ -110,7 +107,8 @@
       // frase opcional em cima e o botão retangular, que se enche de branco no toque
       const Wb = 840, Hb = 128, X = 540 - Wb / 2;
       const nl0 = texto ? String(texto).split("|").length : 0;
-      faixa(K, Y - 64 - nl0 * 80 - 150, Y + Hb + 150, t0, ts + 0.1);
+      if (nl0) faixa(K, Y - 74 - nl0 * 80, Y - 40, t0, ts + 0.1);
+      MB.lux.fundo(K, 540 - 300, Y + Hb + 26, 600, 36, tt + 0.3, ts, 0.5, 50);   // atrás do aviso embaixo do botão
       let fsTexto = [];
       if (texto) {
         const nl = String(texto).split("|").length, fzEst = 76;
@@ -191,7 +189,8 @@
     const alvo = marca ? (P.perfis[P.escolhe] || P.perfis[0]) : P.palavra;
     const vel = marca ? 0.06 : 0.11, td = t0 + 1.0, fimD = td + [...alvo].length * vel, te = fimD + 0.35;
     const ts = Math.max(t1 - 0.6, te + 0.9);
-    faixa(K, (marca || P.titulo != null) ? Y - 520 : Y - 560, Y + 300, t0, ts + 0.1);
+    const nlTit = (marca || P.titulo != null) ? String(P.titulo != null ? P.titulo : "MARQUE|*AQUELE AMIGO*").split("|").length : 0;
+    faixa(K, nlTit ? Y - 160 - nlTit * Math.round(96 * 1.04) : Y - 440, Y - 56, t0, ts + 0.1);
     // título: "COMENTE" fino e a palavra forte dentro de uma moldura fina (ou "MARQUE / AQUELE AMIGO")
     const extras = [];
     let fsT = [];
@@ -225,6 +224,7 @@
     if (P.sub) { rotulo(K, sub, t0 + 0.5, 1.0); respira(K, sub, t0 + 1.55, ts); }
     // a caixa de comentário
     const Wc = 900, Hc = 120, X = 90;
+    MB.lux.fundo(K, 540 - 300, Y + Hc + 18, 600, 40, te + 0.15, ts, 0.5, 50);   // atrás do "comentário enviado"
     const pl = placa(K, X, Y, Wc, Hc, t0 + 0.35, ts + 0.05);
     const ini = (P.usuario.replace(/[^a-z]/gi, "")[0] || "?").toUpperCase();
     const avt = K.el(ESC(ini), `left:${X + 30}px;top:${Y + 30}px;width:60px;height:60px;border-radius:50%;border:2px solid rgba(255,255,255,.75);display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:600;opacity:0`);
@@ -319,7 +319,7 @@
     } else {
       const ts = Math.max(t1 - 0.6, tc);
       apaga(K, [avt, rt, q], ts, 0.35);
-      K.ft(pl, { clipPath: "inset(0% 0% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 100%)", duration: 0.6, ease: "expo.inOut" }, ts + 0.1);
+      K.ft(pl, { clipPath: "inset(0% 0% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 100%)", duration: 0.5, ease: "expo.inOut" }, ts + 0.05);   // termina antes do fim
     }
   });
 

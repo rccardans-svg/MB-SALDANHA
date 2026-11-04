@@ -28,7 +28,7 @@ Colocar para funcionar o centro de alta performance e o atendimento domiciliar d
 |---|---|---|---|
 | Pesquisa de virais | pesquisa-virais-mb (a criar) | 1 lista por semana | yt-dlp no YouTube Shorts com contagem de views; TikTok só por perfil. Serve só para estudo, nunca repostar |
 | Roteiros da Maria | roteiros-mb (a criar) | 5 a 6 por tarde de gravação | fala da Maria, gancho em 3 s, motion por trecho. Mix: 40% domiciliar, 20% clínica, 15% performance, 15% quiropraxia, 10% quem é a Maria |
-| Reels com motion | editar-reels-mb-saldanha + motions-mb | 3 por semana (seg, qua, sex) | gerador reels/modelo-mb/azul/gen_azul.py + specs JSON + HyperFrames. Modelo aprovado: Reel do ombro. Motions prontos (01 a 60, pedidos pelo número) em motions-mb/; o padrão é a linha premium (41 a 60 e lux-*) |
+| Reels com motion | editar-reels-mb-saldanha + motions-mb | 3 por semana (seg, qua, sex) | gerador reels/modelo-mb/azul/gen_azul.py + specs JSON + HyperFrames. Modelo aprovado: Reel do ombro. Motions prontos (01 a 64, pedidos pelo número) em motions-mb/; o padrão é a linha premium (41 a 64 e lux-*); todos os premium também em fundo verde (chroma key) para o Paulo editar |
 | Carrosséis | carrosseis-mb-saldanha (a criar) | 2 por semana (ter, qui), 7 a 9 lâminas 1080x1350 | gerador carrosseis/modelo-azul/gen2.js. A capa é o gancho, uma ideia por lâmina, e a última pede para salvar e enviar |
 | Entrega e postagem | este maestro | completo + leve + capa | ver Entrega |
 | App X1 (flexão) | app-x1 (a criar) | MVP web na Vercel, depois loja | repo rccardans-svg/Mb-Saldanha-, uma fase por vez. Laranja e preto só no app. Subir o CACHE do sw.js a cada versão |
@@ -45,6 +45,7 @@ Colocar para funcionar o centro de alta performance e o atendimento domiciliar d
 - **Reels com motion de verdade**: animação, cortes, punch-in, cards, contadores e efeitos sonoros. Só legenda não serve.
 - **Motion com cara premium** (escolha dele em 2026-11-04): o estilo antigo (quique, partícula, tremida, pop) ficou amador. Tudo novo segue a linha premium da skill motions-mb, sempre um pouco melhor que a leva anterior.
 - **Cor natural** nos vídeos de iPhone, nunca estourada: tonemap hable com npl=203 (receita em reels/modelo-mb/COR-TREINO.txt). Não usar mobius/npl=100.
+- **Não mudar a cor do vídeo original** (2026-11-04, "deixe nos parâmetros"): ele achou a imagem "pastel, branquizada". Nada de filtro (saturação, preto e branco, brilho) nem véu escuro grande na tela; o escuro fica só atrás do texto. Detalhes na skill motions-mb.
 - **Tudo na nuvem**: não usar o PC dele, que tem pouco espaço. Vídeos brutos vêm do Drive (pasta 1sOK0vuje_29cOao-RSgEPpolk-M6cBJS) com gdown.
 - **Qualidade acima de pressa**, principalmente no app.
 - Troca de rosto com a foto da Maria é autorizada, mas o vídeo sempre avisa que foi feito com IA.

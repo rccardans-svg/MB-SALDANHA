@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 """Monta um Reel (ou uma prévia) com os motions da biblioteca MB Saldanha.
 
-Uso:  python3 montar.py SPEC.json [--saida PASTA] [--brutos PASTA] [--so-html] [--final]
+Uso:  python3 montar.py SPEC.json [--saida PASTA] [--brutos PASTA] [--so-html] [--final] [--verde]
+      --verde: gera só o motion em fundo verde (NOME-verde.mp4), sem o vídeo, sem logo, sem véu e sem sombra,
+               para usar com chroma key no editor. O "base" do spec só define a duração; os extras são ignorados.
 
 O SPEC diz:
   nome        nome do arquivo final
@@ -154,14 +156,15 @@ def junta(pecas, brutos, work, nome):
     return mp4, wav, sum(float(p["dur"]) for p in pecas)
 
 
-def html_pagina(spec, dur, extras, espelhos, js_arquivos):
-    logo = spec.get("logo", "sem")
-    b = [f'<div id="cam" class="cam clip" data-start="0" data-duration="{dur:.3f}" data-track-index="0"><video src="assets/base.mp4" '
-         f'data-start="0" data-duration="{dur:.3f}" data-track-index="1" class="clip" muted playsinline></video></div>',
+def html_pagina(spec, dur, extras, espelhos, js_arquivos, verde=False):
+    logo = "nenhum" if verde else spec.get("logo", "sem")
+    # no fundo verde não há vídeo: a câmera e os espelhos ficam vazios (o espelho vira verde no mb.css)
+    vid = (lambda tr: "") if verde else (lambda tr: f'<video src="assets/base.mp4" data-start="0" data-duration="{dur:.3f}" '
+                                                    f'data-track-index="{tr}" class="clip" muted playsinline></video>')
+    b = [f'<div id="cam" class="cam clip" data-start="0" data-duration="{dur:.3f}" data-track-index="0">{vid(1)}</div>',
          f'<div id="sombra" class="clip" data-start="0" data-duration="{dur:.3f}" data-track-index="2"{SOMBRA.get(spec.get("sombra", "padrao"), "")}></div>']
     for i in range(espelhos):
-        b.append(f'<div id="mir{i+1}" class="mir clip" data-start="0" data-duration="{dur:.3f}" data-track-index="{3+i}"><video src="assets/base.mp4" '
-                 f'data-start="0" data-duration="{dur:.3f}" data-track-index="{6+i}" class="clip" muted playsinline></video></div>')
+        b.append(f'<div id="mir{i+1}" class="mir clip" data-start="0" data-duration="{dur:.3f}" data-track-index="{3+i}">{vid(6+i)}</div>')
     for j, (xid, em, xd, arq) in enumerate(extras):
         b.append(f'<div id="x-{xid}" class="xv clip" data-start="0" data-duration="{dur:.3f}" data-track-index="{10+j}"><video src="assets/{arq}" '
                  f'data-start="{em:.3f}" data-duration="{xd:.3f}" data-track-index="{20+j}" class="clip" muted playsinline></video></div>')
@@ -173,12 +176,13 @@ def html_pagina(spec, dur, extras, espelhos, js_arquivos):
         b.append('<img id="logo" style="display:none" src="assets/logo_white.png" />')
     js_spec = json.dumps({"dur": dur, "motions": spec.get("motions", []), "logo": logo}, ensure_ascii=False)
     scripts = "\n".join(f'<script src="motions/{os.path.basename(f)}"></script>' for f in js_arquivos)
-    return f'''<!doctype html><html lang="pt-BR" data-resolution="portrait"><head><meta charset="UTF-8" />
+    return f'''<!doctype html><html lang="pt-BR" data-resolution="portrait"{' class="verde"' if verde else ''}><head><meta charset="UTF-8" />
 <meta name="viewport" content="width=1080, height=1920" /><title>{H.escape(spec.get("nome", "motion"))}</title>
 <script src="assets/gsap.min.js"></script><link rel="stylesheet" href="assets/mb.css" /></head><body>
 <div id="root" data-composition-id="main" data-start="0" data-duration="{dur:.3f}" data-width="1080" data-height="1920" data-fps="{FPS}">
 {chr(10).join(b)}
 </div>
+{'<script>window.MB_VERDE = true;</script>' if verde else ''}
 <script src="assets/mb.js"></script>
 {scripts}
 <script>MB.iniciar({js_spec});</script>
@@ -226,6 +230,7 @@ def main():
     ap.add_argument("spec"); ap.add_argument("--saida", default="."); ap.add_argument("--brutos")
     ap.add_argument("--work", default=os.environ.get("MB_WORK", "/tmp/mb-motions-work"))
     ap.add_argument("--so-html", action="store_true"); ap.add_argument("--final", action="store_true")
+    ap.add_argument("--verde", action="store_true")
     a = ap.parse_args()
     spec = json.load(open(a.spec))
     nome = spec["nome"]
@@ -251,11 +256,18 @@ def main():
     for f in arquivos:
         shutil.copy(f, os.path.join(proj, "motions", os.path.basename(f)))
     espelhos = spec.get("espelhos", max([CAT[i].get("espelhos", 0) for i in ids] + [0]))
-    # vídeo de fundo
-    base_mp4, base_wav, dur = junta(spec["base"], brutos, proj, "_base")
-    shutil.move(base_mp4, os.path.join(proj, "assets", "base.mp4"))
+    # vídeo de fundo (no fundo verde, só a duração e um áudio em silêncio para os efeitos)
+    if a.verde:
+        dur = sum(float(p["dur"]) for p in expande(spec["base"]))
+        base_wav = os.path.join(proj, "_base.wav")
+        sh(["ffmpeg", "-v", "error", "-y", "-f", "lavfi", "-i", "anullsrc=r=48000:cl=stereo", "-t", f"{dur:.3f}", base_wav])
+        if spec.get("extras"):
+            print("AVISO fundo verde: os extras do spec (rosto, recorte) ficam de fora")
+    else:
+        base_mp4, base_wav, dur = junta(spec["base"], brutos, proj, "_base")
+        shutil.move(base_mp4, os.path.join(proj, "assets", "base.mp4"))
     extras, audios = [], []
-    for x in spec.get("extras", []):
+    for x in ([] if a.verde else spec.get("extras", [])):
         mp4, wav, xd = junta(x["base"], brutos, proj, "_x_" + x["id"])
         arq = "x-" + x["id"] + ".mp4"
         if x.get("recorte"):
@@ -270,14 +282,22 @@ def main():
         extras.append((x["id"], float(x.get("em", 0)), xd, arq))
         if x.get("som"):
             audios.append((wav, float(x.get("em", 0)), float(x.get("volume", 1))))
-    open(os.path.join(proj, "index.html"), "w").write(html_pagina(spec, dur, extras, espelhos, arquivos))
+    open(os.path.join(proj, "index.html"), "w").write(html_pagina(spec, dur, extras, espelhos, arquivos, a.verde))
     sfx = coleta_sfx(proj)
     print(f"projeto {proj}  duração {dur:.2f}s  sfx {len(sfx)}")
     if a.so_html:
         return
     vid = os.path.join(proj, "_video.mp4")
-    q = ["--crf", "10", "--video-frame-format", "png"] if a.final or spec.get("final") else ["--crf", "14"]
-    sh(["hyperframes", "render", proj, "-o", vid, "--sdr", "--quiet", *q])
+    if a.verde:
+        # quadros com transparência e depois o verde (verde.py reforça o que é translúcido com o marinho da MB)
+        quadros = os.path.join(proj, "_quadros")
+        sh(["hyperframes", "render", proj, "-o", quadros, "--format", "png-sequence", "--quiet"])
+        sh([sys.executable, os.path.join(AQUI, "verde.py"), quadros, vid, "--fps", str(FPS)])
+        if not os.environ.get("MB_GUARDA_QUADROS"):   # MB_GUARDA_QUADROS=1 guarda os PNG para refazer só o verde.py
+            shutil.rmtree(quadros, ignore_errors=True)
+    else:
+        q = ["--crf", "10", "--video-frame-format", "png"] if a.final or spec.get("final") else ["--crf", "14"]
+        sh(["hyperframes", "render", proj, "-o", vid, "--sdr", "--quiet", *q])
     # áudio: som original + extras + efeitos + música
     ins, fl, k = [], [], 0
     vz = float(spec.get("voz", 1.0)); limpar = VOZ + "," if spec.get("limpar_voz") else ""
@@ -294,10 +314,18 @@ def main():
         if not os.path.exists(f):
             print("AVISO som não existe:", nome_s); continue
         ms = int(at * 1000); ins += ["-i", f]; fl.append(f"[{k}:a]volume={vol},adelay={ms}|{ms}[a{k}]"); k += 1
-    fl.append("".join(f"[a{i}]" for i in range(k)) + f"amix=inputs={k}:normalize=0,apad,atrim=0:{dur},loudnorm=I=-14:TP=-1.5:LRA=11[o]")
+    # no fundo verde só há os efeitos: sem normalizar (o loudnorm subiria demais o volume deles)
+    fim_audio = "alimiter=limit=0.89" if a.verde else "loudnorm=I=-14:TP=-1.5:LRA=11"
+    fl.append("".join(f"[a{i}]" for i in range(k)) + f"amix=inputs={k}:normalize=0,apad,atrim=0:{dur},{fim_audio}[o]")
     aud = os.path.join(proj, "_audio.wav")
     sh(["ffmpeg", "-v", "error", "-y", *ins, "-filter_complex", ";".join(fl), "-map", "[o]", "-ar", "48000", aud])
     os.makedirs(a.saida, exist_ok=True)
+    if a.verde:
+        full = os.path.join(a.saida, nome + "-verde.mp4")
+        sh(["ffmpeg", "-v", "error", "-y", "-i", vid, "-i", aud, "-map", "0:v", "-map", "1:a", "-c:v", "copy", "-c:a", "aac", "-b:a", "192k",
+            "-shortest", "-movflags", "+faststart", full])
+        print("OK", full)
+        return
     full = os.path.join(a.saida, nome + ".mp4")
     sh(["ffmpeg", "-v", "error", "-y", "-i", vid, "-i", aud, "-map", "0:v", "-map", "1:a", "-c:v", "libx264", "-crf", "16" if not a.final else "14",
         "-preset", "slow", "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "192k", "-shortest", "-movflags", "+faststart", full])

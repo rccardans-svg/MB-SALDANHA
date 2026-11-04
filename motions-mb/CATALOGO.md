@@ -558,7 +558,7 @@ Prévia: `previa-48.mp4`. Exemplo de spec: `exemplos/previa-48.json`.
 - `fracao_texto`: `"QUASE 1 EM CADA 3"`
 - `fonte`: `"OMS · RELATÓRIO GLOBAL SOBRE QUEDAS DE IDOSOS · 2007"`
 - `y`: `400`
-- `veu`: `true`
+- `cartao`: `true`
 
 ### 49. Gráfico de linhas
 Prévia: `previa-49.mp4`. Exemplo de spec: `exemplos/previa-49.json`.
@@ -606,18 +606,12 @@ Prévia: `previa-50.mp4`. Exemplo de spec: `exemplos/previa-50.json`.
 ### 51. Caneta na tela
 Prévia: `previa-51.mp4`. Exemplo de spec: `exemplos/previa-51.json`.
 
-> marcas: {tipo: "circulo"|"x"|"seta"|"curva"|"linha", cor: "branco"|"erro"|"azul", rotulo, rot: [x, y] (canto da etiqueta)}
->
-> circulo: x, y, r | x: x, y, tam | seta: de, para, curva | curva: pontos [[x,y]...] | linha: de, para (ou pontos); tracejada: true
->
-> O fundo precisa estar congelado no spec ({"tipo": "congela"}) durante o motion.
+> marcas: {tipo: "circulo"|"x"|"seta"|"curva"|"linha", cor: "branco"|"erro"|"azul", rotulo, rot: [x, y] (canto da etiqueta)} circulo: x, y, r | x: x, y, tam | seta: de, para, curva | curva: pontos [[x,y]...] | linha: de, para (ou pontos); tracejada: true O fundo precisa estar congelado no spec ({"tipo": "congela"}) durante o motion.
 
 - `em`: `0`
 - `dur`: `6.6`
 - `selo`: `"ANÁLISE · TÉCNICA"`
-- `veu`: `0.18`
 - `zoom`: `1.03`
-- `cinza`: `0.72`
 - `numerar`: `true`
 - `marcas`: `[{"tipo": "circulo", "x": 690, "y": 835, "r": 135, "cor": "erro", "rotulo": "COSTAS ARREDONDADAS", "rot": [90, 560]}, {"tipo": "x", "x": 690, "y": 1215, "tam": 46, "cor": "erro", "rotulo": "PERNAS TRAVADAS", "rot": [90, 1300]}, {"tipo": "linha", "de": [470, 940], "para": [905, 850], "tracejada": true, "cor": "azul", "rotulo": "COSTAS RETAS", "rot": [96, 1040]}, {"tipo": "seta", "de": [790, 1000], "para": [1035, 1010], "curva": -0.32, "cor": "azul", "rotulo": "QUADRIL PARA TRÁS", "rot": [560, 1110]}]`
 
@@ -642,9 +636,7 @@ Prévia: `previa-52.mp4`. Exemplo de spec: `exemplos/previa-52.json`.
 - `ideal_texto`: `"IDEAL"`
 - `numero_em`: `null`
 - `selo`: `"ANÁLISE · ÂNGULO"`
-- `veu`: `0.2`
 - `zoom`: `1.03`
-- `cinza`: `0.72`
 
 ### 53. Palavra riscada
 Prévia: `previa-53.mp4`. Exemplo de spec: `exemplos/previa-53.json`.
@@ -677,9 +669,7 @@ Prévia: `previa-54.mp4`. Exemplo de spec: `exemplos/previa-54.json`.
 ### 55. Mapa com pino
 Prévia: `previa-55.mp4`. Exemplo de spec: `exemplos/previa-55.json`.
 
-> Mapa desenhado (ruas finas, avenidas e o ribeirão), o raio de atendimento abre a partir da MB,
->
-> o pino cai na casa do paciente e o caminho se desenha até lá.
+> Mapa desenhado (ruas finas, avenidas e o ribeirão), o raio de atendimento abre a partir da MB, o pino cai na casa do paciente e o caminho se desenha até lá.
 
 - `em`: `0`
 - `dur`: `6.4`
@@ -711,9 +701,11 @@ Prévia: `previa-56.mp4`. Exemplo de spec: `exemplos/previa-56.json`.
 ### 57. Em vez disso / Faça assim
 Prévia: `previa-57.mp4`. Exemplo de spec: `exemplos/previa-57.json`.
 
-> O trecho do erro fica em preto e branco com o X; a passada azul cobre o corte; o certo volta em cores com o ✓.
+> O trecho do erro ganha o X vermelho; a passada azul cobre o corte; o certo entra com o ✓ azul.
 >
 > O spec precisa ter o corte do erro para o certo no segundo "troca_em" (contado a partir do "em").
+>
+> pb: true deixa o erro em preto e branco. Fica desligado: o Paulo pediu em 2026-11-04 para não mexer na cor do vídeo.
 
 - `em`: `0`
 - `dur`: `7`
@@ -723,13 +715,14 @@ Prévia: `previa-57.mp4`. Exemplo de spec: `exemplos/previa-57.json`.
 - `rotulo_certo`: `"FAÇA ASSIM"`
 - `certo`: `"EMPURRE|O *CHÃO*"`
 - `y`: `250`
+- `pb`: `false`
 
 ### 58. Cards com o clipe dentro
 Prévia: `previa-58.mp4`. Exemplo de spec: `exemplos/previa-58.json`.
 
 > cards: [[rótulo, título, começa em (s, a partir do "em"), segundos do cronômetro (opcional)], ...]
 >
-> O vídeo encolhe para dentro de um cartão (o fundo vira o mesmo vídeo desfocado) e volta a tela cheia no fim.
+> O vídeo encolhe para dentro de um cartão sobre um fundo marinho e volta a tela cheia no fim. O clipe fica com a cor original dentro da janela (nada de desfoque, escurecer ou saturar o vídeo: pedido do Paulo em 2026-11-04).
 
 - `em`: `0`
 - `dur`: `8`
@@ -761,7 +754,82 @@ Prévia: `previa-60.mp4`. Exemplo de spec: `exemplos/previa-60.json`.
 - `titulo_y`: `330`
 - `capitulos`: `[["ERRO 1", "QUADRIL|*CAINDO*", 0], ["ERRO 2", "COTOVELO|*ABERTO*", 3], ["ERRO 3", "MEIA|*DESCIDA*", 6]]`
 
+## K. Refeitos na linha premium (mapa da dor, raio-X e React)
+
+### 62. Mapa da dor (premium)
+Prévia: `previa-62.mp4`. Exemplo de spec: `exemplos/previa-62.json`.
+
+> Cartão com o corpo de frente e de costas em traço fino. Cada região acende em vermelho, com ponto que respira e o nome embaixo (dois pesos); a anterior fica marcada mais fraca, e no fim o mapa mostra tudo.
+>
+> regioes: [segundo, chave, nome, detalhe, lado]. chave: cervical, ombro, toracica, lombar, quadril, gluteo, joelho, tornozelo, punho, cotovelo, abdomen, posterior, panturrilha, quadriceps, peitoral, trapezio.
+>
+> lado (opcional): "direito" ou "esquerdo" (do paciente) para marcar um lado só. nome aceita *forte*.
+
+- `em`: `0`
+- `dur`: `6.6`
+- `rotulo`: `"MAPA DA DOR"`
+- `titulo`: `"ONDE *DÓI?*"`
+- `y`: `370`
+- `regioes`: `[[1.5, "cervical", "*CERVICAL*", "TENSÃO NO PESCOÇO"], [3, "lombar", "*LOMBAR*", "DOR AO FICAR SENTADO"], [4.5, "joelho", "*JOELHO* DIREITO", "DOR AO SUBIR ESCADA", "direito"]]`
+
+### 63. Raio-X (premium)
+Prévia: `previa-63.mp4`. Exemplo de spec: `exemplos/previa-63.json`.
+
+> A tela vira um visor de imagem (marinho fosco, grade fina, cantos de visor). A linha de leitura desce e revela a coluna em vista lateral, em traço fino; o disco em destaque fica vermelho, com a hérnia saindo para trás, e a etiqueta do achado entra do lado. Sempre com "ESQUEMA ILUSTRATIVO" (não é exame de verdade).
+>
+> vertebras: nomes de cima para baixo; o último é o sacro. destaque: "L4-L5" (disco) ou "L4" (vértebra).
+
+- `em`: `0`
+- `dur`: `5.8`
+- `rotulo`: `"IMAGEM · VISTA LATERAL"`
+- `indice`: `"RX / 01"`
+- `titulo`: `"COLUNA *LOMBAR*"`
+- `vertebras`: `["T12", "L1", "L2", "L3", "L4", "L5", "S1"]`
+- `destaque`: `"L4-L5"`
+- `achado`: `"ACHADO 01"`
+- `nome`: `"DISCO *L4–L5*"`
+- `nota`: `"PONTO DE|ATENÇÃO"`
+- `rodape`: `"ESQUEMA ILUSTRATIVO"`
+- `hernia`: `true`
+
+### 64. React do Ullisses (premium)
+Prévia: `previa-64.mp4`. Exemplo de spec: `exemplos/previa-64.json`.
+
+> O rosto dele entra num círculo no canto (sempre centralizado: o montar.py recorta o rosto no meio), com aro fino, um arco azul-claro que gira devagar e o crachá com o nome; as barrinhas mexem enquanto ele fala. Em "olha_em" o vídeo congela e a caneta (motion 51) desenha as marcas. O spec precisa do extra "rosto" (com som) e do fundo congelado ({"tipo": "congela"}) a partir de olha_em.
+>
+> Deixe as marcas fora do canto do rosto (x de 640 a 1040, y de 200 a 700).
+
+- `em`: `0`
+- `dur`: `null`
+- `extra`: `"rosto"`
+- `nome`: `"ULLISSES"`
+- `cargo`: `"REACT · PERSONAL"`
+- `x`: `678`
+- `y`: `236`
+- `tam`: `330`
+- `fala`: `true`
+- `olha_em`: `1.6`
+- `selo`: `"PAUSA · ANÁLISE"`
+- `zoom`: `1.03`
+- `marcas`: `[{"tipo": "circulo", "x": 720, "y": 845, "r": 140, "cor": "erro", "rotulo": "COSTAS ARREDONDADAS", "rot": [72, 600]}, {"tipo": "x", "x": 735, "y": 1190, "tam": 40, "cor": "erro", "rotulo": "PERNAS TRAVADAS", "rot": [72, 1300]}]`
+
 ## L. Linha premium (amostra de estilo: amostras-estilo/amostra-premium.mp4)
+
+### 61. Rosto premium (a voz de quem fala num círculo fino; versão premium do React 36)
+Prévia: `previa-61.mp4`. Exemplo de spec: `exemplos/previa-61.json`.
+
+> extra "rosto" no spec (com "som": true) = vídeo de quem fala; o círculo abre como uma íris e fecha no fim.
+>
+> Use quando a voz continua por cima de outro vídeo (ex.: o Ullisses explica enquanto o exercício passa).
+
+- `em`: `0`
+- `dur`: `6`
+- `extra`: `"rosto"`
+- `nome`: `"ULLISSES"`
+- `cargo`: `"PERSONAL"`
+- `x`: `724`
+- `y`: `1150`
+- `tam`: `296`
 
 ### lux-cracha. nome em placa de vidro marinho, com a coluna do logo como emblema
 Aparece na amostra do grupo. Spec da amostra: `exemplos/amostra-premium.json`.
@@ -775,8 +843,10 @@ Aparece na amostra do grupo. Spec da amostra: `exemplos/amostra-premium.json`.
 - `y`: `1250`
 - `w`: `760`
 
-### lux-frase. frase de efeito com o vídeo congelado: véu marinho, coluna do logo e dois pesos
+### lux-frase. frase de efeito com o vídeo congelado: fundo só atrás da frase, coluna do logo e dois pesos
 Aparece na amostra do grupo. Spec da amostra: `exemplos/amostra-premium.json`.
+
+> veu = força do fundo atrás da frase (até 0,6). Ele cobre só a área do texto: o resto do vídeo fica com a cor original.
 
 - `em`: `0`
 - `dur`: `3.4`
@@ -784,17 +854,19 @@ Aparece na amostra do grupo. Spec da amostra: `exemplos/amostra-premium.json`.
 - `texto`: `"A FORÇA|VEM DO|*QUADRIL.*"`
 - `y`: `760`
 - `tam`: `140`
-- `veu`: `0.52`
+- `veu`: `0.5`
 - `zoom`: `1.06`
 
-### lux-grade. acabamento de cinema: vinheta, contraste leve e aproximação lenta da câmera
+### lux-grade. acabamento de cinema: vinheta leve e aproximação lenta da câmera
 Aparece na amostra do grupo. Spec da amostra: `exemplos/amostra-premium.json`.
+
+> A cor do vídeo não muda (Paulo, 2026-11-04: "deixe nos parâmetros"): contraste e saturação ficam em 1, e com 1 nenhum filtro é aplicado no vídeo.
 
 - `em`: `0`
 - `dur`: `10`
-- `vinheta`: `0.36`
-- `contraste`: `1.04`
-- `saturacao`: `0.96`
+- `vinheta`: `0.16`
+- `contraste`: `1`
+- `saturacao`: `1`
 - `empurra`: `[]`
 - `zoom`: `1.035`
 
@@ -820,6 +892,7 @@ Aparece na amostra do grupo. Spec da amostra: `exemplos/amostra-premium.json`.
 - `y`: `236`
 - `largura`: `470`
 - `tam`: `200`
+- `fundo`: `0`
 
 ### lux-salvar. chamada para salvar: marcador desenhado em traço fino que se preenche
 Aparece na amostra do grupo. Spec da amostra: `exemplos/amostra-premium.json`.
@@ -848,14 +921,18 @@ Aparece na amostra do grupo. Spec da amostra: `exemplos/amostra-premium.json`.
 - `largura`: `936`
 - `tam`: `120`
 
-### lux-veu. escurecimento suave atrás do texto (topo, base, esquerda ou tela toda)
+### lux-veu. escurecimento suave atrás do texto, no topo (ou na base)
 Aparece na amostra do grupo. Spec da amostra: `exemplos/amostra-premium.json`.
+
+> Só atrás do texto (Paulo, 2026-11-04: a cor do vídeo não muda): força até 0,62, topo até 900 px e base até 560 px.
+>
+> "tudo" e "esquerda" saíram (escureciam o vídeo inteiro e deixavam a imagem "pastel"); se vierem, vira topo.
 
 - `em`: `0`
 - `dur`: `4`
 - `lado`: `"topo"`
-- `forca`: `0.66`
-- `tamanho`: `760`
+- `forca`: `0.6`
+- `tamanho`: `720`
 
 ## P. Pixel art (amostra de estilo: amostras-estilo/amostra-pixel.mp4)
 

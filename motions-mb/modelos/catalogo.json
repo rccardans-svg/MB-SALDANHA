@@ -253,6 +253,28 @@
    "L-premium.js"
   ]
  },
+ "62": {
+  "arquivo": "K-refeitos.js",
+  "usa_arquivos": [
+   "L-premium.js",
+   "anatomia.js"
+  ]
+ },
+ "63": {
+  "arquivo": "K-refeitos.js",
+  "usa_arquivos": [
+   "L-premium.js"
+  ]
+ },
+ "64": {
+  "arquivo": "K-refeitos.js",
+  "usa_arquivos": [
+   "L-premium.js"
+  ],
+  "usa": [
+   "51"
+  ]
+ },
  "px-fase": {
   "arquivo": "P-pixel.js"
  },
