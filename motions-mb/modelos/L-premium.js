@@ -50,7 +50,7 @@
   MB.lux = { AZ, CL, ESC, rico, limpo, fenda, sobe, fecha, rotulo, linha, recolhe, apaga, coluna, colunaEntra, pesa, respira };
 
   // ---------- lux-grade  acabamento de cinema: vinheta, contraste leve e aproximação lenta da câmera ----------
-  MB.def("lux-grade", { em: 0, dur: 10, vinheta: 0.36, contraste: 1.04, saturacao: 0.96, empurra: [], zoom: 1.035 }, function (P, K) {
+  MB.def("lux-grade", { em: 0, dur: 10, vinheta: 0.16, contraste: 1, saturacao: 1, empurra: [], zoom: 1.035 }, function (P, K) {
     const t0 = K.t(), t1 = t0 + P.dur;
     const v = K.el("", `inset:0;z-index:0;opacity:0;background:radial-gradient(ellipse 82% 64% at 50% 46%, rgba(4,10,26,0) 50%, rgba(4,10,26,${P.vinheta}) 100%)`); v.classList.add("lx-veu");
     K.set(v, { opacity: 1 }, t0); K.set(v, { opacity: 0 }, t1);
@@ -258,5 +258,32 @@
       apaga(K, [ic, vb.parentNode, rs.parentNode, r2.parentNode], ts, 0.35); recolhe(K, trilho, ts, 0.4); recolhe(K, barra, ts, 0.4);
       K.ft(placa, { clipPath: "inset(0% 0% 0% 0%)" }, { clipPath: "inset(0% 50% 0% 50%)", duration: 0.55, ease: "expo.inOut" }, ts + 0.1);
     }
+  });
+  // ---------- 61 Rosto premium (a voz de quem fala num círculo fino; versão premium do React 36) ----------
+  // extra "rosto" no spec (com "som": true) = vídeo de quem fala; o círculo abre como uma íris e fecha no fim.
+  // Use quando a voz continua por cima de outro vídeo (ex.: o Ullisses explica enquanto o exercício passa).
+  MB.def("61", { em: 0, dur: 6, extra: "rosto", nome: "ULLISSES", cargo: "PERSONAL", x: 724, y: 1150, tam: 296 }, function (P, K) {
+    const t0 = K.t(), t1 = t0 + P.dur, S = P.tam, X = P.x, Y = P.y, V = K.extra(P.extra);
+    const aro = K.el("", `left:${X - 14}px;top:${Y - 14}px;width:${S + 28}px;height:${S + 28}px;border-radius:50%;border:1.5px solid rgba(255,255,255,.55);opacity:0;z-index:49`);
+    const arco = K.svg(`<circle cx="${S / 2 + 14}" cy="${S / 2 + 14}" r="${S / 2 + 13}" fill="none" stroke="${AZ}" stroke-width="4" stroke-linecap="round" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" transform="rotate(-90 ${S / 2 + 14} ${S / 2 + 14})"/>`,
+      S + 28, S + 28, `left:${X - 14}px;top:${Y - 14}px;z-index:49`);
+    const arcoC = arco.querySelector("circle");
+    if (V) {
+      Object.assign(V.style, { left: X + "px", top: Y + "px", width: S + "px", height: S + "px", borderRadius: "50%", zIndex: 48, boxShadow: "0 18px 50px rgba(4,10,26,.45)" });
+      K.ft(V, { opacity: 1, clipPath: "circle(0% at 50% 50%)" }, { opacity: 1, clipPath: "circle(50% at 50% 50%)", duration: 0.9, ease: "expo.out" }, t0);
+      K.ft(V, { clipPath: "circle(50% at 50% 50%)" }, { clipPath: "circle(0% at 50% 50%)", duration: 0.5, ease: "power3.in" }, t1 - 0.5);
+      K.set(V, { opacity: 0 }, t1);
+    }
+    const cg = K.el(ESC(P.cargo), `left:${X}px;top:${Y + S + 30}px;width:${S}px;text-align:center;opacity:0;z-index:49`); cg.classList.add("lx-rot", "az", "lx-sombra");
+    cg.style.fontSize = "20px";
+    const [nm, ns] = fenda(K, rico(P.nome), `left:${X}px;top:${Y + S + 60}px;width:${S}px;text-align:center;font-size:40px;z-index:49`);
+    nm.classList.add("lx-tit", "lx-sombra"); ns.style.fontWeight = 700; ns.style.letterSpacing = ".12em";
+    K.ft(aro, { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 1.0, ease: "expo.out" }, t0 + 0.05);
+    // o arco azul anda em volta durante a fala (tempo de fala), como um indicador discreto
+    K.ft(arcoC, { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: Math.max(0.5, P.dur - 0.9), ease: "none" }, t0 + 0.3);
+    K.sfx("lux_ar", t0, 0.5);
+    rotulo(K, cg, t0 + 0.3, 0.9, 0.3); sobe(K, ns, t0 + 0.4, 1.0);
+    const ts = t1 - 0.55;
+    apaga(K, [cg, aro, arco], ts, 0.4); fecha(K, ns, ts, 0.4);
   });
 })();
