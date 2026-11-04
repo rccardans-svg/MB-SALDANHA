@@ -359,7 +359,7 @@
   // linhas: [[segundo (a partir do "em"), "texto", tamanho em px], ...] empilhadas e centralizadas, uma por vez.
   // _texto_ = itálico. troca: {"linha": índice da linha que troca, "palavras": [[segundo, "texto"], ...]} (a palavra
   // em destaque troca no mesmo lugar, em azul claro). Para frase de impacto curta, fala de abertura ou fechamento.
-  MB.def("66", { em: 0, dur: 8, y: 260, cor: "#f6f1e7", destaque: "#9fbcff", fundo: 0.42, linhas: [], troca: null }, function (P, K) {
+  MB.def("66", { em: 0, dur: 8, y: 260, cor: "#f6f1e7", destaque: "#9fbcff", fundo: 0.42, linhas: [], troca: null, entrada: 0.55, saida: 0.3 }, function (P, K) {
     const t0 = K.t(), t1 = t0 + P.dur;
     const it = (s) => ESC(s).replace(/_([^_]+)_/g, "<i>$1</i>");
     let y = P.y; const pos = P.linhas.map(([, , tam]) => { const r = y; y += Math.round(tam * 0.98); return r; });
@@ -371,9 +371,9 @@
         const e = K.el(it(w), `left:0;top:${pos[i]}px;width:1080px;text-align:center;font-size:${tam}px;color:${P.troca && P.troca.linha === i ? P.destaque : P.cor};opacity:0`);
         e.classList.add("lx-serif", "lx-sombra");
         const a = t0 + ta;
-        K.ft(e, { opacity: 0, y: 22, filter: "blur(10px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.55, ease: "expo.out" }, a);
+        K.ft(e, { opacity: 0, y: 22, filter: "blur(10px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: P.entrada, ease: "expo.out" }, a);
         const prox = trocas[j + 1];
-        if (prox) K.to(e, { opacity: 0, y: -14, filter: "blur(8px)", duration: 0.3, ease: "power2.in" }, t0 + prox[0] - 0.28);
+        if (prox) K.to(e, { opacity: 0, y: -14, filter: "blur(8px)", duration: P.saida, ease: "power2.in" }, t0 + prox[0] - P.saida + 0.02);
         else sai.push(e);
         if (j === 0 && i % 3 === 0) K.sfx("lux_toque", a, 0.22);
       });

@@ -1,0 +1,21 @@
+{
+ "nome": "2026-11-04-poema-fisio-constancia-cortes",
+ "brutos": "PASTA_DOS_BRUTOS",
+ "sombra": "leve",
+ "capa": 7.0,
+ "base": [
+  {"src": "IMG_0681.MOV", "ss": 5.0, "dur": 0.75, "som": false},
+  {"src": "IMG_0689.MOV", "ss": 0.8, "dur": 0.7, "som": false},
+  {"src": "IMG_0687.MOV", "ss": 3.0, "dur": 0.65, "som": false},
+  {"src": "IMG_0751.MOV", "ss": 5.0, "dur": 1.1, "som": false},
+  {"src": "IMG_0749.MOV", "ss": 5.0, "dur": 0.6, "som": false},
+  {"src": "IMG_0748.MOV", "ss": 4.0, "dur": 0.6, "som": false},
+  {"src": "IMG_0743.MOV", "ss": 4.0, "dur": 0.6, "som": false},
+  {"src": "IMG_0612.MOV", "ss": 10.0, "dur": 3.6, "som": false}
+ ],
+ "motions": [
+  {"id": "66", "em": 0.0, "dur": 8.6, "y": 250, "entrada": 0.3, "saida": 0.16,
+   "linhas": [[0.0, "A fisioterapia", 118], [0.4, "não muda", 64], [0.75, "_o passado_", 108], [1.2, "mas", 56], [1.45, "pode", 56], [1.7, "te devolver", 92], [2.1, "independência", 104], [2.45, "então", 56], [2.65, "seja", 64], [2.85, "constante.", 128]],
+   "troca": {"linha": 6, "palavras": [[2.1, "independência"], [3.2, "força"], [3.8, "confiança"], [4.4, "movimento"], [5.0, "o que você ama"]]}}
+ ]
+}
