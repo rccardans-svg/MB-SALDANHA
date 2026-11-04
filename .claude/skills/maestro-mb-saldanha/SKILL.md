@@ -29,7 +29,7 @@ Colocar para funcionar o centro de alta performance e o atendimento domiciliar d
 | Pesquisa de virais | pesquisa-virais-mb (a criar) | 1 lista por semana | yt-dlp no YouTube Shorts com contagem de views; TikTok só por perfil. Serve só para estudo, nunca repostar |
 | Roteiros da Maria | roteiros-mb (a criar) | 5 a 6 por tarde de gravação | fala da Maria, gancho em 3 s, motion por trecho. Mix: 40% domiciliar, 20% clínica, 15% performance, 15% quiropraxia, 10% quem é a Maria |
 | Reels com motion | editar-reels-mb-saldanha | 3 por semana (seg, qua, sex) | gerador reels/modelo-mb/azul/gen_azul.py + specs JSON + HyperFrames. Modelo aprovado: Reel do ombro |
-| Carrosséis | carrosseis-mb-saldanha (a criar) | 2 por semana (ter, qui), 7 a 9 lâminas 1080x1350 | gerador carrosseis/modelo-azul/gen2.js. A capa é o gancho, uma ideia por lâmina, e a última pede para salvar e enviar |
+| Carrosséis | carrosseis-mb-saldanha | 2 por semana (ter, qui), 7 a 9 lâminas 1080x1350 | SEMPRE partir de referência real (viral, estudo, CDC/OMS) e mostrar as referências. Linha editorial premium: gerador carrosseis/modelo-editorial/gen3.js. A capa é o gancho, uma ideia por lâmina, e a última pede para salvar e enviar |
 | Entrega e postagem | este maestro | completo + leve + capa | ver Entrega |
 | App X1 (flexão) | app-x1 (a criar) | MVP web na Vercel, depois loja | repo rccardans-svg/Mb-Saldanha-, uma fase por vez. Laranja e preto só no app. Subir o CACHE do sw.js a cada versão |
 | Negócio e sistema de gestão | este maestro | plano do sistema (agenda, pacientes, financeiro) | o domiciliar operacional o Paulo toca com outra ferramenta; aqui ele entra no conteúdo |
