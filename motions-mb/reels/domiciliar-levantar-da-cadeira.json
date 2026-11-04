@@ -136,13 +136,13 @@
     ],
     [
      9.5,
-     "se treina",
+     "se conquista com",
      72
     ],
     [
      10.1,
-     "_em casa._",
-     128
+     "_fisioterapia em casa._",
+     90
     ]
    ],
    "troca": {
@@ -176,7 +176,7 @@
    "em": 13.2,
    "dur": 3.8,
    "acao": "botao",
-   "texto": "TREINO FUNCIONAL|*EM CASA.*",
+   "texto": "FISIOTERAPIA|*DOMICILIAR.*",
    "botao": "CHAME NO DIRECT"
   }
  ]
