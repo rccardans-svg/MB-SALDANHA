@@ -25,7 +25,7 @@
   // véu: escurece e desfoca o vídeo inteiro atrás do dado. Criar ANTES do cartão (fica atrás pela ordem).
   function veu(K, at, ate, forca, desf) {
     const f = forca == null ? 0.42 : forca, d = desf == null ? 10 : desf;
-    const v = K.el("", `left:0;top:0;width:1080px;height:1920px;opacity:0;z-index:0;background:rgba(5,12,30,${f});backdrop-filter:blur(${d}px);-webkit-backdrop-filter:blur(${d}px)`);
+    const v = K.el("", `left:0;top:0;width:1080px;height:1920px;opacity:0;z-index:0;background:rgba(5,12,30,${f});backdrop-filter:blur(${d}px);-webkit-backdrop-filter:blur(${d}px)`); v.classList.add("lx-veu");
     K.ft(v, { opacity: 0 }, { opacity: 1, duration: 0.8, ease: "power2.out" }, at);
     K.ft(v, { opacity: 1 }, { opacity: 0, duration: 0.6, ease: "power2.inOut" }, ate);
     return v;

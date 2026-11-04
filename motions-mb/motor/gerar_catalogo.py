@@ -7,7 +7,7 @@ d = json.loads(subprocess.run(["node", os.path.join(AQUI, "params.js"), os.path.
 GRUPOS = {"A": "Academia e performance", "B": "Erro x certo", "C": "Corpo e fisioterapia (Maria)",
           "D": "Texto e legenda", "E": "Transições e câmera", "F": "Séries e app X1",
           "G": "Chamadas e identidade (linha premium)", "H": "Dados com fonte (linha premium)",
-          "I": "Desenho na tela (linha premium)", "J": "Formatos que viralizam (linha premium)",
+          "I": "Desenho na tela (linha premium)", "J": "Formatos que viralizam (linha premium)", "K": "Refeitos na linha premium (mapa da dor, raio-X e React)",
           "L": "Linha premium (amostra de estilo: amostras-estilo/amostra-premium.mp4)",
           "P": "Pixel art (amostra de estilo: amostras-estilo/amostra-pixel.mp4)"}
 # só entra no catálogo o que o montar.py consegue usar (o que está em modelos/catalogo.json)

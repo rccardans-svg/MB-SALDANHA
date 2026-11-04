@@ -63,3 +63,15 @@ html, body { width: 1080px; height: 1920px; overflow: hidden; background: #0a1b3
 .lx-linha { position: absolute; height: 2px; background: rgba(255,255,255,.42); transform-origin: left center; }
 .lx-vidro { position: absolute; background: rgba(6,15,38,.8); border: 1.5px solid rgba(255,255,255,.16); border-radius: 6px; backdrop-filter: blur(26px) saturate(1.15); -webkit-backdrop-filter: blur(26px) saturate(1.15); box-shadow: 0 30px 80px rgba(2,8,22,.35); }
 .lx-sombra { text-shadow: 0 2px 30px rgba(4,10,26,.5); }
+/* Fundo verde (montar.py --verde): o motion sai sozinho, sem o vídeo, para o Paulo usar com chroma key no editor.
+   Sem véu, sem sombra e sem desfoque de fundo (ficariam manchas escuras no verde); o vidro fica sólido no pós (verde.py). */
+html.verde, html.verde body { background: transparent; }
+.verde #cam, .verde #sombra { display: none; }
+.verde .mir { background: #00ff00; }
+.verde .mir video { display: none; }
+.verde .lx-veu { display: none !important; }
+.verde .lx-sombra, .verde .sombra-txt { text-shadow: none !important; }
+.verde [style*="drop-shadow"] { filter: none !important; }
+.verde .lx-vidro, .verde .vidro, .verde .quadro { box-shadow: none !important; }
+.verde .lx-vidro { background: rgb(7, 17, 41) !important; }   /* vidro sólido: por cima da janela verde do 58 ele viraria verde-escuro */
+.verde * { backdrop-filter: none !important; -webkit-backdrop-filter: none !important; }

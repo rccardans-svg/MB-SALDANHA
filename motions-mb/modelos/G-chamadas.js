@@ -59,7 +59,7 @@
   // faixa escura suave atrás do texto que fica direto sobre o vídeo (legibilidade sem caixa)
   function faixa(K, y0, y1, at, ate) {
     const h = y1 - y0, c = "rgba(5,13,32,";
-    const f = K.el("", `left:0;top:${y0}px;width:1080px;height:${h}px;opacity:0;z-index:0;background:linear-gradient(180deg, ${c}0) 0%, ${c}.5) 28%, ${c}.5) 72%, ${c}0) 100%)`);
+    const f = K.el("", `left:0;top:${y0}px;width:1080px;height:${h}px;opacity:0;z-index:0;background:linear-gradient(180deg, ${c}0) 0%, ${c}.5) 28%, ${c}.5) 72%, ${c}0) 100%)`); f.classList.add("lx-veu");
     K.ft(f, { opacity: 0 }, { opacity: 1, duration: 0.6, ease: "power2.out" }, at);
     K.ft(f, { opacity: 1 }, { opacity: 0, duration: 0.6, ease: "power2.inOut" }, ate);
     return f;

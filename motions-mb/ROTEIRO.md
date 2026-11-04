@@ -8,7 +8,7 @@ Leia isto antes de montar qualquer Reel com motion da MB Saldanha. Ele junta o p
 - **De quem é o vídeo:**
   - Ullisses é personal: o tema é **performance**, nunca dor. Não fechar com "avaliação com a Maria".
   - Maria é fisioterapeuta: dor, avaliação, quiropraxia e domiciliar.
-- **Estilo: premium em tudo** (decisão do Paulo em 2026-11-04). Use primeiro os motions premium: 41 a 60 e os `lux-*`. Os 01 a 40 são do estilo antigo, que ele achou amador; só entram quando nenhum premium faz o mesmo papel (a tabela da seção 3 mostra qual). Nada de quique, partícula, tremida ou som de pop. E ele pediu para ir melhorando sempre: a cada Reel, suba um pouco o acabamento.
+- **Estilo: premium em tudo** (decisão do Paulo em 2026-11-04). Use primeiro os motions premium: 41 a 64 e os `lux-*`. Os 01 a 40 são do estilo antigo, que ele achou amador; só entram quando nenhum premium faz o mesmo papel (a tabela da seção 3 mostra qual). Nada de quique, partícula, tremida ou som de pop. E ele pediu para ir melhorando sempre: a cada Reel, suba um pouco o acabamento.
 - **Logo:** branco, sem "domiciliar". `"logo": "domiciliar"` só em post sobre atendimento domiciliar.
 - **Cor:** nada de flash ou tela branca, nada de lavar ou estourar a luz. O montar.py já converte o HLG do iPhone com a cor certa. Rastro de câmera lenta usa a peça `eco`, que não clareia.
 - **Proibido:** tela dividida, linhas ou rastreio presos no corpo (o Paulo achou "péssimo"). Motion fica sobre o vídeo, solto do corpo. A caneta na tela (51) e o transferidor (52) desenham sobre o vídeo **congelado**, como um professor no quadro; não seguem o corpo em movimento.
@@ -37,6 +37,7 @@ Leia isto antes de montar qualquer Reel com motion da MB Saldanha. Ele junta o p
    - Completo + leve + capa vão anexados no chat do thread (o conector do Drive não sobe vídeo).
    - Documentos vão como Google Doc no Drive.
    - Limite de 24 anexos por thread: quando lotar, pedir um thread novo ao coordenador.
+8. **Fundo verde (quando o Paulo for editar no aparelho dele):** `montar.py SPEC --saida OUT --verde` gera `NOME-verde.mp4`, só o motion sobre verde puro, sem o vídeo e sem o logo. Os 41 a 64 já estão prontos em `/mnt/project-files/reels/motions-mb/fundo-verde/`, com o `COMO-USAR.md` (passo a passo do chroma key no CapCut).
 
 ## 3. Qual motion usar em cada fala
 
@@ -68,16 +69,18 @@ Premium primeiro. A coluna da direita é o estilo antigo, só para quando faltar
 | corte entre cenas | `lux-passagem` | 31, 35 |
 | acabamento do vídeo todo (vinheta, contraste, aproximação lenta) | `lux-grade` | |
 | momento forte (pico do salto, travou a carga) | `lux-grade` com `empurra` no trecho | 32, 33 |
-| onde dói, músculo, disco ou vértebra | ainda sem premium | 17, 18, 23 |
+| onde dói (pescoço, lombar, joelho...) | 62 mapa da dor | 17 |
+| disco, vértebra, hérnia, "o que aparece no exame" | 63 raio-X da coluna (esquema ilustrativo) | 18 |
+| músculo que trabalha no exercício | ainda sem premium (62 com a região do músculo serve) | 23 |
 | estalo, quiropraxia | 53 para o mito; o estalo ainda sem premium | 22 |
 | resultado de paciente | 49 ou 48 com o número dele | 20 |
 | apresentar a sala ou os aparelhos | 58 cards | 08, 39 |
 | agilidade, velocidade, recorde | ainda sem premium | 09 |
-| Ullisses comentando um vídeo | ainda sem premium | 36 React (rosto no círculo) |
+| Ullisses comentando um vídeo | 64 React (rosto no círculo + caneta no quadro congelado) | 36 |
 | desafio e app X1 | 58 cards ou 59 cadência | 37, 38 |
 | fechamento | `lux-salvar`, 41 | 40 |
 
-Quando precisar de um motion que só existe no estilo antigo (mapa da dor, raio-X, React, escada, crec), avise o Paulo e proponha fazer a versão premium como próximo número (61 em diante).
+Quando precisar de um motion que só existe no estilo antigo (escada, estalo, músculo que acende), avise o Paulo e proponha fazer a versão premium como próximo número (65 em diante).
 
 ### Cuidados por motion
 
@@ -90,6 +93,9 @@ Quando precisar de um motion que só existe no estilo antigo (mapa da dor, raio-
 - **60:** o título do capítulo fica numa faixa escura para aparecer até em camisa branca. Use `titulo_y` para tirar o título de cima do rosto.
 - **41, 42, 44, 45:** perfis e porcentagens dos exemplos são inventados para a prévia. No Reel de verdade, use nomes genéricos (`@voce`) ou comentários reais com autorização.
 - **43:** o registro da Maria é o CREFITO que aparece no site oficial. Confira antes de publicar.
+- **62:** até 3 ou 4 regiões; cada uma acende no segundo que você der e fica marcada no mapa até o fim. `lado: "direito"` ou `"esquerdo"` é o lado do paciente. É tema da Maria (dor), nunca do Ullisses.
+- **63:** é desenho, não exame: o rodapé "ESQUEMA ILUSTRATIVO" fica sempre. `destaque` aceita um disco (`"L4-L5"`) ou uma vértebra (`"L4"`). Tela cheia por uns 5 s: ponha no trecho em que a Maria explica, não em cima de demonstração.
+- **64:** o spec precisa do extra `"rosto"` com `"som": true` e do fundo congelado a partir de `olha_em` (o 64 chama o 51 sozinho). Meça as marcas num quadro com grade e deixe-as fora do canto do rosto (x de 640 a 1040, y de 200 a 700).
 
 ## 4. Receitas prontas
 
@@ -100,7 +106,8 @@ Quando precisar de um motion que só existe no estilo antigo (mapa da dor, raio-
 - **Volta ao esporte (Maria):** 43 crachá da Maria, 54 fita métrica, 50 conta que se resolve, 49 linhas da evolução, 41 "Agende sua avaliação".
 - **Mito da Maria:** 53 palavra riscada, 48 ou 46 com o dado, 44 resposta a comentário, 41.
 - **Domiciliar:** 55 mapa com pino, 48 anel (quedas de idosos, OMS), 43 crachá da Maria, logo `"domiciliar"`.
-- **React do Ullisses:** 36 com 51 em cima do quadro congelado, 57 para o certo.
+- **React do Ullisses:** 64 (rosto no círculo e caneta no quadro congelado), 57 para o certo.
+- **Dor da Maria:** 43 crachá da Maria, 62 mapa da dor, 63 raio-X (esquema ilustrativo), 49 linhas da melhora, 41 "Agende sua avaliação".
 
 ## 5. Ideias recusadas ou guardadas (não repetir sem o Paulo pedir)
 
@@ -114,7 +121,7 @@ Quando precisar de um motion que só existe no estilo antigo (mapa da dor, raio-
 ## 6. Conferência final (sempre)
 
 - [ ] Nome ULLISSES certo em tudo.
-- [ ] Motions premium (41 a 60 e `lux-*`); estilo antigo só onde não há premium.
+- [ ] Motions premium (41 a 64 e `lux-*`); estilo antigo só onde não há premium.
 - [ ] Rosto centralizado no círculo.
 - [ ] Nenhum branco estourado, flash, tela dividida ou linha presa no corpo.
 - [ ] Texto dentro da tela, legível (com véu ou faixa em fundo claro), sem colidir com rosto, logo ou outro texto.

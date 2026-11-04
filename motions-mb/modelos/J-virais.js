@@ -8,7 +8,7 @@
   // faixa escura suave atrás do texto (criar antes do texto)
   function faixa(K, y, h, at, ate, forca) {
     const f = forca == null ? 0.64 : forca;
-    const e = K.el("", `left:0;top:${y}px;width:1080px;height:${h}px;opacity:0;z-index:0;background:linear-gradient(180deg, rgba(5,13,32,0) 0%, rgba(5,13,32,${f}) 26%, rgba(5,13,32,${f}) 74%, rgba(5,13,32,0) 100%)`);
+    const e = K.el("", `left:0;top:${y}px;width:1080px;height:${h}px;opacity:0;z-index:0;background:linear-gradient(180deg, rgba(5,13,32,0) 0%, rgba(5,13,32,${f}) 26%, rgba(5,13,32,${f}) 74%, rgba(5,13,32,0) 100%)`); e.classList.add("lx-veu");
     K.ft(e, { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power2.out" }, at);
     K.ft(e, { opacity: 1 }, { opacity: 0, duration: 0.45, ease: "power2.inOut" }, ate);
     return e;
@@ -73,7 +73,7 @@
     const { ESC, rotulo, apaga } = MB.lux;
     const t0 = K.t(), t1 = t0 + P.dur, tc = t0 + P.troca_em, X = 72, y = P.y;
     // sombra no topo para o título
-    const sb = K.el("", `left:0;top:0;width:1080px;height:${y + 520}px;opacity:0;z-index:0;background:linear-gradient(180deg, rgba(5,13,32,.72) 0%, rgba(5,13,32,.5) 55%, rgba(5,13,32,0) 100%)`);
+    const sb = K.el("", `left:0;top:0;width:1080px;height:${y + 520}px;opacity:0;z-index:0;background:linear-gradient(180deg, rgba(5,13,32,.72) 0%, rgba(5,13,32,.5) 55%, rgba(5,13,32,0) 100%)`); sb.classList.add("lx-veu");
     K.ft(sb, { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power2.out" }, t0);
     K.ft(sb, { opacity: 1 }, { opacity: 0, duration: 0.5, ease: "power2.inOut" }, t1 - 0.5);
     // erro em preto e branco
@@ -119,8 +119,11 @@
     const Hv = 1920 * (1 - 2 * ins / 100) * S, wx = 540 - Wv / 2, wy = cy - Hv / 2, ty = cy - 960;
     // fundo: o próprio vídeo desfocado e escuro
     const v = K.el("", `left:0;top:0;width:1080px;height:1920px;opacity:0;z-index:0;background:rgba(5,12,30,.5);backdrop-filter:blur(22px) saturate(1.1);-webkit-backdrop-filter:blur(22px) saturate(1.1)`);
-    K.ft(v, { opacity: 0 }, { opacity: 1, duration: 0.8, ease: "power2.out" }, t0);
-    K.ft(v, { opacity: 1 }, { opacity: 0, duration: 0.7, ease: "power2.inOut" }, t1 - 0.75);
+    if (MB.verde) { K.set(v, { opacity: 1 }, t0); K.set(v, { opacity: 0 }, t1); }   // no verde, sem fade (a janela cobre a troca)
+    else {
+      K.ft(v, { opacity: 0 }, { opacity: 1, duration: 0.8, ease: "power2.out" }, t0);
+      K.ft(v, { opacity: 1 }, { opacity: 0, duration: 0.7, ease: "power2.inOut" }, t1 - 0.75);
+    }
     // o vídeo encolhe para o cartão e volta no fim
     M.style.zIndex = 45;
     K.set(M, { opacity: 1, scale: 1, y: 0, clipPath: "inset(0% 0% 0% 0% round 0px)" }, t0);
@@ -146,7 +149,10 @@
       fechaTudo(K, tt.sp, sai - 0.35);
       K.sfx("lux_grave", a + 0.05, 0.45);
       // a janela "respira" na troca de card (o corte do vídeo acontece por baixo)
-      if (i > 0) { K.ft(M, { filter: "brightness(.55)" }, { filter: "brightness(1)", duration: 0.55, ease: "power2.out" }, t0 + ini); K.sfx("lux_passagem", t0 + ini - 0.1, 0.35); }
+      if (i > 0) {
+        if (!MB.verde) K.ft(M, { filter: "brightness(.55)" }, { filter: "brightness(1)", duration: 0.55, ease: "power2.out" }, t0 + ini);
+        K.sfx("lux_passagem", t0 + ini - 0.1, 0.35);
+      }
       // progresso do card
       const pf = paraCima(K.el("", `left:${fx(wx)}px;top:${fx(wy + Hv + 22)}px;width:${fx(Wv)}px;height:3px;background:#fff;transform:scaleX(0);transform-origin:left center`), 47);
       K.ft(pf, { scaleX: 0 }, { scaleX: 1, duration: Math.max(0.3, b - (t0 + ini)), ease: "none" }, t0 + ini + (i === 0 ? 0.6 : 0));
@@ -225,7 +231,7 @@
     const t0 = K.t(), t1 = t0 + P.dur, cs = P.capitulos, n = cs.length, X = 72, LW = 936, gap = 12, y = P.y;
     const Ws = (LW - gap * (n - 1)) / n, fimCap = (i) => (i + 1 < n ? t0 + cs[i + 1][2] : t1 - 0.35);
     // sombra suave no topo para a barra e os rótulos lerem bem
-    const sb = K.el("", `left:0;top:0;width:1080px;height:${y + 300}px;opacity:0;z-index:0;background:linear-gradient(180deg, rgba(5,13,32,.6) 0%, rgba(5,13,32,.35) 60%, rgba(5,13,32,0) 100%)`);
+    const sb = K.el("", `left:0;top:0;width:1080px;height:${y + 300}px;opacity:0;z-index:0;background:linear-gradient(180deg, rgba(5,13,32,.6) 0%, rgba(5,13,32,.35) 60%, rgba(5,13,32,0) 100%)`); sb.classList.add("lx-veu");
     K.ft(sb, { opacity: 0 }, { opacity: 1, duration: 0.5 }, t0); K.ft(sb, { opacity: 1 }, { opacity: 0, duration: 0.35 }, t1 - 0.35);
     // faixa escura atrás dos títulos dos capítulos (título fino sobre camiseta branca não lê)
     faixa(K, P.titulo_y - 130, 420, t0, t1 - 0.35, 0.62);

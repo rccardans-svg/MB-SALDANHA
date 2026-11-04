@@ -52,7 +52,7 @@
   // ---------- lux-grade  acabamento de cinema: vinheta, contraste leve e aproximação lenta da câmera ----------
   MB.def("lux-grade", { em: 0, dur: 10, vinheta: 0.36, contraste: 1.04, saturacao: 0.96, empurra: [], zoom: 1.035 }, function (P, K) {
     const t0 = K.t(), t1 = t0 + P.dur;
-    const v = K.el("", `inset:0;z-index:0;opacity:0;background:radial-gradient(ellipse 82% 64% at 50% 46%, rgba(4,10,26,0) 50%, rgba(4,10,26,${P.vinheta}) 100%)`);
+    const v = K.el("", `inset:0;z-index:0;opacity:0;background:radial-gradient(ellipse 82% 64% at 50% 46%, rgba(4,10,26,0) 50%, rgba(4,10,26,${P.vinheta}) 100%)`); v.classList.add("lx-veu");
     K.set(v, { opacity: 1 }, t0); K.set(v, { opacity: 0 }, t1);
     K.set(K.cam, { filter: `contrast(${P.contraste}) saturate(${P.saturacao})` }, t0);
     K.set(K.cam, { filter: "none" }, t1);
@@ -70,7 +70,7 @@
     else if (P.lado === "esquerda") css = `left:0;top:0;width:1080px;height:1920px;background:linear-gradient(90deg, ${c(1)} 0%, ${c(0.68)} 34%, ${c(0)} 58%)`;
     else if (P.lado === "base") css = `left:0;bottom:0;width:1080px;height:${P.tamanho}px;background:linear-gradient(0deg, ${c(1)} 0%, ${c(0.5)} 45%, ${c(0)} 100%)`;
     else css = `left:0;top:0;width:1080px;height:${P.tamanho}px;background:linear-gradient(180deg, ${c(1)} 0%, ${c(0.5)} 45%, ${c(0)} 100%)`;
-    const v = K.el("", css + ";opacity:0;z-index:0");
+    const v = K.el("", css + ";opacity:0;z-index:0"); v.classList.add("lx-veu");
     K.ft(v, { opacity: 0 }, { opacity: 1, duration: 0.6, ease: "power2.out" }, t0);
     K.to(v, { opacity: 0, duration: 0.6, ease: "power2.inOut" }, t1 - 0.6);
   });
@@ -162,7 +162,7 @@
   // ---------- lux-frase  frase de efeito com o vídeo congelado: véu marinho, coluna do logo e dois pesos ----------
   MB.def("lux-frase", { em: 0, dur: 3.4, rotulo: "PRINCÍPIO 01", texto: "A FORÇA|VEM DO|*QUADRIL.*", y: 760, tam: 140, veu: 0.52, zoom: 1.06 }, function (P, K) {
     const t0 = K.t(), t1 = t0 + P.dur;
-    const veu = K.el("", `inset:0;z-index:0;background:rgba(5,13,32,${P.veu});opacity:0`);
+    const veu = K.el("", `inset:0;z-index:0;background:rgba(5,13,32,${P.veu});opacity:0`); veu.classList.add("lx-veu");
     K.ft(veu, { opacity: 0 }, { opacity: 1, duration: 0.7, ease: "power2.out" }, t0);
     K.ft(veu, { opacity: 1 }, { opacity: 0, duration: 0.3, ease: "power2.in" }, t1 - 0.3);
     if (P.zoom) { K.ft(K.cam, { scale: 1 }, { scale: P.zoom, duration: P.dur, ease: "power1.inOut" }, t0); K.set(K.cam, { scale: 1 }, t1); }

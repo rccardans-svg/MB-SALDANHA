@@ -45,7 +45,7 @@
   // ---------- peças comuns ----------
   // véu leve (sem desfoque: o corpo precisa continuar visível). Criar antes do desenho.
   function veuLeve(K, f, at, ate) {
-    const v = K.el("", `left:0;top:0;width:1080px;height:1920px;opacity:0;z-index:0;background:rgba(5,12,30,${f})`);
+    const v = K.el("", `left:0;top:0;width:1080px;height:1920px;opacity:0;z-index:0;background:rgba(5,12,30,${f})`); v.classList.add("lx-veu");
     K.ft(v, { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power2.out" }, at);
     K.ft(v, { opacity: 1 }, { opacity: 0, duration: 0.5, ease: "power2.inOut" }, ate);
   }
@@ -55,7 +55,7 @@
       K.ft(K.cam, { filter: "saturate(1)" }, { filter: `saturate(${cinza})`, duration: 0.6, ease: "power2.out" }, at);
       K.ft(K.cam, { filter: `saturate(${cinza})` }, { filter: "saturate(1)", duration: Math.max(0.2, fim - ate), ease: "power2.inOut" }, ate);
     }
-    if (zoom && zoom !== 1) {
+    if (zoom && zoom !== 1 && !MB.verde) {   // no fundo verde o vídeo é do Paulo: o desenho não aproxima
       const alvo = [K.cam, wrap];
       K.ft(alvo, { scale: 1 }, { scale: zoom, duration: ate - at, ease: "sine.inOut" }, at);
       K.ft(alvo, { scale: zoom }, { scale: 1, duration: Math.max(0.2, fim - ate), ease: "power2.inOut" }, ate);
@@ -257,7 +257,7 @@
     const y1 = y + 56, y2 = y1 + Math.round(fz1 * 1.32), y3 = y2 + Math.round(fz2 * 1.36) + 26;
     // faixa escura atrás (criada antes do texto para ficar atrás)
     const mk = "linear-gradient(180deg, transparent 0%, #000 24%, #000 76%, transparent 100%)";
-    const f = K.el("", `left:0;top:${y - 190}px;width:1080px;height:${y3 - y + 300}px;opacity:0;z-index:0;background:rgba(5,13,32,.62);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);mask-image:${mk};-webkit-mask-image:${mk}`);
+    const f = K.el("", `left:0;top:${y - 190}px;width:1080px;height:${y3 - y + 300}px;opacity:0;z-index:0;background:rgba(5,13,32,.62);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);mask-image:${mk};-webkit-mask-image:${mk}`); f.classList.add("lx-veu");
     K.ft(f, { opacity: 0 }, { opacity: 1, duration: 0.6, ease: "power2.out" }, t0);
     K.ft(f, { opacity: 1 }, { opacity: 0, duration: 0.5, ease: "power2.inOut" }, ts + 0.05);
     const els = [];
@@ -302,7 +302,7 @@
     const { ESC, rotulo, apaga, linha, recolhe } = MB.lux;
     const t0 = K.t(), t1 = t0 + P.dur, ts = t1 - 0.6, X = 72, LW = 936, y = P.y, ms = P.medidas, n = ms.length, Hg = 200;
     const px = (v) => LW * v / P.escala, fmt = (v) => v.toFixed(2).replace(".", ",");
-    const f = K.el("", `left:0;top:${y - 230}px;width:1080px;height:${n * Hg + 420}px;opacity:0;z-index:0;background:linear-gradient(180deg, rgba(5,13,32,0) 0%, rgba(5,13,32,.68) 20%, rgba(5,13,32,.68) 82%, rgba(5,13,32,0) 100%)`);
+    const f = K.el("", `left:0;top:${y - 230}px;width:1080px;height:${n * Hg + 420}px;opacity:0;z-index:0;background:linear-gradient(180deg, rgba(5,13,32,0) 0%, rgba(5,13,32,.68) 20%, rgba(5,13,32,.68) 82%, rgba(5,13,32,0) 100%)`); f.classList.add("lx-veu");
     K.ft(f, { opacity: 0 }, { opacity: 1, duration: 0.6, ease: "power2.out" }, t0);
     K.ft(f, { opacity: 1 }, { opacity: 0, duration: 0.5, ease: "power2.inOut" }, ts + 0.05);
     const els = [];
@@ -366,7 +366,7 @@
     const { ESC, rico, limpo, fenda, sobe, fecha, pesa, rotulo, apaga } = MB.lux;
     const t0 = K.t(), t1 = t0 + P.dur, ts = t1 - 0.6, y = P.y, X = 60, W = 960, Hm = 820;
     // véu com desfoque (o mapa é o foco)
-    const v = K.el("", `left:0;top:0;width:1080px;height:1920px;opacity:0;z-index:0;background:rgba(5,12,30,.45);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)`);
+    const v = K.el("", `left:0;top:0;width:1080px;height:1920px;opacity:0;z-index:0;background:rgba(5,12,30,.45);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)`); v.classList.add("lx-veu");
     K.ft(v, { opacity: 0 }, { opacity: 1, duration: 0.7, ease: "power2.out" }, t0);
     K.ft(v, { opacity: 1 }, { opacity: 0, duration: 0.6, ease: "power2.inOut" }, ts + 0.05);
     // título em dois pesos

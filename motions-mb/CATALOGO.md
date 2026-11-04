@@ -761,6 +761,82 @@ Prévia: `previa-60.mp4`. Exemplo de spec: `exemplos/previa-60.json`.
 - `titulo_y`: `330`
 - `capitulos`: `[["ERRO 1", "QUADRIL|*CAINDO*", 0], ["ERRO 2", "COTOVELO|*ABERTO*", 3], ["ERRO 3", "MEIA|*DESCIDA*", 6]]`
 
+## K. Refeitos na linha premium (mapa da dor, raio-X e React)
+
+### 62. Mapa da dor (premium)
+Prévia: `previa-62.mp4`. Exemplo de spec: `exemplos/previa-62.json`.
+
+> Cartão com o corpo de frente e de costas em traço fino. Cada região acende em vermelho, com ponto que
+>
+> respira e o nome embaixo (dois pesos); a anterior fica marcada mais fraca, e no fim o mapa mostra tudo.
+>
+> regioes: [segundo, chave, nome, detalhe, lado]. chave: cervical, ombro, toracica, lombar, quadril, gluteo,
+>
+> joelho, tornozelo, punho, cotovelo, abdomen, posterior, panturrilha, quadriceps, peitoral, trapezio.
+>
+> lado (opcional): "direito" ou "esquerdo" (do paciente) para marcar um lado só. nome aceita *forte*.
+
+- `em`: `0`
+- `dur`: `6.6`
+- `rotulo`: `"MAPA DA DOR"`
+- `titulo`: `"ONDE *DÓI?*"`
+- `y`: `370`
+- `veu`: `0.42`
+- `regioes`: `[[1.5, "cervical", "*CERVICAL*", "TENSÃO NO PESCOÇO"], [3, "lombar", "*LOMBAR*", "DOR AO FICAR SENTADO"], [4.5, "joelho", "*JOELHO* DIREITO", "DOR AO SUBIR ESCADA", "direito"]]`
+
+### 63. Raio-X (premium)
+Prévia: `previa-63.mp4`. Exemplo de spec: `exemplos/previa-63.json`.
+
+> A tela vira um visor de imagem (marinho fosco, grade fina, cantos de visor). A linha de leitura desce e
+>
+> revela a coluna em vista lateral, em traço fino; o disco em destaque fica vermelho, com a hérnia saindo
+>
+> para trás, e a etiqueta do achado entra do lado. Sempre com "ESQUEMA ILUSTRATIVO" (não é exame de verdade).
+>
+> vertebras: nomes de cima para baixo; o último é o sacro. destaque: "L4-L5" (disco) ou "L4" (vértebra).
+
+- `em`: `0`
+- `dur`: `5.8`
+- `rotulo`: `"IMAGEM · VISTA LATERAL"`
+- `indice`: `"RX / 01"`
+- `titulo`: `"COLUNA *LOMBAR*"`
+- `vertebras`: `["T12", "L1", "L2", "L3", "L4", "L5", "S1"]`
+- `destaque`: `"L4-L5"`
+- `achado`: `"ACHADO 01"`
+- `nome`: `"DISCO *L4–L5*"`
+- `nota`: `"PONTO DE|ATENÇÃO"`
+- `rodape`: `"ESQUEMA ILUSTRATIVO"`
+- `hernia`: `true`
+
+### 64. React do Ullisses (premium)
+Prévia: `previa-64.mp4`. Exemplo de spec: `exemplos/previa-64.json`.
+
+> O rosto dele entra num círculo no canto (sempre centralizado: o montar.py recorta o rosto no meio),
+>
+> com aro fino, um arco azul-claro que gira devagar e o crachá com o nome; as barrinhas mexem enquanto
+>
+> ele fala. Em "olha_em" o vídeo congela e a caneta (motion 51) desenha as marcas. O spec precisa do extra
+>
+> "rosto" (com som) e do fundo congelado ({"tipo": "congela"}) a partir de olha_em.
+>
+> Deixe as marcas fora do canto do rosto (x de 640 a 1040, y de 200 a 700).
+
+- `em`: `0`
+- `dur`: `null`
+- `extra`: `"rosto"`
+- `nome`: `"ULLISSES"`
+- `cargo`: `"REACT · PERSONAL"`
+- `x`: `678`
+- `y`: `236`
+- `tam`: `330`
+- `fala`: `true`
+- `olha_em`: `1.6`
+- `selo`: `"PAUSA · ANÁLISE"`
+- `veu`: `0.18`
+- `zoom`: `1.03`
+- `cinza`: `0.72`
+- `marcas`: `[{"tipo": "circulo", "x": 720, "y": 845, "r": 140, "cor": "erro", "rotulo": "COSTAS ARREDONDADAS", "rot": [72, 600]}, {"tipo": "x", "x": 735, "y": 1190, "tam": 40, "cor": "erro", "rotulo": "PERNAS TRAVADAS", "rot": [72, 1300]}]`
+
 ## L. Linha premium (amostra de estilo: amostras-estilo/amostra-premium.mp4)
 
 ### lux-cracha. nome em placa de vidro marinho, com a coluna do logo como emblema
