@@ -31,6 +31,9 @@ html, body { width: 1080px; height: 1920px; overflow: hidden; background: #0a1b3
 .tela-azul { position: absolute; inset: 0; background: radial-gradient(120% 80% at 50% 25%, #2a5fd0 0%, #163e9c 45%, #0a1b3f 100%); }
 .passada { position: absolute; left: -300px; top: -300px; width: 1680px; height: 2520px; z-index: 95; pointer-events: none; transform: translateX(-1800px) skewX(-14deg); background: linear-gradient(90deg, rgba(31,102,229,0) 0%, #1f66e5 30%, #163e9c 55%, #0a1b3f 72%, rgba(10,27,63,0) 100%); }
 /* Peças editoriais (motions 41 a 60): rótulo em letra de máquina, moldura fina, grade e chips, no azul da MB */
+@font-face { font-family: "SERIF"; font-weight: 400; font-style: normal; src: url("InstrumentSerif-Regular.ttf"); }
+@font-face { font-family: "SERIF"; font-weight: 400; font-style: italic; src: url("InstrumentSerif-Italic.ttf"); }
+.lx-serif { font-family: "SERIF", serif; font-weight: 400; letter-spacing: -.01em; line-height: .92; white-space: nowrap; text-transform: none; }
 @font-face { font-family: "MONO"; font-weight: 400; src: url("JetBrainsMono-Regular.ttf"); }
 @font-face { font-family: "MONO"; font-weight: 500; src: url("JetBrainsMono-Medium.ttf"); }
 @font-face { font-family: "MONO"; font-weight: 700; src: url("JetBrainsMono-Bold.ttf"); }

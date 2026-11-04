@@ -355,4 +355,30 @@
     fecha(K, pt, ts, 0.4); recolhe(K, ln, ts, 0.45);
     els.forEach(([num, m], i) => apaga(K, [num, m], ts + i * 0.03, 0.4));
   });
+  // ---------- 66 Poema palavra por palavra (fonte serifada viral, Instrument Serif) ----------
+  // linhas: [[segundo (a partir do "em"), "texto", tamanho em px], ...] empilhadas e centralizadas, uma por vez.
+  // _texto_ = itálico. troca: {"linha": índice da linha que troca, "palavras": [[segundo, "texto"], ...]} (a palavra
+  // em destaque troca no mesmo lugar, em azul claro). Para frase de impacto curta, fala de abertura ou fechamento.
+  MB.def("66", { em: 0, dur: 8, y: 260, cor: "#f6f1e7", destaque: "#9fbcff", fundo: 0.42, linhas: [], troca: null }, function (P, K) {
+    const t0 = K.t(), t1 = t0 + P.dur;
+    const it = (s) => ESC(s).replace(/_([^_]+)_/g, "<i>$1</i>");
+    let y = P.y; const pos = P.linhas.map(([, , tam]) => { const r = y; y += Math.round(tam * 0.98); return r; });
+    fundo(K, 140, P.y - 10, 800, y - P.y + 20, t0, t1 - 0.4, P.fundo, 120);
+    const sai = [];
+    P.linhas.forEach(([at, txt, tam], i) => {
+      const trocas = P.troca && P.troca.linha === i ? P.troca.palavras : [[at, txt]];
+      trocas.forEach(([ta, w], j) => {
+        const e = K.el(it(w), `left:0;top:${pos[i]}px;width:1080px;text-align:center;font-size:${tam}px;color:${P.troca && P.troca.linha === i ? P.destaque : P.cor};opacity:0`);
+        e.classList.add("lx-serif", "lx-sombra");
+        const a = t0 + ta;
+        K.ft(e, { opacity: 0, y: 22, filter: "blur(10px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.55, ease: "expo.out" }, a);
+        const prox = trocas[j + 1];
+        if (prox) K.to(e, { opacity: 0, y: -14, filter: "blur(8px)", duration: 0.3, ease: "power2.in" }, t0 + prox[0] - 0.28);
+        else sai.push(e);
+        if (j === 0 && i % 3 === 0) K.sfx("lux_toque", a, 0.22);
+      });
+    });
+    K.sfx("lux_ar", t0, 0.4);
+    apaga(K, sai, t1 - 0.45, 0.4);
+  });
 })();

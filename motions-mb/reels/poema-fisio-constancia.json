@@ -1,0 +1,15 @@
+{
+ "nome": "2026-11-04-poema-fisio-constancia",
+ "brutos": "PASTA_DOS_BRUTOS",
+ "sombra": "leve",
+ "capa": 7.5,
+ "base": [
+  {"src": "IMG_0689.MOV", "ss": 0.5, "dur": 4.6, "som": false},
+  {"src": "IMG_0690.MOV", "ss": 0.5, "dur": 4.6, "som": false}
+ ],
+ "motions": [
+  {"id": "66", "em": 0.2, "dur": 8.8, "y": 250,
+   "linhas": [[0.0, "A fisioterapia", 118], [0.45, "não muda", 64], [0.8, "_o passado_", 108], [1.4, "mas", 56], [1.7, "pode", 56], [2.0, "te devolver", 92], [2.6, "independência", 104], [3.4, "então", 56], [3.7, "seja", 64], [4.0, "constante.", 128]],
+   "troca": {"linha": 6, "palavras": [[2.6, "independência"], [4.6, "força"], [5.6, "confiança"], [6.6, "o que você ama"]]}}
+ ]
+}
