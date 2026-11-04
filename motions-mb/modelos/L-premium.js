@@ -19,9 +19,11 @@
     const s = m.firstChild; gsap.set(s, { yPercent: 125 });
     return [m, s];
   }
-  const sobe = (K, s, at, d) => K.ft(s, { yPercent: 125 }, { yPercent: 0, duration: d || 1.0, ease: "expo.out" }, at);
-  // sai por cima até -145%: a fenda tem folga em cima (.26em, para os acentos), e com -125% sobrava um fio da letra na borda
-  const fecha = (K, s, at, d) => K.ft(s, { yPercent: 0 }, { yPercent: -145, duration: d || 0.5, ease: "power3.in" }, at);
+  const sobe = (K, s, at, d) => { K.set(s, { visibility: "visible" }, at); K.ft(s, { yPercent: 125 }, { yPercent: 0, duration: d || 1.0, ease: "expo.out" }, at); };
+  // sai por cima até -145%: a fenda tem folga em cima (.26em, para os acentos), e com -125% sobrava um fio da letra na borda.
+  // No fim da saída o texto fica escondido: se a entrada (sobe) ainda estiver correndo quando a saída termina (trecho
+  // curto), ela puxava o texto de volta para a tela (aconteceu no último título do 60).
+  const fecha = (K, s, at, d) => { K.ft(s, { yPercent: 0 }, { yPercent: -145, duration: d || 0.5, ease: "power3.in" }, at); K.set(s, { visibility: "hidden" }, at + (d || 0.5)); };
   // rótulo: entra apertando o espaçamento e tirando o desfoque
   const rotulo = (K, el, at, d, ls) => K.ft(el, { opacity: 0, letterSpacing: ((ls || 0.3) + 0.32).toFixed(2) + "em", filter: "blur(8px)" },
     { opacity: 1, letterSpacing: (ls || 0.3) + "em", filter: "blur(0px)", duration: d || 1.1, ease: "power3.out" }, at);
@@ -293,6 +295,8 @@
       K.ft(V, { clipPath: "circle(50% at 50% 50%)" }, { clipPath: "circle(0% at 50% 50%)", duration: 0.5, ease: "power3.in" }, t1 - 0.5);
       K.set(V, { opacity: 0 }, t1);
     }
+    // sombra larga só atrás do cargo e do nome (o azul fino do cargo sumia sobre chão claro ou camisa branca); some no fundo verde
+    fundo(K, X - 4, Y + S + 24, S + 8, 96, t0 + 0.25, t1 - 0.55, 0.5, 60);
     const cg = K.el(ESC(P.cargo), `left:${X}px;top:${Y + S + 30}px;width:${S}px;text-align:center;opacity:0;z-index:49`); cg.classList.add("lx-rot", "az", "lx-sombra");
     cg.style.fontSize = "20px";
     const [nm, ns] = fenda(K, rico(P.nome), `left:${X}px;top:${Y + S + 60}px;width:${S}px;text-align:center;font-size:40px;z-index:49`);

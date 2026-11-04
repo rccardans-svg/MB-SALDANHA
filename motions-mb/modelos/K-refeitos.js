@@ -377,7 +377,9 @@
     }), t0 + 0.8, ts);
     // saída do crachá
     apaga(K, [cg, ...barras], ts - 0.1, 0.35); fecha(K, ns, ts - 0.1, 0.4);
-    K.ft(cr, { clipPath: "inset(0% 0% 0% 0%)" }, { clipPath: "inset(0% 50% 0% 50%)", duration: 0.5, ease: "expo.inOut" }, ts + 0.05);
+    // fecha antes do fim (com o expo, a cauda deixava um fio do crachá na tela até o último quadro) e some de vez
+    K.ft(cr, { clipPath: "inset(0% 0% 0% 0%)" }, { clipPath: "inset(0% 50% 0% 50%)", duration: 0.45, ease: "expo.inOut" }, ts - 0.05);
+    K.set(cr, { opacity: 0 }, ts + 0.36);
     apaga(K, [aro, orb], ts, 0.45);
     // análise: o vídeo congela e a caneta desenha (motion 51)
     const ta = K.t(P.olha_em);

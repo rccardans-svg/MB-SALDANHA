@@ -116,7 +116,9 @@
     const Hv = 1920 * (1 - 2 * ins / 100) * S, wx = 540 - Wv / 2, wy = cy - Hv / 2, ty = cy - 960;
     // fundo: marinho sólido com um leve degradê (cobre o vídeo, não muda a cor dele)
     const v = K.el("", `left:0;top:0;width:1080px;height:1920px;opacity:0;z-index:0;background:${MB.verde ? "rgba(5,12,30,.5)" : "radial-gradient(120% 70% at 50% 42%, #0d2050 0%, #08173a 55%, #050e26 100%)"}`);
-    if (MB.verde) { K.set(v, { opacity: 1 }, t0); K.set(v, { opacity: 0 }, t1); }   // no verde, sem fade (a janela cobre a troca)
+    // no verde, sem fade (a janela cobre a troca); o fundo sai 0,1 s antes do fim, quando a janela já cobre quase tudo
+    // (saindo só no fim, sobrava um fio marinho no topo do último quadro)
+    if (MB.verde) { K.set(v, { opacity: 1 }, t0); K.set(v, { opacity: 0 }, t1 - 0.1); }
     else {
       K.ft(v, { opacity: 0 }, { opacity: 1, duration: 0.8, ease: "power2.out" }, t0);
       K.ft(v, { opacity: 1 }, { opacity: 0, duration: 0.7, ease: "power2.inOut" }, t1 - 0.75);

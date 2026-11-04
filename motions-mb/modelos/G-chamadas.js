@@ -319,7 +319,7 @@
     } else {
       const ts = Math.max(t1 - 0.6, tc);
       apaga(K, [avt, rt, q], ts, 0.35);
-      K.ft(pl, { clipPath: "inset(0% 0% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 100%)", duration: 0.6, ease: "expo.inOut" }, ts + 0.1);
+      K.ft(pl, { clipPath: "inset(0% 0% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 100%)", duration: 0.5, ease: "expo.inOut" }, ts + 0.05);   // termina antes do fim
     }
   });
 
