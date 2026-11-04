@@ -398,7 +398,7 @@
     let r = P.semente * 9301 + 49297; const rnd = () => (r = (r * 9301 + 49297) % 233280) / 233280;
     const caixas = [], els = []; const n = P.palavras.length; let at = t0 + P.inicio;
     P.palavras.forEach((w, i) => {
-      const tam = Math.round(P.tam_p * (0.85 + rnd() * 0.35)), larg = Math.round(String(w).length * tam * 0.5) + 28, alt = Math.round(tam * 1.25);
+      const tam = Math.round(P.tam_p * (0.85 + rnd() * 0.35)), larg = Math.round(String(w).length * tam * (P.aperto || 0.42)) + 16, alt = Math.round(tam * (P.aperto ? 0.95 : 1.25));
       let x = 0, y = 0, ok = false;
       for (let k = 0; k < 400 && !ok; k++) {
         const z = P.zonas[Math.floor(rnd() * P.zonas.length)];

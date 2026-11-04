@@ -29,6 +29,7 @@
     "caça-mitos",
     "vigia de tapete solto",
     "tradutora de exame",
+    "conselheira",
     "quiropraxista",
     "neta adotiva",
     "organizadora de agenda",
@@ -37,13 +38,56 @@
     "motivadora",
     "especialista em escada",
     "amiga da família",
+    "recepcionista",
+    "marketing",
+    "personal",
+    "contadora",
+    "calmante",
     "treinadora de equilíbrio",
     "enfermeira de plantão",
-    "ombro amigo"
+    "ombro amigo",
+    "nutricionista de conselho",
+    "coach",
+    "mediadora de família",
+    "tira-dúvidas",
+    "agenda viva",
+    "cronômetro",
+    "maqueira",
+    "planejadora",
+    "pesquisadora",
+    "especialista em sofá",
+    "fiscal de chinelo",
+    "engenheira de corrimão",
+    "decoradora de banheiro",
+    "terapeuta de sorriso",
+    "contadora de piada",
+    "guarda-costas",
+    "motor de arranque",
+    "cuidadora",
+    "lembrete de remédio",
+    "instrutora de bengala",
+    "psicóloga de neto",
+    "designer de rotina",
+    "atleta de visita",
+    "hype woman",
+    "negociadora",
+    "anjo da guarda"
    ],
-   "inicio": 2.4,
-   "gap0": 0.45,
-   "gap1": 0.1
+   "inicio": 1.8,
+   "gap0": 0.22,
+   "gap1": 0.05,
+   "tam_p": 36,
+   "zonas": [
+    [
+     150,
+     830
+    ],
+    [
+     1080,
+     1770
+    ]
+   ],
+   "aperto": 0.36
   },
   {
    "id": "41",

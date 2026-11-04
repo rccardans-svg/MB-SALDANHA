@@ -1,0 +1,171 @@
+{
+ "nome": "2026-11-04-domiciliar-tudo-que-voce-investe",
+ "brutos": "PASTA_DOS_BRUTOS",
+ "sombra": "leve",
+ "logo": "domiciliar",
+ "capa": 3.0,
+ "base": [
+  {
+   "src": "VID_20261008_101105.mp4",
+   "ss": 9,
+   "dur": 0.45,
+   "som": false
+  },
+  {
+   "src": "IMG_0547.MOV",
+   "ss": 18.5,
+   "dur": 0.45,
+   "som": false
+  },
+  {
+   "src": "VID_20261008_101105.mp4",
+   "ss": 15,
+   "dur": 0.45,
+   "som": false
+  },
+  {
+   "src": "IMG_0548.MOV",
+   "ss": 7.2,
+   "dur": 0.45,
+   "som": false
+  },
+  {
+   "src": "VID_20261008_101105.mp4",
+   "ss": 21,
+   "dur": 0.45,
+   "som": false
+  },
+  {
+   "src": "IMG_0547.MOV",
+   "ss": 26,
+   "dur": 0.45,
+   "som": false
+  },
+  {
+   "src": "VID_20261008_101105.mp4",
+   "ss": 27,
+   "dur": 0.45,
+   "som": false
+  },
+  {
+   "src": "IMG_0548.MOV",
+   "ss": 0.3,
+   "dur": 0.45,
+   "som": false
+  },
+  {
+   "src": "VID_20261008_101105.mp4",
+   "ss": 33,
+   "dur": 0.45,
+   "som": false
+  },
+  {
+   "src": "IMG_0547.MOV",
+   "ss": 14,
+   "dur": 0.45,
+   "som": false
+  },
+  {
+   "src": "VID_20261008_101105.mp4",
+   "ss": 39,
+   "dur": 0.45,
+   "som": false
+  },
+  {
+   "src": "IMG_0547.MOV",
+   "ss": 30,
+   "dur": 0.45,
+   "som": false
+  },
+  {
+   "src": "VID_20261008_101105.mp4",
+   "ss": 51,
+   "dur": 0.45,
+   "som": false
+  },
+  {
+   "src": "IMG_0548.MOV",
+   "ss": 9,
+   "dur": 0.45,
+   "som": false
+  },
+  {
+   "src": "VID_20261008_101105.mp4",
+   "ss": 57,
+   "dur": 0.45,
+   "som": false
+  },
+  {
+   "src": "IMG_0547.MOV",
+   "ss": 22,
+   "dur": 0.45,
+   "som": false
+  },
+  {
+   "src": "VID_20261008_101105.mp4",
+   "ss": 69,
+   "dur": 0.45,
+   "som": false
+  },
+  {
+   "src": "IMG_0547.MOV",
+   "ss": 40.5,
+   "dur": 0.45,
+   "som": false
+  },
+  {
+   "src": "VID_20261008_101105.mp4",
+   "ss": 84,
+   "dur": 0.45,
+   "som": false
+  },
+  {
+   "src": "VID_20261008_101105.mp4",
+   "ss": 96,
+   "dur": 0.45,
+   "som": false
+  },
+  {
+   "src": "VID_20261008_101105.mp4",
+   "ss": 102,
+   "dur": 3.8,
+   "som": false
+  }
+ ],
+ "motions": [
+  {
+   "id": "66",
+   "em": 0.0,
+   "dur": 9.0,
+   "y": 820,
+   "entrada": 0.5,
+   "saida": 0.16,
+   "fundo": 0.38,
+   "linhas": [
+    [
+     0.0,
+     "_Tudo_ o que você investe",
+     68
+    ],
+    [
+     0.0,
+     "em fisioterapia em casa",
+     68
+    ],
+    [
+     0.0,
+     "volta em _independência._",
+     68
+    ]
+   ]
+  },
+  {
+   "id": "41",
+   "em": 9.0,
+   "dur": 3.8,
+   "acao": "botao",
+   "texto": "FISIOTERAPIA|*DOMICILIAR.*",
+   "botao": "CHAME NO DIRECT"
+  }
+ ]
+}
