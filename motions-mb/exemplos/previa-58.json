@@ -1,0 +1,48 @@
+{
+ "nome": "previa-58",
+ "brutos": "PASTA_DOS_BRUTOS",
+ "base": [
+  {
+   "src": "IMG_0744.MOV",
+   "ss": 1,
+   "dur": 2.6
+  },
+  {
+   "src": "IMG_0747.MOV",
+   "ss": 1,
+   "dur": 2.4
+  },
+  {
+   "src": "IMG_0750.MOV",
+   "ss": 2,
+   "dur": 3.0
+  }
+ ],
+ "motions": [
+  {
+   "id": "58",
+   "em": 0,
+   "dur": 8.0,
+   "cards": [
+    [
+     "EXERCÍCIO 1",
+     "JOELHO|*ALTO*",
+     0,
+     30
+    ],
+    [
+     "EXERCÍCIO 2",
+     "SALTO COM|*ELÁSTICO*",
+     2.6,
+     30
+    ],
+    [
+     "EXERCÍCIO 3",
+     "AGACHAMENTO|*NO TRAMPOLIM*",
+     5.0,
+     30
+    ]
+   ]
+  }
+ ]
+}

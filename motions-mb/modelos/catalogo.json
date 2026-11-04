@@ -222,6 +222,37 @@
    "L-premium.js"
   ]
  },
+ "56": {
+  "arquivo": "J-virais.js",
+  "usa_arquivos": [
+   "L-premium.js"
+  ]
+ },
+ "57": {
+  "arquivo": "J-virais.js",
+  "usa_arquivos": [
+   "L-premium.js"
+  ]
+ },
+ "58": {
+  "arquivo": "J-virais.js",
+  "usa_arquivos": [
+   "L-premium.js"
+  ],
+  "espelhos": 1
+ },
+ "59": {
+  "arquivo": "J-virais.js",
+  "usa_arquivos": [
+   "L-premium.js"
+  ]
+ },
+ "60": {
+  "arquivo": "J-virais.js",
+  "usa_arquivos": [
+   "L-premium.js"
+  ]
+ },
  "px-fase": {
   "arquivo": "P-pixel.js"
  },

@@ -1,0 +1,48 @@
+{
+ "nome": "previa-56",
+ "brutos": "PASTA_DOS_BRUTOS",
+ "base": [
+  {
+   "src": "IMG_1048.MOV",
+   "ss": 3.8,
+   "dur": 7.0
+  }
+ ],
+ "motions": [
+  {
+   "id": "56",
+   "em": 0.1,
+   "dur": 4.0,
+   "frase": "BARRA RENTE AO CORPO, ABDÔMEN BEM TRAVADO, GLÚTEO CONTRAÍDO",
+   "tempos": [
+    0.13,
+    0.4,
+    0.68,
+    0.82,
+    1.55,
+    2.05,
+    2.27,
+    2.95,
+    3.22
+   ]
+  },
+  {
+   "id": "56",
+   "em": 4.15,
+   "dur": 2.75,
+   "frase": "E NÃO SE ESQUEÇA: EMPURRAR O CHÃO COM OS PÉS",
+   "tempos": [
+    0.1,
+    0.17,
+    0.35,
+    0.53,
+    1.48,
+    1.81,
+    1.87,
+    2.07,
+    2.25,
+    2.35
+   ]
+  }
+ ]
+}

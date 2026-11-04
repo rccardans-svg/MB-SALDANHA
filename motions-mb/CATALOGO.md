@@ -265,6 +265,10 @@ Prévia: `previa-24.mp4`. Exemplo de spec: `exemplos/previa-24.json`.
 ### 25. Palavra que bate com a voz
 Prévia: `previa-25.mp4`. Exemplo de spec: `exemplos/previa-25.json`.
 
+> palavras: [[inicio, fim, "palavra"], ...] em segundos a partir de "em" (use motor/transcrever.py para gerar).
+>
+> Palavra entre *asteriscos* = palavra-chave (sozinha, gigante, faixa azul).
+
 - `em`: `0`
 - `palavras`: `[]`
 - `y`: `1180`
@@ -274,6 +278,8 @@ Prévia: `previa-25.mp4`. Exemplo de spec: `exemplos/previa-25.json`.
 
 ### 26. Texto atrás da pessoa
 Prévia: `previa-26.mp4`. Exemplo de spec: `exemplos/previa-26.json`.
+
+> precisa de um extra com "recorte": true (pessoa sem fundo) com o mesmo trecho do vídeo de fundo.
 
 - `em`: `0`
 - `dur`: `3`
@@ -375,6 +381,8 @@ Prévia: `previa-35.mp4`. Exemplo de spec: `exemplos/previa-35.json`.
 ### 36. React do Ullisses com rosto no círculo
 Prévia: `previa-36.mp4`. Exemplo de spec: `exemplos/previa-36.json`.
 
+> extra "rosto" = vídeo do Ullisses comentando; o fundo deve estar congelado no spec a partir de olha_em.
+
 - `em`: `0`
 - `extra`: `"rosto"`
 - `nome`: `"ULLISSES REAGE"`
@@ -431,18 +439,19 @@ Prévia: `previa-40.mp4`. Exemplo de spec: `exemplos/previa-40.json`.
 - `sub`: `"CENTRO DE ALTA PERFORMANCE · MB SALDANHA"`
 - `domiciliar`: `false`
 
-## G. Chamadas e identidade (primeira versão; serão refeitas no estilo que o Paulo escolher)
+## G. Chamadas e identidade (linha premium)
 
-### 41. Botão que é tocado (salvar, enviar, curtir, seguir ou "Agende sua avaliação")
+### 41. Botão que é tocado (salvar, enviar, curtir, comentar, seguir ou "Agende sua avaliação")
 Prévia: `previa-41.mp4`. Exemplo de spec: `exemplos/previa-41.json`.
 
 - `em`: `0`
-- `dur`: `3.6`
+- `dur`: `3.8`
 - `acao`: `"salvar"`
 - `texto`: `null`
+- `rotulo`: `null`
 - `aviso`: `null`
 - `y`: `1230`
-- `toque_em`: `0.75`
+- `toque_em`: `1.55`
 - `botao`: `"AGENDE SUA AVALIAÇÃO"`
 - `contatos`: `["A", "J", "M"]`
 
@@ -484,7 +493,7 @@ Prévia: `previa-44.mp4`. Exemplo de spec: `exemplos/previa-44.json`.
 - `y`: `170`
 - `largura`: `860`
 - `fica`: `true`
-- `canto_em`: `2.4`
+- `canto_em`: `2.6`
 
 ### 45. Enquete na tela
 Prévia: `previa-45.mp4`. Exemplo de spec: `exemplos/previa-45.json`.
@@ -496,8 +505,261 @@ Prévia: `previa-45.mp4`. Exemplo de spec: `exemplos/previa-45.json`.
 - `opcoes`: `["FÁCIL", "DIFÍCIL"]`
 - `porcentagens`: `[41, 59]`
 - `escolha`: `1`
-- `toque_em`: `1.5`
+- `toque_em`: `1.6`
 - `y`: `1040`
+
+## H. Dados com fonte (linha premium)
+
+### 46. Card do estudo com a fonte
+Prévia: `previa-46.mp4`. Exemplo de spec: `exemplos/previa-46.json`.
+
+- `em`: `0`
+- `dur`: `5.8`
+- `rotulo`: `"ESTUDO · JAMA NETWORK OPEN · 2019"`
+- `pagina`: `null`
+- `titulo`: `"QUEM FAZ MAIS DE|*40 FLEXÕES* TEM"`
+- `numero`: `"96"`
+- `prefixo`: `""`
+- `sufixo`: `"%"`
+- `legenda`: `"MENOS RISCO DE PROBLEMA|NO *CORAÇÃO*"`
+- `nota`: `"EM COMPARAÇÃO COM QUEM FAZ MENOS DE 10"`
+- `chips`: `[["ACOMPANHOU", "10 ANOS"], ["PESSOAS", "1.104"], ["QUEM", "BOMBEIROS"]]`
+- `fonte`: `"YANG ET AL. · HARVARD · 2019"`
+- `y`: `470`
+- `veu`: `true`
+
+### 47. Barras que comparam
+Prévia: `previa-47.mp4`. Exemplo de spec: `exemplos/previa-47.json`.
+
+> itens: [rótulo, valor, texto mostrado (opcional), destaque (true/false)]
+
+- `em`: `0`
+- `dur`: `5.4`
+- `rotulo`: `"ESTUDO COM 1.104 BOMBEIROS"`
+- `pagina`: `null`
+- `titulo`: `"RISCO DE PROBLEMA|NO *CORAÇÃO*"`
+- `itens`: `[["MENOS DE 10 FLEXÕES", 100, "100", false], ["MAIS DE 40 FLEXÕES", 4, "4", true]]`
+- `nota`: `"RISCO RELATIVO · MENOS DE 10 FLEXÕES = 100"`
+- `fonte`: `"YANG ET AL. · JAMA NETWORK OPEN · 2019"`
+- `y`: `600`
+- `veu`: `true`
+
+### 48. Anel de porcentagem
+Prévia: `previa-48.mp4`. Exemplo de spec: `exemplos/previa-48.json`.
+
+- `em`: `0`
+- `dur`: `5.4`
+- `rotulo`: `"OMS · 65 ANOS OU MAIS"`
+- `prefixo`: `"ATÉ"`
+- `valor`: `35`
+- `sufixo`: `"%"`
+- `legenda`: `"DOS IDOSOS CAEM|PELO MENOS *1 VEZ POR ANO*"`
+- `fracao`: `[1, 3]`
+- `fracao_texto`: `"QUASE 1 EM CADA 3"`
+- `fonte`: `"OMS · RELATÓRIO GLOBAL SOBRE QUEDAS DE IDOSOS · 2007"`
+- `y`: `400`
+- `veu`: `true`
+
+### 49. Gráfico de linhas
+Prévia: `previa-49.mp4`. Exemplo de spec: `exemplos/previa-49.json`.
+
+> series: [{nome, cor: "azul"|"erro", pontos: [valores de 0 a 100 no eixo y, um por rótulo do eixo x]}]
+
+- `em`: `0`
+- `dur`: `5.6`
+- `rotulo`: `"DOR NAS COSTAS"`
+- `pagina`: `null`
+- `titulo`: `"PARAR *NÃO* É|TRATAMENTO"`
+- `eixo_y`: `"DOR"`
+- `eixo_x`: `["DIA 1", "SEMANA 1", "SEMANA 2", "SEMANA 3"]`
+- `series`: `[{"nome": "REPOUSO", "cor": "erro", "pontos": [55, 62, 70, 76]}, {"nome": "MOVIMENTO", "cor": "azul", "pontos": [55, 40, 26, 15]}]`
+- `nota`: `"ESQUEMA ILUSTRATIVO"`
+- `fonte`: `null`
+- `y`: `540`
+- `veu`: `true`
+
+### 50. Conta que se resolve
+Prévia: `previa-50.mp4`. Exemplo de spec: `exemplos/previa-50.json`.
+
+> a ÷ b = resultado%, compara com o limite e mostra o veredito num selo de linha fina.
+
+- `em`: `0`
+- `dur`: `6`
+- `rotulo`: `"TESTE DE SALTO · UMA PERNA"`
+- `pagina`: `null`
+- `a`: `"1,62"`
+- `b`: `"1,90"`
+- `unidade`: `"M"`
+- `op`: `"÷"`
+- `resultado`: `85`
+- `sufixo`: `"%"`
+- `rotulos`: `["PERNA DA LESÃO", "PERNA BOA"]`
+- `limite`: `90`
+- `sim`: `"PRONTO PRA VOLTAR"`
+- `nao`: `"AINDA NÃO"`
+- `fonte`: `null`
+- `y`: `540`
+- `veu`: `true`
+
+## I. Desenho na tela (linha premium)
+
+### 51. Caneta na tela
+Prévia: `previa-51.mp4`. Exemplo de spec: `exemplos/previa-51.json`.
+
+> marcas: {tipo: "circulo"|"x"|"seta"|"curva"|"linha", cor: "branco"|"erro"|"azul", rotulo, rot: [x, y] (canto da etiqueta)}
+>
+> circulo: x, y, r | x: x, y, tam | seta: de, para, curva | curva: pontos [[x,y]...] | linha: de, para (ou pontos); tracejada: true
+>
+> O fundo precisa estar congelado no spec ({"tipo": "congela"}) durante o motion.
+
+- `em`: `0`
+- `dur`: `6.6`
+- `selo`: `"ANÁLISE · TÉCNICA"`
+- `veu`: `0.18`
+- `zoom`: `1.03`
+- `cinza`: `0.72`
+- `numerar`: `true`
+- `marcas`: `[{"tipo": "circulo", "x": 690, "y": 835, "r": 135, "cor": "erro", "rotulo": "COSTAS ARREDONDADAS", "rot": [90, 560]}, {"tipo": "x", "x": 690, "y": 1215, "tam": 46, "cor": "erro", "rotulo": "PERNAS TRAVADAS", "rot": [90, 1300]}, {"tipo": "linha", "de": [470, 940], "para": [905, 850], "tracejada": true, "cor": "azul", "rotulo": "COSTAS RETAS", "rot": [96, 1040]}, {"tipo": "seta", "de": [790, 1000], "para": [1035, 1010], "curva": -0.32, "cor": "azul", "rotulo": "QUADRIL PARA TRÁS", "rot": [560, 1110]}]`
+
+### 52. Transferidor de ângulo
+Prévia: `previa-52.mp4`. Exemplo de spec: `exemplos/previa-52.json`.
+
+> vertice: onde o ângulo abre; ref: ponto da linha de referência (ex.: chão); ponto: ponto da linha medida.
+>
+> O ângulo mostrado é calculado pelos pontos (o desenho bate com o número). "ideal" desenha a linha da meta.
+>
+> Meça os pontos num quadro do vídeo com grade (snapshot) e deixe o fundo congelado no spec durante o motion.
+
+- `em`: `0`
+- `dur`: `5.2`
+- `vertice`: `[830, 1060]`
+- `ref`: `[430, 1060]`
+- `ponto`: `[450, 880]`
+- `raio`: `230`
+- `rotulo`: `"ÂNGULO DO TRONCO"`
+- `valor`: `null`
+- `ideal`: `null`
+- `ideal_texto`: `"IDEAL"`
+- `numero_em`: `null`
+- `selo`: `"ANÁLISE · ÂNGULO"`
+- `veu`: `0.2`
+- `zoom`: `1.03`
+- `cinza`: `0.72`
+
+### 53. Palavra riscada
+Prévia: `previa-53.mp4`. Exemplo de spec: `exemplos/previa-53.json`.
+
+> A frase errada (fina) é riscada em vermelho e fica apagada; a certa sobe na faixa azul da MB.
+
+- `em`: `0`
+- `dur`: `4.6`
+- `antes`: `"NÃO É"`
+- `errada`: `"COISA DA IDADE"`
+- `certa`: `"FORÇA + EQUILÍBRIO"`
+- `nota`: `"E ISSO SE TRABALHA"`
+- `y`: `700`
+- `tam`: `112`
+
+### 54. Fita métrica
+Prévia: `previa-54.mp4`. Exemplo de spec: `exemplos/previa-54.json`.
+
+> medidas: [[rótulo, valor em metros], ...] (a primeira é a referência). A fita desenrola até a medida e compara.
+
+- `em`: `0`
+- `dur`: `5.8`
+- `rotulo`: `"SALTO EM UMA PERNA"`
+- `medidas`: `[["PERNA BOA", 1.9], ["PERNA DA LESÃO", 1.62]]`
+- `unidade`: `"M"`
+- `escala`: `2`
+- `diferenca`: `true`
+- `y`: `1020`
+
+### 55. Mapa com pino
+Prévia: `previa-55.mp4`. Exemplo de spec: `exemplos/previa-55.json`.
+
+> Mapa desenhado (ruas finas, avenidas e o ribeirão), o raio de atendimento abre a partir da MB,
+>
+> o pino cai na casa do paciente e o caminho se desenha até lá.
+
+- `em`: `0`
+- `dur`: `6.4`
+- `rotulo`: `"RIBEIRÃO PRETO · SP"`
+- `titulo`: `"A FISIOTERAPIA|*VAI ATÉ VOCÊ*"`
+- `origem`: `"MB SALDANHA"`
+- `pino`: `"SUA CASA"`
+- `raio_texto`: `"ATENDIMENTO DOMICILIAR"`
+- `y`: `300`
+
+## J. Formatos que viralizam (linha premium)
+
+### 56. Legenda que acompanha a voz
+Prévia: `previa-56.mp4`. Exemplo de spec: `exemplos/previa-56.json`.
+
+> A frase inteira fica na tela; a faixa azul anda de palavra em palavra junto com a fala.
+>
+> tempos: segundo (a partir do "em") em que cada palavra começa; gere com motor/transcrever.py --formato 56.
+>
+> Sem tempos, as palavras são distribuídas pelo tamanho. Frase longa: divida em dois motions 56 seguidos.
+
+- `em`: `0`
+- `dur`: `3.2`
+- `frase`: `"BARRA RENTE AO CORPO"`
+- `tempos`: `null`
+- `y`: `1250`
+- `tam`: `64`
+
+### 57. Em vez disso / Faça assim
+Prévia: `previa-57.mp4`. Exemplo de spec: `exemplos/previa-57.json`.
+
+> O trecho do erro fica em preto e branco com o X; a passada azul cobre o corte; o certo volta em cores com o ✓.
+>
+> O spec precisa ter o corte do erro para o certo no segundo "troca_em" (contado a partir do "em").
+
+- `em`: `0`
+- `dur`: `7`
+- `troca_em`: `3.4`
+- `rotulo_erro`: `"EM VEZ DISSO"`
+- `erro`: `"PUXAR COM|AS *COSTAS*"`
+- `rotulo_certo`: `"FAÇA ASSIM"`
+- `certo`: `"EMPURRE|O *CHÃO*"`
+- `y`: `250`
+
+### 58. Cards com o clipe dentro
+Prévia: `previa-58.mp4`. Exemplo de spec: `exemplos/previa-58.json`.
+
+> cards: [[rótulo, título, começa em (s, a partir do "em"), segundos do cronômetro (opcional)], ...]
+>
+> O vídeo encolhe para dentro de um cartão (o fundo vira o mesmo vídeo desfocado) e volta a tela cheia no fim.
+
+- `em`: `0`
+- `dur`: `8`
+- `espelho`: `1`
+- `y`: `250`
+- `cards`: `[["SEMANA 1", "5 FLEXÕES|*POR DIA*", 0, 0], ["SEMANA 2", "10 FLEXÕES|*POR DIA*", 2.6, 0], ["SEMANA 3", "3 SÉRIES|*DE 8*", 5, 0]]`
+
+### 59. Cadência da repetição
+Prévia: `previa-59.mp4`. Exemplo de spec: `exemplos/previa-59.json`.
+
+> fases: [[nome, segundos], ...]. O cursor anda em tempo real, conta os segundos e bipa a cada um.
+
+- `em`: `0`
+- `dur`: `6`
+- `fases`: `[["DESCE", 3], ["SEGURA", 1], ["SOBE", 1]]`
+- `reps`: `1`
+- `rotulo`: `"CADÊNCIA 3 · 1 · 1"`
+- `inicio`: `0.5`
+- `y`: `1150`
+
+### 60. Barra de capítulos
+Prévia: `previa-60.mp4`. Exemplo de spec: `exemplos/previa-60.json`.
+
+> capitulos: [[rótulo curto, título, começa em (s, a partir do "em")], ...]. A barra enche durante o vídeo.
+
+- `em`: `0`
+- `dur`: `9`
+- `y`: `236`
+- `titulo_y`: `330`
+- `capitulos`: `[["ERRO 1", "QUADRIL|*CAINDO*", 0], ["ERRO 2", "COTOVELO|*ABERTO*", 3], ["ERRO 3", "MEIA|*DESCIDA*", 6]]`
 
 ## L. Linha premium (amostra de estilo: amostras-estilo/amostra-premium.mp4)
 
@@ -628,6 +890,8 @@ Aparece na amostra do grupo. Spec da amostra: `exemplos/amostra-pixel.json`.
 
 ### px-luta. vilão em pixel com barra de vida
 Aparece na amostra do grupo. Spec da amostra: `exemplos/amostra-pixel.json`.
+
+> golpes: segundos (a partir de "em") de cada repetição certa. Cada golpe tira "dano" da vida.
 
 - `em`: `0`
 - `dur`: `9`

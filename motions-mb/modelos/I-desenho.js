@@ -167,6 +167,7 @@
   // ---------- 52 Transferidor de ângulo ----------
   // vertice: onde o ângulo abre; ref: ponto da linha de referência (ex.: chão); ponto: ponto da linha medida.
   // O ângulo mostrado é calculado pelos pontos (o desenho bate com o número). "ideal" desenha a linha da meta.
+  // Meça os pontos num quadro do vídeo com grade (snapshot) e deixe o fundo congelado no spec durante o motion.
   MB.def("52", {
     em: 0, dur: 5.2, vertice: [830, 1060], ref: [430, 1060], ponto: [450, 880], raio: 230, rotulo: "ÂNGULO DO TRONCO", valor: null,
     ideal: null, ideal_texto: "IDEAL", numero_em: null, selo: "ANÁLISE · ÂNGULO", veu: 0.2, zoom: 1.03, cinza: 0.72

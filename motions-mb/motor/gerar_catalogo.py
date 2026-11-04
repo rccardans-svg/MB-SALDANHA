@@ -6,8 +6,8 @@ d = json.loads(subprocess.run(["node", os.path.join(AQUI, "params.js"), os.path.
                               capture_output=True, text=True, check=True).stdout)
 GRUPOS = {"A": "Academia e performance", "B": "Erro x certo", "C": "Corpo e fisioterapia (Maria)",
           "D": "Texto e legenda", "E": "Transições e câmera", "F": "Séries e app X1",
-          "G": "Chamadas e identidade (primeira versão; serão refeitas no estilo que o Paulo escolher)",
-          "H": "Dados com fonte (estilo editorial)", "I": "Desenho na tela", "J": "Formatos que viralizam",
+          "G": "Chamadas e identidade (linha premium)", "H": "Dados com fonte (linha premium)",
+          "I": "Desenho na tela (linha premium)", "J": "Formatos que viralizam (linha premium)",
           "L": "Linha premium (amostra de estilo: amostras-estilo/amostra-premium.mp4)",
           "P": "Pixel art (amostra de estilo: amostras-estilo/amostra-pixel.mp4)"}
 # só entra no catálogo o que o montar.py consegue usar (o que está em modelos/catalogo.json)
@@ -26,6 +26,9 @@ for k in sorted(d):
         linhas.append(f"Prévia: `previa-{k}.mp4`. Exemplo de spec: `exemplos/previa-{k}.json`.")
     else:
         linhas.append(f"Aparece na amostra do grupo. Spec da amostra: `exemplos/amostra-{'premium' if k.startswith('lux') else 'pixel'}.json`.")
+    if m.get("__nota"):
+        linhas.append("")
+        linhas.append("\n>\n".join("> " + n for n in m["__nota"].split("\n")))
     linhas.append("")
     for p, v in m.items():
         if p.startswith("__"): continue
