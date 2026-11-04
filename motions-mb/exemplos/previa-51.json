@@ -1,0 +1,28 @@
+{
+ "nome": "previa-51",
+ "brutos": "PASTA_DOS_BRUTOS",
+ "base": [
+  {
+   "src": "IMG_1037.MOV",
+   "ss": 2.6,
+   "dur": 1.4
+  },
+  {
+   "tipo": "congela",
+   "src": "IMG_1037.MOV",
+   "ss": 4.0,
+   "dur": 6.6
+  },
+  {
+   "src": "IMG_1037.MOV",
+   "ss": 4.0,
+   "dur": 1.0
+  }
+ ],
+ "motions": [
+  {
+   "id": "51",
+   "em": 1.4
+  }
+ ]
+}

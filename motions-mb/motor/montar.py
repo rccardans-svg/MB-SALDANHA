@@ -244,7 +244,7 @@ def main():
         ids |= set(CAT[i].get("usa", []))
     arquivos = sorted(set(os.path.join(RAIZ, "modelos", CAT[i]["arquivo"]) for i in ids))
     extras_js = sorted(set(f for i in ids for f in CAT[i].get("usa_arquivos", [])))
-    arquivos = [os.path.join(RAIZ, "modelos", f) for f in extras_js] + arquivos
+    arquivos = list(dict.fromkeys([os.path.join(RAIZ, "modelos", f) for f in extras_js] + arquivos))  # sem repetir arquivo
     for f in arquivos:
         shutil.copy(f, os.path.join(proj, "motions", os.path.basename(f)))
     espelhos = spec.get("espelhos", max([CAT[i].get("espelhos", 0) for i in ids] + [0]))

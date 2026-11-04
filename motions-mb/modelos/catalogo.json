@@ -133,19 +133,94 @@
   "arquivo": "F-series-app.js"
  },
  "41": {
-  "arquivo": "G-chamadas.js"
+  "arquivo": "G-chamadas.js",
+  "usa_arquivos": [
+   "L-premium.js"
+  ]
  },
  "42": {
-  "arquivo": "G-chamadas.js"
+  "arquivo": "G-chamadas.js",
+  "usa_arquivos": [
+   "L-premium.js"
+  ]
  },
  "43": {
-  "arquivo": "G-chamadas.js"
+  "arquivo": "G-chamadas.js",
+  "usa_arquivos": [
+   "L-premium.js"
+  ]
  },
  "44": {
-  "arquivo": "G-chamadas.js"
+  "arquivo": "G-chamadas.js",
+  "usa_arquivos": [
+   "L-premium.js"
+  ]
  },
  "45": {
-  "arquivo": "G-chamadas.js"
+  "arquivo": "G-chamadas.js",
+  "usa_arquivos": [
+   "L-premium.js"
+  ]
+ },
+ "46": {
+  "arquivo": "H-dados.js",
+  "usa_arquivos": [
+   "L-premium.js"
+  ]
+ },
+ "47": {
+  "arquivo": "H-dados.js",
+  "usa_arquivos": [
+   "L-premium.js"
+  ]
+ },
+ "48": {
+  "arquivo": "H-dados.js",
+  "usa_arquivos": [
+   "L-premium.js"
+  ]
+ },
+ "49": {
+  "arquivo": "H-dados.js",
+  "usa_arquivos": [
+   "L-premium.js"
+  ]
+ },
+ "50": {
+  "arquivo": "H-dados.js",
+  "usa_arquivos": [
+   "L-premium.js"
+  ]
+ },
+ "51": {
+  "arquivo": "I-desenho.js",
+  "usa_arquivos": [
+   "L-premium.js"
+  ]
+ },
+ "52": {
+  "arquivo": "I-desenho.js",
+  "usa_arquivos": [
+   "L-premium.js"
+  ]
+ },
+ "53": {
+  "arquivo": "I-desenho.js",
+  "usa_arquivos": [
+   "L-premium.js"
+  ]
+ },
+ "54": {
+  "arquivo": "I-desenho.js",
+  "usa_arquivos": [
+   "L-premium.js"
+  ]
+ },
+ "55": {
+  "arquivo": "I-desenho.js",
+  "usa_arquivos": [
+   "L-premium.js"
+  ]
  },
  "px-fase": {
   "arquivo": "P-pixel.js"

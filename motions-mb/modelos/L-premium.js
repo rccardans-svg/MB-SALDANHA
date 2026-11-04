@@ -22,8 +22,8 @@
   const sobe = (K, s, at, d) => K.ft(s, { yPercent: 125 }, { yPercent: 0, duration: d || 1.0, ease: "expo.out" }, at);
   const fecha = (K, s, at, d) => K.ft(s, { yPercent: 0 }, { yPercent: -125, duration: d || 0.5, ease: "power3.in" }, at);
   // rótulo: entra apertando o espaçamento e tirando o desfoque
-  const rotulo = (K, el, at, d) => K.ft(el, { opacity: 0, letterSpacing: "0.62em", filter: "blur(8px)" },
-    { opacity: 1, letterSpacing: "0.3em", filter: "blur(0px)", duration: d || 1.1, ease: "power3.out" }, at);
+  const rotulo = (K, el, at, d, ls) => K.ft(el, { opacity: 0, letterSpacing: ((ls || 0.3) + 0.32).toFixed(2) + "em", filter: "blur(8px)" },
+    { opacity: 1, letterSpacing: (ls || 0.3) + "em", filter: "blur(0px)", duration: d || 1.1, ease: "power3.out" }, at);
   const linha = (K, el, at, d) => K.ft(el, { scaleX: 0 }, { scaleX: 1, duration: d || 1.1, ease: "expo.inOut" }, at);
   const recolhe = (K, el, at, d) => K.ft(el, { scaleX: 1, transformOrigin: "100% 50%" }, { scaleX: 0, duration: d || 0.45, ease: "power3.in" }, at);
   const apaga = (K, els, at, d) => K.to(els, { opacity: 0, y: -12, filter: "blur(6px)", duration: d || 0.45, ease: "power2.in" }, at);
@@ -38,6 +38,16 @@
     return [c, pts];
   }
   const colunaEntra = (K, pts, at, gap) => K.ft(pts, { scale: 0 }, { scale: 1, duration: 0.8, ease: "expo.out", stagger: gap || 0.06 }, at);
+  // palavra forte que "ganha peso" ao chegar (a Montserrat é variável: 300 vira 800). Chame logo depois de criar a fenda.
+  function pesa(K, caixa, at, de, ate) {
+    const bs = Array.from(caixa.querySelectorAll("b.lx-b")); if (!bs.length) return;
+    gsap.set(bs, { fontWeight: de || 300 });
+    K.ft(bs, { fontWeight: de || 300 }, { fontWeight: ate || 800, duration: 0.9, ease: "power2.out" }, at);
+  }
+  // respiro: o espaçamento do rótulo abre devagar enquanto ele está parado na tela (nada fica 100% estático)
+  const respira = (K, el, a, b, de, ate) => { if (b - a > 0.3) K.ft(el, { letterSpacing: de || "0.3em" }, { letterSpacing: ate || "0.36em", duration: b - a, ease: "none" }, a); };
+  // ferramentas da linha premium para os outros arquivos de modelos (G, H, I, J usam com "usa_arquivos": ["L-premium.js"])
+  MB.lux = { AZ, CL, ESC, rico, limpo, fenda, sobe, fecha, rotulo, linha, recolhe, apaga, coluna, colunaEntra, pesa, respira };
 
   // ---------- lux-grade  acabamento de cinema: vinheta, contraste leve e aproximação lenta da câmera ----------
   MB.def("lux-grade", { em: 0, dur: 10, vinheta: 0.36, contraste: 1.04, saturacao: 0.96, empurra: [], zoom: 1.035 }, function (P, K) {
@@ -85,7 +95,7 @@
     }
     rotulo(K, rot, t0, 1.0); K.sfx("lux_ar", t0, 0.7);
     linha(K, ln, t0 + 0.1, 1.2); linha(K, ac, t0 + 0.4, 0.9); K.sfx("lux_traco", t0 + 0.1, 0.6);
-    cx.forEach(([, s], i) => sobe(K, s, t0 + 0.3 + i * 0.13, 1.15));
+    cx.forEach(([m, s], i) => { sobe(K, s, t0 + 0.3 + i * 0.13, 1.15); pesa(K, m, t0 + 0.55 + i * 0.13); });
     K.sfx("lux_grave", t0 + 0.32, 0.55);
     if (sub) rotulo(K, sub, t0 + 0.8, 1.0);
     // saída: o título volta para dentro da fenda, as linhas recolhem
@@ -169,8 +179,9 @@
     K.sfx("lux_ar", t0, 0.6);
     colunaEntra(K, pts, t0 + 0.1, 0.05);
     rotulo(K, rot, t0 + 0.25, 1.0);
-    cx.forEach(([, s], i) => sobe(K, s, t0 + 0.4 + i * 0.16, 1.15));
+    cx.forEach(([m, s], i) => { sobe(K, s, t0 + 0.4 + i * 0.16, 1.15); pesa(K, m, t0 + 0.7 + i * 0.16); });
     K.sfx("lux_grave", t0 + 0.4 + (linhas.length - 1) * 0.16, 0.75);
+    respira(K, rot, t0 + 1.3, t1 - 0.55);
     linha(K, ul, t0 + 1.0, 1.0);
     const ts = t1 - 0.55;
     apaga(K, [col, rot, ul, ...cx.map((c) => c[0])], ts, 0.42);
