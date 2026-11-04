@@ -37,7 +37,8 @@ ASSETS = os.path.join(AQUI, "assets")
 CAT = json.load(open(os.path.join(RAIZ, "modelos", "catalogo.json")))
 TM = ("zscale=t=linear:npl=203,format=gbrpf32le,zscale=p=bt709,tonemap=hable:desat=0,"
       "zscale=t=bt709:m=bt709:r=tv,format=yuv420p")
-COR = "eq=contrast=1.04:saturation=1.08"
+# mesma cor dos Reels v3 do Ullisses que o Paulo aprovou (gen_azul.py): curva em S leve + saturação 1.1 (2026-11-04)
+COR = "curves=all='0/0 0.25/0.2 0.5/0.5 0.75/0.8 1/1',eq=saturation=1.1"
 VOZ = ("highpass=f=90,lowpass=f=12000,afftdn=nf=-28:tn=1,equalizer=f=250:t=q:w=1.2:g=-2,"
        "equalizer=f=3500:t=q:w=1.0:g=3,acompressor=threshold=-22dB:ratio=3:attack=8:release=120:makeup=4")
 FPS = 30

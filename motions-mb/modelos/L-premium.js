@@ -309,4 +309,45 @@
     const ts = t1 - 0.55;
     apaga(K, [cg, aro, arco], ts, 0.4); fecha(K, ns, ts, 0.4);
   });
+  // ---------- 65 Frase + lista que empilha ("você pode achar que... mas o que eu vejo é:") ----------
+  // frase: linhas com | e *forte*; itens: [[segundo (a partir do "em"), "TEXTO com *forte*"], ...]. O item novo entra subindo
+  // da fenda e os anteriores ficam mais apagados (um foco por vez). A lista fica embaixo (sobre o chão, que é escuro).
+  MB.def("65", { em: 0, dur: 16, rotulo: "MARIA BEATRIZ · FISIOTERAPEUTA", frase: "VOCÊ PODE ACHAR QUE|EU SÓ ESTOU *TREINANDO.*", y: 236, tam: 70,
+    ponte: "MAS O QUE EU VEJO É", ponte_em: 2.2, itens: [], y_lista: 1080, tam_item: 46, largura: 936, x: 72 }, function (P, K) {
+    const t0 = K.t(), t1 = t0 + P.dur, X = P.x, L = P.largura;
+    const rot = K.el(ESC(P.rotulo), `left:${X}px;top:${P.y}px;opacity:0`); rot.classList.add("lx-rot", "lx-sombra");
+    const linhas = P.frase.split("|");
+    const fz = Math.min(P.tam, Math.floor(L / (0.7 * Math.max(...linhas.map((l) => limpo(l).length)))));
+    const fr = linhas.map((l, i) => {
+      const r = fenda(K, rico(l), `left:${X - 3}px;top:${P.y + 50 + i * Math.round(fz * 1.08)}px;font-size:${fz}px`);
+      r[0].classList.add("lx-tit", "lx-fino", "lx-sombra"); return r;
+    });
+    rotulo(K, rot, t0, 1.0); K.sfx("lux_ar", t0, 0.6);
+    fr.forEach(([m, s], i) => { sobe(K, s, t0 + 0.2 + i * 0.12, 1.1); pesa(K, m, t0 + 0.45 + i * 0.12); });
+    K.sfx("lux_grave", t0 + 0.25, 0.5);
+    // ponte e lista
+    const Y = P.y_lista, tp = t0 + P.ponte_em;
+    const [, pt] = fenda(K, `<span class="lx-rot az">${ESC(P.ponte)}</span>`, `left:${X}px;top:${Y}px;font-size:26px`);
+    const ln = K.el("", `left:${X}px;top:${Y + 48}px;width:${L}px;transform:scaleX(0)`); ln.classList.add("lx-linha");
+    sobe(K, pt, tp, 0.9); linha(K, ln, tp + 0.1, 1.0); K.sfx("lux_traco", tp + 0.1, 0.5);
+    const passo = Math.round(P.tam_item * 1.62);
+    const els = P.itens.map(([at, txt], i) => {
+      const yi = Y + 80 + i * passo;
+      const num = K.el(String(i + 1).padStart(2, "0"), `left:${X}px;top:${yi + Math.round(P.tam_item * 0.28)}px;opacity:0`); num.classList.add("lx-rot", "az");
+      const [m, s] = fenda(K, rico(txt), `left:${X + 78}px;top:${yi}px;font-size:${P.tam_item}px;font-weight:500;white-space:nowrap`);
+      m.classList.add("lx", "lx-sombra");
+      const ta = t0 + at;
+      K.ft(num, { opacity: 0, x: -10 }, { opacity: 1, x: 0, duration: 0.7, ease: "power3.out" }, ta);
+      sobe(K, s, ta + 0.05, 0.95); pesa(K, m, ta + 0.25);
+      K.sfx("lux_toque", ta, 0.35);
+      return [num, m, ta];
+    });
+    // um foco por vez: quando entra o próximo, o anterior apaga um pouco
+    els.forEach(([num, m], i) => { if (i + 1 < els.length) K.to([num, m], { opacity: 0.5, duration: 0.5, ease: "power2.out" }, els[i + 1][2]); });
+    // saída
+    const ts = t1 - 0.6;
+    fr.forEach(([, s], i) => fecha(K, s, ts + i * 0.04, 0.45)); apaga(K, [rot], ts, 0.4);
+    fecha(K, pt, ts, 0.4); recolhe(K, ln, ts, 0.45);
+    els.forEach(([num, m], i) => apaga(K, [num, m], ts + i * 0.03, 0.4));
+  });
 })();
