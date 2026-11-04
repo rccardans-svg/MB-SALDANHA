@@ -17,7 +17,8 @@ linhas = ["# Catálogo dos motions MB Saldanha", "",
           "Gerado por `motor/gerar_catalogo.py`. Cada motion se pede pelo número. Os tempos são em segundos, contados a partir do `em`.",
           "Texto: `*palavra*` vira faixa azul, `_palavra_` vira faixa vermelha (erro) e `|` quebra a linha.", ""]
 grupo = None
-for k in sorted(d):
+# em ordem de grupo (letra do arquivo) e, dentro dele, de número/nome: o 61 (em L-premium.js) fica no grupo L
+for k in sorted(d, key=lambda k: (d[k]["__arquivo"][0], k)):
     m = d[k]; g = m["__arquivo"][0]
     if g != grupo:
         grupo = g; linhas += [f"## {g}. {GRUPOS[g]}", ""]
@@ -27,8 +28,15 @@ for k in sorted(d):
     else:
         linhas.append(f"Aparece na amostra do grupo. Spec da amostra: `exemplos/amostra-{'premium' if k.startswith('lux') else 'pixel'}.json`.")
     if m.get("__nota"):
+        # linhas do comentário quebradas no meio da frase viram um parágrafo só
+        pars = []
+        for n in m["__nota"].split("\n"):
+            if pars and not pars[-1].rstrip().endswith((".", ":", "!", "?", ")", "]")):
+                pars[-1] += " " + n.strip()
+            else:
+                pars.append(n.strip())
         linhas.append("")
-        linhas.append("\n>\n".join("> " + n for n in m["__nota"].split("\n")))
+        linhas.append("\n>\n".join("> " + n for n in pars))
     linhas.append("")
     for p, v in m.items():
         if p.startswith("__"): continue

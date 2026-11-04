@@ -45,6 +45,7 @@ Colocar para funcionar o centro de alta performance e o atendimento domiciliar d
 - **Reels com motion de verdade**: animação, cortes, punch-in, cards, contadores e efeitos sonoros. Só legenda não serve.
 - **Motion com cara premium** (escolha dele em 2026-11-04): o estilo antigo (quique, partícula, tremida, pop) ficou amador. Tudo novo segue a linha premium da skill motions-mb, sempre um pouco melhor que a leva anterior.
 - **Cor natural** nos vídeos de iPhone, nunca estourada: tonemap hable com npl=203 (receita em reels/modelo-mb/COR-TREINO.txt). Não usar mobius/npl=100.
+- **Não mudar a cor do vídeo original** (2026-11-04, "deixe nos parâmetros"): ele achou a imagem "pastel, branquizada". Nada de filtro (saturação, preto e branco, brilho) nem véu escuro grande na tela; o escuro fica só atrás do texto. Detalhes na skill motions-mb.
 - **Tudo na nuvem**: não usar o PC dele, que tem pouco espaço. Vídeos brutos vêm do Drive (pasta 1sOK0vuje_29cOao-RSgEPpolk-M6cBJS) com gdown.
 - **Qualidade acima de pressa**, principalmente no app.
 - Troca de rosto com a foto da Maria é autorizada, mas o vídeo sempre avisa que foi feito com IA.

@@ -19,7 +19,7 @@ A lista completa com os parâmetros de cada um está em [CATALOGO.md](CATALOGO.m
 | I. Desenho na tela (premium) | 51 a 55 | caneta na tela (círculo, X, seta, linha), transferidor de ângulo, palavra riscada, fita métrica, mapa com pino |
 | J. Formatos que viralizam (premium) | 56 a 60 | legenda que acompanha a voz, "em vez disso / faça assim", cards com o clipe dentro, cadência da repetição, barra de capítulos |
 | K. Refeitos na linha premium | 62 a 64 | mapa da dor (no lugar do 17), raio-X da coluna (no lugar do 18), React do Ullisses com a caneta na tela (no lugar do 36) |
-| L. Linha premium (amostra) | `lux-*` | acabamento de cinema, véu, título editorial, contador fino com dicas, frase com vídeo congelado, passagem, crachá de vidro, salvar |
+| L. Linha premium (amostra) | `lux-*` e 61 | acabamento de cinema, véu no topo, título editorial, contador fino com dicas, frase com vídeo congelado, passagem, crachá de vidro, salvar; 61 rosto premium (a voz de quem fala num círculo fino) |
 | P. Pixel art (amostra) | `px-*` | FASE 1/VAI!, vilão com barra de vida, XP e LEVEL UP, corte em blocos, diálogo de RPG, JOGO SALVO |
 
 ## Estilo dos próximos motions (desde 2026-11-04)
@@ -30,11 +30,18 @@ O Paulo achou os motions 01 a 40 com cara de amador (quique, partículas, tremid
 
 Linha premium, em resumo: um foco por vez; Montserrat com contraste de peso (200 fino x 800 forte); rótulos em letra de máquina (JetBrains Mono) com espaçamento largo; linhas finas; vidro marinho fosco sem brilho; texto que sobe de dentro de uma fenda com easing expo; nada de quique, partícula, tremida ou pop; a coluna de pontos do logo (as vértebras) como assinatura; sons discretos `lux_*` (ar, grave, clique, traço, sino).
 
-As peças da linha ficam em `MB.lux` (`modelos/L-premium.js`): `rico`, `limpo`, `fenda`, `sobe`, `fecha`, `rotulo`, `linha`, `recolhe`, `apaga`, `coluna`, `colunaEntra`, `pesa`, `respira`, mais as cores `AZ` e `CL` e o `ESC` (escapa texto). Use essas peças nos motions novos em vez de reinventar entrada e saída.
+As peças da linha ficam em `MB.lux` (`modelos/L-premium.js`): `rico`, `limpo`, `fenda`, `sobe`, `fecha`, `rotulo`, `linha`, `recolhe`, `apaga`, `coluna`, `colunaEntra`, `pesa`, `respira`, `fundo` (escuro só atrás do texto), mais as cores `AZ` e `CL` e o `ESC` (escapa texto). Use essas peças nos motions novos em vez de reinventar entrada e saída.
+
+**Cor do vídeo: não mexer (pedido do Paulo em 2026-11-04, "deixe nos parâmetros").** Ele achou a imagem "pastel, branquizada" e sem a cor bonita do original. A causa era o acabamento: filtro que tirava cor do vídeo e véus azul-escuros grandes (tela toda, lateral, embaixo, e o degradê `#sombra` da página). A regra agora:
+
+- nenhum filtro no vídeo (`K.cam`): nada de `saturate`, `grayscale`, `brightness`, `contrast`. O `lux-grade` fica com contraste e saturação em 1 (aí ele nem aplica filtro) e o 57 só deixa o erro em preto e branco com `"pb": true`;
+- nada de véu na tela toda, na lateral ou embaixo, e nada de desfocar o vídeo inteiro. O escuro fica só atrás do texto: `MB.lux.fundo(K, x, y, w, h, de, ate, forca)` cobre a área do texto, esfuma para fora e para em 0,6. O `lux-veu` só vai no topo (ou base curta), até 0,62;
+- quando o motion precisa de tela cheia (raio-X 63, cards do 58), o fundo é marinho sólido: cobre o vídeo, não muda a cor dele. O clipe dentro da janela do 58 fica com a cor original;
+- o `#sombra` da página está desligado; o logo tem sombra própria. A conversão do iPhone no `montar.py` (`TM` e `COR`) fica como está.
 
 O que aprendemos fazendo os 41 a 64 (vale para os próximos):
 
-- **Texto sobre camisa branca ou parede clara some.** Todo texto fino precisa de um fundo: véu escuro (`veu`), faixa marinho desfocada atrás do título ou cartão de vidro. O vidro `.lx-vidro` é marinho a 80%; cartão de dados usa marinho a 84% com marcas de corte nos cantos.
+- **Texto sobre camisa branca ou parede clara some.** Todo texto fino precisa de um fundo, mas só atrás dele: `MB.lux.fundo` (escuro suave na área do texto), sombra `lx-sombra` ou cartão de vidro. O vidro `.lx-vidro` é marinho a 80%; cartão de dados usa marinho a 84% com marcas de corte nos cantos. Nunca véu na tela toda (veja a regra da cor acima).
 - **Fonte de estudo vai no rodapé do cartão** (fio fino, "FONTE" em azul e a seta), nunca solta no vídeo.
 - **Desenho em cima da pessoa:** azul #3b7cff e vermelho #ff5b5b com sombra (o azul claro some na camisa branca). As coordenadas das marcas se medem num quadro com grade desenhada por cima do snapshot, nunca no olho pela miniatura.
 - **Desenho na tela pede vídeo congelado** (peça `congela` no spec) durante o motion 51 e 52.
@@ -109,7 +116,7 @@ Outras armadilhas que já custaram um render:
 
 - Nunca escreva `scaleX(0)` junto com `rotate()` no `transform` do estilo: o GSAP lê isso como um skew de -90° e o elemento some. Ponha a posição inicial com `gsap.set` (ou `K.set`).
 - Em elemento de SVG, use `transformOrigin: "50% 50%"`; valor em px conta a partir da caixa do próprio elemento, não do SVG.
-- Fundo (faixa, véu, z-index 0) precisa ser criado antes do texto, porque pinta na ordem em que foi criado.
+- Fundo atrás do texto (`MB.lux.fundo`, cartão, z-index 0) precisa ser criado antes do texto, porque pinta na ordem em que foi criado.
 - Motion com espelho (`"espelhos": 1` no `catalogo.json`) cria um `#mir1` com z-index 30; para ficar por cima dele, mova o elemento para o `#root` com z-index 45 ou mais.
 - O comentário logo abaixo do título do motion (`// ---------- NN Título ----------`) vira a nota do motion no CATALOGO.md. Escreva ali o que quem for usar precisa saber (formato dos parâmetros, se precisa congelar o fundo, corte no spec).
 

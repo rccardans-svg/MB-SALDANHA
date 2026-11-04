@@ -2,6 +2,8 @@
    Como o treinador corrige técnica: o vídeo congela e a caneta desenha por cima (seta, círculo, X, linha
    tracejada), o transferidor mede o ângulo, a palavra errada é riscada, a fita métrica compara as pernas
    e o mapa mostra o atendimento em casa. Nada segue o corpo: o desenho fica parado sobre o quadro congelado.
+   A cor do vídeo não muda (Paulo, 2026-11-04): sem véu na tela toda e sem tirar a cor do quadro congelado;
+   o escuro fica só atrás do texto.
    Traço branco (ou vermelho no erro, azul claro no certo) com sombra marinho suave, etiquetas numeradas
    em letra de máquina sobre vidro marinho. Usa MB.lux (L-premium.js). */
 (function () {
@@ -43,18 +45,9 @@
   }
 
   // ---------- peças comuns ----------
-  // véu leve (sem desfoque: o corpo precisa continuar visível). Criar antes do desenho.
-  function veuLeve(K, f, at, ate) {
-    const v = K.el("", `left:0;top:0;width:1080px;height:1920px;opacity:0;z-index:0;background:rgba(5,12,30,${f})`); v.classList.add("lx-veu");
-    K.ft(v, { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power2.out" }, at);
-    K.ft(v, { opacity: 1 }, { opacity: 0, duration: 0.5, ease: "power2.inOut" }, ate);
-  }
-  // quadro congelado: tira um pouco da cor e aproxima devagar (o desenho aproxima junto, não descola do corpo)
-  function congelado(K, wrap, at, ate, fim, zoom, cinza) {
-    if (cinza != null && cinza < 1) {
-      K.ft(K.cam, { filter: "saturate(1)" }, { filter: `saturate(${cinza})`, duration: 0.6, ease: "power2.out" }, at);
-      K.ft(K.cam, { filter: `saturate(${cinza})` }, { filter: "saturate(1)", duration: Math.max(0.2, fim - ate), ease: "power2.inOut" }, ate);
-    }
+  // quadro congelado: aproxima devagar (o desenho aproxima junto, não descola do corpo). A cor fica a original:
+  // o véu leve e o "tirar a cor" saíram em 2026-11-04 (o Paulo achou a imagem cinza e "pastel").
+  function congelado(K, wrap, at, ate, fim, zoom) {
     if (zoom && zoom !== 1 && !MB.verde) {   // no fundo verde o vídeo é do Paulo: o desenho não aproxima
       const alvo = [K.cam, wrap];
       K.ft(alvo, { scale: 1 }, { scale: zoom, duration: ate - at, ease: "sine.inOut" }, at);
@@ -66,8 +59,8 @@
     if (!txt) return;
     const { ESC, rotulo, apaga } = MB.lux;
     const e = K.el(`<span style="display:inline-block;width:6px;height:22px;background:#fff;margin-right:6px;vertical-align:-3px"></span><span style="display:inline-block;width:6px;height:22px;background:#fff;margin-right:20px;vertical-align:-3px"></span>${ESC(txt)}`,
-      `left:72px;top:236px;opacity:0`);
-    e.classList.add("lx-rot", "lx-sombra");
+      `left:72px;top:236px;opacity:0;padding:12px 18px 12px 16px;font-size:24px;white-space:nowrap`);
+    e.classList.add("lx-rot", "lx-vidro"); e.style.color = "#fff";   // chip de vidro: lê em parede clara sem escurecer o vídeo
     rotulo(K, e, at, 0.9); apaga(K, [e], ate, 0.4);
     K.sfx("lux_clique", at, 0.5);
   }
@@ -109,7 +102,7 @@
   //   circulo: x, y, r | x: x, y, tam | seta: de, para, curva | curva: pontos [[x,y]...] | linha: de, para (ou pontos); tracejada: true
   // O fundo precisa estar congelado no spec ({"tipo": "congela"}) durante o motion.
   MB.def("51", {
-    em: 0, dur: 6.6, selo: "ANÁLISE · TÉCNICA", veu: 0.18, zoom: 1.03, cinza: 0.72, numerar: true,
+    em: 0, dur: 6.6, selo: "ANÁLISE · TÉCNICA", zoom: 1.03, numerar: true,
     marcas: [
       { tipo: "circulo", x: 690, y: 835, r: 135, cor: "erro", rotulo: "COSTAS ARREDONDADAS", rot: [90, 560] },
       { tipo: "x", x: 690, y: 1215, tam: 46, cor: "erro", rotulo: "PERNAS TRAVADAS", rot: [90, 1300] },
@@ -119,9 +112,8 @@
   }, function (P, K) {
     const t0 = K.t(), t1 = t0 + P.dur, ts = t1 - 0.55, ms = P.marcas || [], n = Math.max(1, ms.length);
     const a0 = t0 + 0.45, slot = (ts - a0) / n;
-    if (P.veu) veuLeve(K, P.veu, t0, ts);
     const wrap = K.el("", "left:0;top:0;width:1080px;height:1920px;transform-origin:50% 50%");
-    congelado(K, wrap, t0, ts, t1, P.zoom, P.cinza);
+    congelado(K, wrap, t0, ts, t1, P.zoom);
     selo(K, P.selo, t0 + 0.05, ts);
     ms.forEach((m, i) => {
       const tm = a0 + i * slot, c = cor(m.cor), ult = i === n - 1, sw = m.espessura || 7;
@@ -170,7 +162,7 @@
   // Meça os pontos num quadro do vídeo com grade (snapshot) e deixe o fundo congelado no spec durante o motion.
   MB.def("52", {
     em: 0, dur: 5.2, vertice: [830, 1060], ref: [430, 1060], ponto: [450, 880], raio: 230, rotulo: "ÂNGULO DO TRONCO", valor: null,
-    ideal: null, ideal_texto: "IDEAL", numero_em: null, selo: "ANÁLISE · ÂNGULO", veu: 0.2, zoom: 1.03, cinza: 0.72
+    ideal: null, ideal_texto: "IDEAL", numero_em: null, selo: "ANÁLISE · ÂNGULO", zoom: 1.03
   }, function (P, K) {
     const { ESC, rotulo, apaga } = MB.lux;
     const t0 = K.t(), t1 = t0 + P.dur, ts = t1 - 0.55, [vx, vy] = P.vertice, R = P.raio;
@@ -179,9 +171,8 @@
     const s = dA >= 0 ? 1 : -1, th = Math.abs(dA), graus = Math.round(th * 180 / Math.PI), mostra = P.valor != null ? P.valor : graus;
     const pol = (a, r) => [vx + Math.cos(a) * r, vy + Math.sin(a) * r];
     const ang = (deg) => ar + s * deg * Math.PI / 180;
-    if (P.veu) veuLeve(K, P.veu, t0, ts);
     const wrap = K.el("", "left:0;top:0;width:1080px;height:1920px;transform-origin:50% 50%");
-    congelado(K, wrap, t0, ts, t1, P.zoom, P.cinza);
+    congelado(K, wrap, t0, ts, t1, P.zoom);
     selo(K, P.selo, t0 + 0.05, ts);
     // escala do transferidor: marcas de 5 em 5 graus e números de 15 em 15
     const fimEsc = Math.min(180, Math.max(graus, P.ideal || 0) + 20);
@@ -255,11 +246,9 @@
     const fz1 = Math.min(P.tam, Math.floor(940 / (0.66 * limpo(P.errada).length)));
     const fz2 = Math.min(Math.round(P.tam * 0.86), Math.floor(900 / (0.8 * limpo(P.certa).length)));
     const y1 = y + 56, y2 = y1 + Math.round(fz1 * 1.32), y3 = y2 + Math.round(fz2 * 1.36) + 26;
-    // faixa escura atrás (criada antes do texto para ficar atrás)
-    const mk = "linear-gradient(180deg, transparent 0%, #000 24%, #000 76%, transparent 100%)";
-    const f = K.el("", `left:0;top:${y - 190}px;width:1080px;height:${y3 - y + 300}px;opacity:0;z-index:0;background:rgba(5,13,32,.62);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);mask-image:${mk};-webkit-mask-image:${mk}`); f.classList.add("lx-veu");
-    K.ft(f, { opacity: 0 }, { opacity: 1, duration: 0.6, ease: "power2.out" }, t0);
-    K.ft(f, { opacity: 1 }, { opacity: 0, duration: 0.5, ease: "power2.inOut" }, ts + 0.05);
+    // fundo escuro só atrás do texto (criado antes do texto para ficar atrás); a frase certa já tem a faixa azul
+    const lt = Math.min(1000, Math.max(0.66 * limpo(P.errada).length * fz1, 0.8 * limpo(P.certa).length * fz2 + 0.64 * fz2) + 60);
+    MB.lux.fundo(K, 540 - lt / 2, y - 6, lt, y3 - y + 50, t0, ts + 0.05, 0.5, 80);
     const els = [];
     if (P.antes) {
       const a = K.el(ESC(P.antes), `left:0;width:1080px;top:${y}px;text-align:center;opacity:0`); a.classList.add("lx-rot", "lx-sombra");
@@ -302,9 +291,8 @@
     const { ESC, rotulo, apaga, linha, recolhe } = MB.lux;
     const t0 = K.t(), t1 = t0 + P.dur, ts = t1 - 0.6, X = 72, LW = 936, y = P.y, ms = P.medidas, n = ms.length, Hg = 200;
     const px = (v) => LW * v / P.escala, fmt = (v) => v.toFixed(2).replace(".", ",");
-    const f = K.el("", `left:0;top:${y - 230}px;width:1080px;height:${n * Hg + 420}px;opacity:0;z-index:0;background:linear-gradient(180deg, rgba(5,13,32,0) 0%, rgba(5,13,32,.68) 20%, rgba(5,13,32,.68) 82%, rgba(5,13,32,0) 100%)`); f.classList.add("lx-veu");
-    K.ft(f, { opacity: 0 }, { opacity: 1, duration: 0.6, ease: "power2.out" }, t0);
-    K.ft(f, { opacity: 1 }, { opacity: 0, duration: 0.5, ease: "power2.inOut" }, ts + 0.05);
+    // fundo escuro só atrás da régua e dos números (a fita já é vidro marinho)
+    MB.lux.fundo(K, X - 24, y - 110, LW + 48, (n - 1) * Hg + 128 + (P.diferenca && n >= 2 ? 60 : 0) + 110, t0, ts + 0.05, 0.5, 70);
     const els = [];
     const cab = K.el(ESC(P.rotulo), `left:${X}px;top:${y - 96}px;opacity:0`); cab.classList.add("lx-rot", "az");
     const lc = K.el("", `left:${X}px;top:${y - 48}px;width:${LW}px;transform:scaleX(0)`); lc.classList.add("lx-linha"); lc.style.background = "rgba(255,255,255,.22)";
@@ -365,17 +353,14 @@
   }, function (P, K) {
     const { ESC, rico, limpo, fenda, sobe, fecha, pesa, rotulo, apaga } = MB.lux;
     const t0 = K.t(), t1 = t0 + P.dur, ts = t1 - 0.6, y = P.y, X = 60, W = 960, Hm = 820;
-    // véu com desfoque (o mapa é o foco)
-    const v = K.el("", `left:0;top:0;width:1080px;height:1920px;opacity:0;z-index:0;background:rgba(5,12,30,.45);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)`); v.classList.add("lx-veu");
-    K.ft(v, { opacity: 0 }, { opacity: 1, duration: 0.7, ease: "power2.out" }, t0);
-    K.ft(v, { opacity: 1 }, { opacity: 0, duration: 0.6, ease: "power2.inOut" }, ts + 0.05);
-    // título em dois pesos
+    // título em dois pesos, com um fundo escuro só atrás dele (o mapa já vem num cartão de vidro)
     const ls = String(P.titulo).split("|"), nc = Math.max(...ls.map((s) => limpo(s).length)), fz = Math.min(92, Math.floor(940 / (0.72 * nc))), lh = Math.round(fz * 1.04);
-    const rt = K.el(ESC(P.rotulo), `left:${X}px;top:${y}px;opacity:0`); rt.classList.add("lx-rot", "az");
+    MB.lux.fundo(K, X - 10, y - 6, Math.min(980, Math.round(0.72 * nc * fz) + 60), 52 + ls.length * lh + 24, t0, ts + 0.05, 0.5, 70);
+    const rt = K.el(ESC(P.rotulo), `left:${X}px;top:${y}px;opacity:0`); rt.classList.add("lx-rot", "az", "lx-sombra");
     rotulo(K, rt, t0 + 0.1, 0.9);
     ls.forEach((s, i) => {
       const [m, sp] = fenda(K, rico(s), `left:${X - 4}px;top:${y + 52 + i * lh}px;font-size:${fz}px`);
-      m.classList.add("lx-tit", "lx-fino"); sobe(K, sp, t0 + 0.2 + i * 0.13, 1.0); pesa(K, m, t0 + 0.45 + i * 0.13); fecha(K, sp, ts + i * 0.04, 0.42);
+      m.classList.add("lx-tit", "lx-fino", "lx-sombra"); sobe(K, sp, t0 + 0.2 + i * 0.13, 1.0); pesa(K, m, t0 + 0.45 + i * 0.13); fecha(K, sp, ts + i * 0.04, 0.42);
     });
     K.sfx("lux_grave", t0 + 0.2, 0.45);
     // cartão do mapa
@@ -444,9 +429,10 @@
       gsap.set(dot, { x: p.x, y: p.y, opacity: k > 0 && k < 1 ? 1 : 0 });
     }, tc, tc + 1.22);
     K.sfx("lux_traco", tc, 0.4);
-    // rótulo do raio, embaixo do cartão
+    // rótulo do raio, embaixo do cartão (com um fundo escuro só atrás dele)
+    MB.lux.fundo(K, X + W / 2 - 290, ym + Hm + 22, 580, 32, tr + 0.4, ts, 0.5, 50);
     const rl = K.el(`${ESC(P.raio_texto)}`, `left:${X}px;top:${ym + Hm + 26}px;width:${W}px;text-align:center;opacity:0;font-size:22px`);
-    rl.classList.add("lx-rot"); rotulo(K, rl, tr + 0.5, 0.9, 0.3);
+    rl.classList.add("lx-rot", "lx-sombra"); rotulo(K, rl, tr + 0.5, 0.9, 0.3);
     apaga(K, [rt, rl], ts, 0.4);
   });
 })();

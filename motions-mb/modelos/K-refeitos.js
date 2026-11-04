@@ -3,6 +3,8 @@
    Mesma linha dos 41 a 60: um foco por vez, dois pesos, rótulos em letra de máquina, linhas finas, vidro marinho,
    entradas suaves sem quique, partícula ou brilho. Vermelho só no ponto que dói (o resto é branco e azul da MB).
    Usa MB.lux (L-premium.js); o 62 usa a anatomia (anatomia.js) e o 64 chama o 51 (caneta na tela).
+   A cor do vídeo não muda (Paulo, 2026-11-04): nada de véu na tela toda nem filtro no vídeo; o cartão é o fundo
+   do texto e o raio-X é uma tela cheia sólida (cobre o vídeo, não muda a cor dele).
    (O 61, rosto premium, fica em L-premium.js.) */
 (function () {
   const AZ = "#1f66e5", CL = "#9fbcff", ERRO = "#ff5b5b", ERRO2 = "#ff8a8a", FUNDO = "rgba(6,15,38,.84)";
@@ -10,14 +12,6 @@
   const dd = (n) => String(n).padStart(2, "0");
 
   // ---------- peças comuns (as mesmas do grupo H) ----------
-  // véu: escurece e desfoca o vídeo atrás do cartão. Criar ANTES do cartão. Some no fundo verde (lx-veu).
-  function veu(K, at, ate, forca, desf) {
-    const f = forca == null ? 0.42 : forca, d = desf == null ? 10 : desf;
-    const v = K.el("", `left:0;top:0;width:1080px;height:1920px;opacity:0;z-index:0;background:rgba(5,12,30,${f});backdrop-filter:blur(${d}px);-webkit-backdrop-filter:blur(${d}px)`); v.classList.add("lx-veu");
-    K.ft(v, { opacity: 0 }, { opacity: 1, duration: 0.8, ease: "power2.out" }, at);
-    K.ft(v, { opacity: 1 }, { opacity: 0, duration: 0.6, ease: "power2.inOut" }, ate);
-    return v;
-  }
   // cartão de vidro que abre de cima para baixo, com marcas de corte nos quatro cantos
   function placa(K, x, y, w, h, at, ate) {
     const p = K.el("", `left:${x}px;top:${y}px;width:${w}px;height:${h}px;clip-path:inset(0% 0% 100% 0%);background:${FUNDO}`);
@@ -62,13 +56,12 @@
   const F_BASE = "rgba(159,188,255,0.06)", S_BASE = "rgba(255,255,255,0.5)";
 
   MB.def("62", {
-    em: 0, dur: 6.6, rotulo: "MAPA DA DOR", titulo: "ONDE *DÓI?*", y: 370, veu: 0.42,
+    em: 0, dur: 6.6, rotulo: "MAPA DA DOR", titulo: "ONDE *DÓI?*", y: 370,
     regioes: [[1.5, "cervical", "*CERVICAL*", "TENSÃO NO PESCOÇO"], [3.0, "lombar", "*LOMBAR*", "DOR AO FICAR SENTADO"], [4.5, "joelho", "*JOELHO* DIREITO", "DOR AO SUBIR ESCADA", "direito"]]
   }, function (P, K) {
     const { ESC, rico, limpo, fenda, sobe, fecha, pesa, rotulo, linha, recolhe, apaga, respira } = MB.lux;
     const t0 = K.t(), t1 = t0 + P.dur, ts = t1 - 0.6, X = 90, W = 900, Y = P.y, H = 1130, IX = X + 48, IW = W - 96;
     const regs = (P.regioes || []).filter((r) => REG[r[1]]), N = regs.length;
-    if (P.veu) veu(K, t0, ts, P.veu, 10);
     placa(K, X, Y, W, H, t0, ts);
     // cabeçalho: rótulo, página (01 / 03) e linha fina
     const rot = K.el(ESC(P.rotulo), `left:${IX}px;top:${Y + 44}px;opacity:0`); rot.classList.add("lx-rot", "az");
@@ -178,8 +171,8 @@
   }, function (P, K) {
     const { ESC, rico, limpo, fenda, sobe, fecha, pesa, rotulo, linha, recolhe, apaga } = MB.lux;
     const t0 = K.t(), t1 = t0 + P.dur, ts = t1 - 0.6;
-    // fundo do visor: marinho fosco por cima do vídeo (no fundo verde vira marinho sólido: é uma tela cheia)
-    const tela = K.el("", `left:0;top:0;width:1080px;height:1920px;background:rgba(5,12,30,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);clip-path:inset(50% 0% 50% 0%)`);
+    // fundo do visor: marinho sólido em tela cheia (cobre o vídeo sem mudar a cor dele; abre do meio e fecha no fim)
+    const tela = K.el("", `left:0;top:0;width:1080px;height:1920px;background:radial-gradient(120% 70% at 50% 45%, #0b1a40 0%, #07122e 55%, #050c22 100%);clip-path:inset(50% 0% 50% 0%)`);
     const grade = K.el("", `left:96px;top:440px;width:888px;height:1140px;opacity:0`); grade.classList.add("grade");
     K.ft(tela, { clipPath: "inset(50% 0% 50% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.8, ease: "expo.inOut" }, t0);
     K.ft(tela, { clipPath: "inset(0% 0% 0% 0%)" }, { clipPath: "inset(50% 0% 50% 0%)", duration: 0.6, ease: "expo.inOut" }, ts);
@@ -335,7 +328,7 @@
   // Deixe as marcas fora do canto do rosto (x de 640 a 1040, y de 200 a 700).
   MB.def("64", {
     em: 0, dur: null, extra: "rosto", nome: "ULLISSES", cargo: "REACT · PERSONAL", x: 678, y: 236, tam: 330, fala: true,
-    olha_em: 1.6, selo: "PAUSA · ANÁLISE", veu: 0.18, zoom: 1.03, cinza: 0.72,
+    olha_em: 1.6, selo: "PAUSA · ANÁLISE", zoom: 1.03,
     marcas: [
       { tipo: "circulo", x: 720, y: 845, r: 140, cor: "erro", rotulo: "COSTAS ARREDONDADAS", rot: [72, 600] },
       { tipo: "x", x: 735, y: 1190, tam: 40, cor: "erro", rotulo: "PERNAS TRAVADAS", rot: [72, 1300] }
@@ -389,7 +382,7 @@
     // análise: o vídeo congela e a caneta desenha (motion 51)
     const ta = K.t(P.olha_em);
     if (P.marcas && P.marcas.length && ta < ts - 1.2) {
-      K.usar("51", { em: ta, dur: Math.max(1.5, ts - ta + 0.1), marcas: P.marcas, selo: P.selo, veu: P.veu, zoom: P.zoom, cinza: P.cinza });
+      K.usar("51", { em: ta, dur: Math.max(1.5, ts - ta + 0.1), marcas: P.marcas, selo: P.selo, zoom: P.zoom });
       K.sfx("lux_passagem", ta - 0.1, 0.5);
     }
   });

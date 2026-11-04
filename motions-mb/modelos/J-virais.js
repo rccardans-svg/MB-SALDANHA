@@ -1,18 +1,12 @@
 /* Grupo J. Formatos que viralizam (motions 56 a 60), na linha premium.
    Legenda que acompanha a voz, "em vez disso / faça assim", cards com o clipe dentro, cadência 3-1-1
    e barra de capítulos. Mesma linha dos outros: um foco por vez, dois pesos, rótulos em letra de máquina,
-   linhas finas, vidro marinho e a faixa azul da MB só na palavra que importa. Usa MB.lux (L-premium.js). */
+   linhas finas, vidro marinho e a faixa azul da MB só na palavra que importa. Usa MB.lux (L-premium.js).
+   A cor do vídeo não muda (Paulo, 2026-11-04): nada de filtro no vídeo nem véu grande; o escuro fica só atrás
+   do texto (MB.lux.fundo). */
 (function () {
   const AZ = "#1f66e5", CL = "#9fbcff", RED = "#e04646";
   const fx = (v) => (+v).toFixed(1);
-  // faixa escura suave atrás do texto (criar antes do texto)
-  function faixa(K, y, h, at, ate, forca) {
-    const f = forca == null ? 0.64 : forca;
-    const e = K.el("", `left:0;top:${y}px;width:1080px;height:${h}px;opacity:0;z-index:0;background:linear-gradient(180deg, rgba(5,13,32,0) 0%, rgba(5,13,32,${f}) 26%, rgba(5,13,32,${f}) 74%, rgba(5,13,32,0) 100%)`); e.classList.add("lx-veu");
-    K.ft(e, { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power2.out" }, at);
-    K.ft(e, { opacity: 1 }, { opacity: 0, duration: 0.45, ease: "power2.inOut" }, ate);
-    return e;
-  }
   // título em dois pesos que sobe da fenda (devolve as fendas para fechar depois)
   function titulo(K, txt, x, y, fzMax, larg, at, alinhar) {
     const { rico, limpo, fenda, sobe, pesa } = MB.lux;
@@ -43,8 +37,9 @@
       let acc = 0; tp = pesos.map((p) => { const v = ini + (fim - ini) * acc / tot; acc += p; return v; });
     }
     const T = tp.map((v) => t0 + v);
-    const nl = Math.ceil(ws.join(" ").length * P.tam * 0.66 / 900), h = nl * Math.round(P.tam * 1.3);
-    faixa(K, P.y - 140, h + 280, t0, t1 - 0.3, 0.6);
+    const larg = ws.join(" ").length * P.tam * 0.66, nl = Math.ceil(larg / 900), h = nl * Math.round(P.tam * 1.3);
+    const lf = nl > 1 ? 960 : Math.min(960, Math.round(larg) + 70);
+    MB.lux.fundo(K, 540 - lf / 2, P.y - 6, lf, h + 12, t0, t1 - 0.45, 0.55, 70);
     const c = K.el(`<div class="bd" style="position:absolute;left:0;top:0;width:0;height:0;background:${AZ};border-radius:6px;opacity:0;z-index:0"></div>` +
       ws.map((w, i) => `<span class="w" style="display:inline-block;position:relative;z-index:1;padding:.04em .14em .06em;opacity:.42">${ESC(w)}</span>`).join(" "),
       `left:60px;width:960px;top:${P.y}px;text-align:center;font-size:${P.tam}px;line-height:1.3;text-wrap:balance;z-index:0;opacity:0`);
@@ -65,20 +60,21 @@
   });
 
   // ---------- 57 Em vez disso / Faça assim ----------
-  // O trecho do erro fica em preto e branco com o X; a passada azul cobre o corte; o certo volta em cores com o ✓.
+  // O trecho do erro ganha o X vermelho; a passada azul cobre o corte; o certo entra com o ✓ azul.
   // O spec precisa ter o corte do erro para o certo no segundo "troca_em" (contado a partir do "em").
+  // pb: true deixa o erro em preto e branco. Fica desligado: o Paulo pediu em 2026-11-04 para não mexer na cor do vídeo.
   MB.def("57", {
-    em: 0, dur: 7, troca_em: 3.4, rotulo_erro: "EM VEZ DISSO", erro: "PUXAR COM|AS *COSTAS*", rotulo_certo: "FAÇA ASSIM", certo: "EMPURRE|O *CHÃO*", y: 250
+    em: 0, dur: 7, troca_em: 3.4, rotulo_erro: "EM VEZ DISSO", erro: "PUXAR COM|AS *COSTAS*", rotulo_certo: "FAÇA ASSIM", certo: "EMPURRE|O *CHÃO*", y: 250, pb: false
   }, function (P, K) {
     const { ESC, rotulo, apaga } = MB.lux;
     const t0 = K.t(), t1 = t0 + P.dur, tc = t0 + P.troca_em, X = 72, y = P.y;
-    // sombra no topo para o título
-    const sb = K.el("", `left:0;top:0;width:1080px;height:${y + 520}px;opacity:0;z-index:0;background:linear-gradient(180deg, rgba(5,13,32,.72) 0%, rgba(5,13,32,.5) 55%, rgba(5,13,32,0) 100%)`); sb.classList.add("lx-veu");
-    K.ft(sb, { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power2.out" }, t0);
-    K.ft(sb, { opacity: 1 }, { opacity: 0, duration: 0.5, ease: "power2.inOut" }, t1 - 0.5);
-    // erro em preto e branco
-    K.ft(K.cam, { filter: "grayscale(0) contrast(1) brightness(1)" }, { filter: "grayscale(1) contrast(1.06) brightness(.9)", duration: 0.45, ease: "power2.out" }, t0);
-    K.set(K.cam, { filter: "grayscale(0) contrast(1) brightness(1)" }, tc);
+    // fundo escuro só atrás do cabeçalho (rótulo, título e ícone)
+    const nl = Math.max(String(P.erro).split("|").length, String(P.certo).split("|").length);
+    MB.lux.fundo(K, X - 16, y - 8, 1080 - 2 * (X - 16), 60 + nl * 117 + 24, t0, t1 - 0.5, 0.55, 80);
+    if (P.pb) {
+      K.ft(K.cam, { filter: "grayscale(0)" }, { filter: "grayscale(1)", duration: 0.45, ease: "power2.out" }, t0);
+      K.set(K.cam, { filter: "none" }, tc);
+    }
     // bloco de cabeçalho: quadradinho de cor, rótulo, título e o ícone desenhado à direita
     const bloco = (rot, tit, cor, icone, at, ate) => {
       const r = K.el(`<span style="display:inline-block;width:16px;height:16px;background:${cor};margin-right:16px;vertical-align:-1px"></span>${ESC(rot)}`, `left:${X}px;top:${y}px;opacity:0`);
@@ -108,7 +104,8 @@
 
   // ---------- 58 Cards com o clipe dentro ----------
   // cards: [[rótulo, título, começa em (s, a partir do "em"), segundos do cronômetro (opcional)], ...]
-  // O vídeo encolhe para dentro de um cartão (o fundo vira o mesmo vídeo desfocado) e volta a tela cheia no fim.
+  // O vídeo encolhe para dentro de um cartão sobre um fundo marinho e volta a tela cheia no fim. O clipe fica com a
+  // cor original dentro da janela (nada de desfoque, escurecer ou saturar o vídeo: pedido do Paulo em 2026-11-04).
   MB.def("58", {
     em: 0, dur: 8, espelho: 1, y: 250,
     cards: [["SEMANA 1", "5 FLEXÕES|*POR DIA*", 0, 0], ["SEMANA 2", "10 FLEXÕES|*POR DIA*", 2.6, 0], ["SEMANA 3", "3 SÉRIES|*DE 8*", 5.0, 0]]
@@ -117,8 +114,8 @@
     const t0 = K.t(), t1 = t0 + P.dur, M = K.espelho(P.espelho), cs = P.cards, n = cs.length, y = P.y;
     const S = 0.62, Wv = 1080 * S, cy = 1060, ins = 9;          // janela: 9% cortado em cima e embaixo
     const Hv = 1920 * (1 - 2 * ins / 100) * S, wx = 540 - Wv / 2, wy = cy - Hv / 2, ty = cy - 960;
-    // fundo: o próprio vídeo desfocado e escuro
-    const v = K.el("", `left:0;top:0;width:1080px;height:1920px;opacity:0;z-index:0;background:rgba(5,12,30,.5);backdrop-filter:blur(22px) saturate(1.1);-webkit-backdrop-filter:blur(22px) saturate(1.1)`);
+    // fundo: marinho sólido com um leve degradê (cobre o vídeo, não muda a cor dele)
+    const v = K.el("", `left:0;top:0;width:1080px;height:1920px;opacity:0;z-index:0;background:${MB.verde ? "rgba(5,12,30,.5)" : "radial-gradient(120% 70% at 50% 42%, #0d2050 0%, #08173a 55%, #050e26 100%)"}`);
     if (MB.verde) { K.set(v, { opacity: 1 }, t0); K.set(v, { opacity: 0 }, t1); }   // no verde, sem fade (a janela cobre a troca)
     else {
       K.ft(v, { opacity: 0 }, { opacity: 1, duration: 0.8, ease: "power2.out" }, t0);
@@ -148,11 +145,8 @@
       const tt = titulo(K, tit, 72, y + 56, 96, 936, a + 0.05);
       fechaTudo(K, tt.sp, sai - 0.35);
       K.sfx("lux_grave", a + 0.05, 0.45);
-      // a janela "respira" na troca de card (o corte do vídeo acontece por baixo)
-      if (i > 0) {
-        if (!MB.verde) K.ft(M, { filter: "brightness(.55)" }, { filter: "brightness(1)", duration: 0.55, ease: "power2.out" }, t0 + ini);
-        K.sfx("lux_passagem", t0 + ini - 0.1, 0.35);
-      }
+      // troca de card (o corte do vídeo acontece por baixo, sem escurecer a janela)
+      if (i > 0) K.sfx("lux_passagem", t0 + ini - 0.1, 0.35);
       // progresso do card
       const pf = paraCima(K.el("", `left:${fx(wx)}px;top:${fx(wy + Hv + 22)}px;width:${fx(Wv)}px;height:3px;background:#fff;transform:scaleX(0);transform-origin:left center`), 47);
       K.ft(pf, { scaleX: 0 }, { scaleX: 1, duration: Math.max(0.3, b - (t0 + ini)), ease: "none" }, t0 + ini + (i === 0 ? 0.6 : 0));
@@ -176,15 +170,15 @@
     const t0 = K.t(), t1 = t0 + P.dur, X = 72, LW = 936, y = P.y, fs = P.fases, ciclo = fs.reduce((a, f) => a + f[1], 0);
     const ts = t1 - 0.5, gap = 10, Wseg = fs.map((f) => (LW - gap * (fs.length - 1)) * f[1] / ciclo);
     const xs = Wseg.map((_, i) => X + Wseg.slice(0, i).reduce((a, b) => a + b, 0) + gap * i);
-    faixa(K, y - 170, 560, t0, ts, 0.66);
-    const r = K.el(ESC(P.rotulo), `left:${X}px;top:${y}px;opacity:0`); r.classList.add("lx-rot", "az");
+    MB.lux.fundo(K, X - 20, y - 10, LW + 40, 280, t0, ts, 0.55, 70);
+    const r = K.el(ESC(P.rotulo), `left:${X}px;top:${y}px;opacity:0`); r.classList.add("lx-rot", "az", "lx-sombra");
     rotulo(K, r, t0 + 0.05, 0.9); apaga(K, [r], ts, 0.4);
     // trilhos e preenchimentos de cada fase
     const yr = y + 190;
     const trilhos = fs.map((f, i) => {
       const tr = K.el("", `left:${fx(xs[i])}px;top:${yr}px;width:${fx(Wseg[i])}px;height:6px;border-radius:3px;background:rgba(255,255,255,.2);transform:scaleX(0);transform-origin:left center`);
       linha(K, tr, t0 + 0.1 + i * 0.08, 0.9); recolhe(K, tr, ts, 0.35);
-      const lb = K.el(`${ESC(f[0])} <span style="color:${CL}">${f[1]} S</span>`, `left:${fx(xs[i])}px;top:${yr + 26}px;opacity:0;font-size:20px`); lb.classList.add("lx-rot");
+      const lb = K.el(`${ESC(f[0])} <span style="color:${CL}">${f[1]} S</span>`, `left:${fx(xs[i])}px;top:${yr + 26}px;opacity:0;font-size:20px`); lb.classList.add("lx-rot", "lx-sombra");
       rotulo(K, lb, t0 + 0.25 + i * 0.08, 0.8, 0.2); apaga(K, [lb], ts, 0.35);
       // marquinhas de segundo
       for (let s = 1; s < f[1]; s++) { const mk = K.el("", `left:${fx(xs[i] + Wseg[i] * s / f[1] - 1)}px;top:${yr - 6}px;width:2px;height:18px;background:rgba(255,255,255,.4);opacity:0`); K.ft(mk, { opacity: 0 }, { opacity: 1, duration: 0.3 }, t0 + 0.6); apaga(K, [mk], ts, 0.3); }
@@ -230,11 +224,15 @@
     const { ESC, rotulo, apaga } = MB.lux;
     const t0 = K.t(), t1 = t0 + P.dur, cs = P.capitulos, n = cs.length, X = 72, LW = 936, gap = 12, y = P.y;
     const Ws = (LW - gap * (n - 1)) / n, fimCap = (i) => (i + 1 < n ? t0 + cs[i + 1][2] : t1 - 0.35);
-    // sombra suave no topo para a barra e os rótulos lerem bem
-    const sb = K.el("", `left:0;top:0;width:1080px;height:${y + 300}px;opacity:0;z-index:0;background:linear-gradient(180deg, rgba(5,13,32,.6) 0%, rgba(5,13,32,.35) 60%, rgba(5,13,32,0) 100%)`); sb.classList.add("lx-veu");
-    K.ft(sb, { opacity: 0 }, { opacity: 1, duration: 0.5 }, t0); K.ft(sb, { opacity: 1 }, { opacity: 0, duration: 0.35 }, t1 - 0.35);
-    // faixa escura atrás dos títulos dos capítulos (título fino sobre camiseta branca não lê)
-    faixa(K, P.titulo_y - 130, 420, t0, t1 - 0.35, 0.62);
+    // fundo escuro só atrás da barra e de cada título, enquanto ele está na tela (título fino sobre camiseta branca
+    // não lê). Criados antes do texto para ficar atrás.
+    MB.lux.fundo(K, X - 16, y - 12, LW + 32, 66, t0, t1 - 0.5, 0.5, 60);
+    cs.forEach(([, tit, ini], i) => {
+      const ls = String(tit).split("|"), nc = Math.max(...ls.map((s) => MB.lux.limpo(s).length));
+      const fz = Math.min(104, Math.floor(760 / (0.72 * nc))), a = t0 + ini, b = fimCap(i);
+      MB.lux.fundo(K, X - 14, P.titulo_y - 8, Math.min(980, Math.round(0.72 * nc * fz) + 40), ls.length * Math.round(fz * 1.04) + 16,
+        a + 0.05, Math.min(a + 2.2, b - 0.45), 0.55, 80);
+    });
     cs.forEach(([rot, tit, ini], i) => {
       const x = X + i * (Ws + gap), a = t0 + ini, b = fimCap(i);
       const tr = K.el("", `left:${fx(x)}px;top:${y}px;width:${fx(Ws)}px;height:5px;border-radius:3px;background:rgba(255,255,255,.26);transform:scaleX(0);transform-origin:left center`);

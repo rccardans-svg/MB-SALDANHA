@@ -67,13 +67,6 @@
    "tamanho": 820
   },
   {
-   "id": "lux-veu",
-   "em": 2.0,
-   "dur": 8.75,
-   "lado": "esquerda",
-   "forca": 0.72
-  },
-  {
    "id": "lux-titulo",
    "em": 0,
    "dur": 2.55,
@@ -89,7 +82,8 @@
     5.0,
     7.2,
     9.43
-   ]
+   ],
+   "fundo": 0.5
   },
   {
    "id": "lux-frase",

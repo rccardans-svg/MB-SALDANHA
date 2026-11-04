@@ -1,8 +1,8 @@
 /* Grupo H. Dados com fonte (motions 46 a 50), na linha premium.
    Um dado forte por vídeo, com a fonte na tela: estudo dos bombeiros (U3), quedas de idosos (D3),
    repouso x movimento (F1) e o teste de salto (P2).
-   Visual: o vídeo escurece e desfoca atrás (um foco por vez), cartão de vidro marinho com marcas de corte
-   nos cantos, número fino grande, rótulos em letra de máquina, linhas finas, ficha técnica em colunas
+   Visual: cartão de vidro marinho por cima do vídeo, com marcas de corte nos cantos (o vídeo fica com a cor
+   original em volta: nada de véu na tela toda, regra do Paulo de 2026-11-04), número fino grande, rótulos em letra de máquina, linhas finas, ficha técnica em colunas
    e a fonte no rodapé do cartão (nunca solta em cima do vídeo). Usa MB.lux (L-premium.js). */
 (function () {
   const RED = "#e04646", FUNDO = "rgba(6,15,38,.84)";
@@ -22,14 +22,9 @@
     while (n * fz * (0.6 + ls) > larg && fz > 16) fz -= 1;
     return [fz, ls];
   }
-  // véu: escurece e desfoca o vídeo inteiro atrás do dado. Criar ANTES do cartão (fica atrás pela ordem).
-  function veu(K, at, ate, forca, desf) {
-    const f = forca == null ? 0.42 : forca, d = desf == null ? 10 : desf;
-    const v = K.el("", `left:0;top:0;width:1080px;height:1920px;opacity:0;z-index:0;background:rgba(5,12,30,${f});backdrop-filter:blur(${d}px);-webkit-backdrop-filter:blur(${d}px)`); v.classList.add("lx-veu");
-    K.ft(v, { opacity: 0 }, { opacity: 1, duration: 0.8, ease: "power2.out" }, at);
-    K.ft(v, { opacity: 1 }, { opacity: 0, duration: 0.6, ease: "power2.inOut" }, ate);
-    return v;
-  }
+  // véu na tela toda: desligado. O Paulo pediu em 2026-11-04 que a cor do vídeo original não mude ("deixe nos
+  // parâmetros"); o véu escuro com desfoque deixava a imagem cinza e "pastel". O cartão de vidro já é o fundo do texto.
+  function veu() { return null; }
   // cartão de vidro que abre de cima para baixo, com marcas de corte nos quatro cantos (cara de ficha técnica)
   function placa(K, x, y, w, h, at, ate) {
     const p = K.el("", `left:${x}px;top:${y}px;width:${w}px;height:${h}px;clip-path:inset(0% 0% 100% 0%);background:${FUNDO}`);
@@ -184,13 +179,17 @@
   // ---------- 48 Anel de porcentagem ----------
   MB.def("48", {
     em: 0, dur: 5.4, rotulo: "OMS · 65 ANOS OU MAIS", prefixo: "ATÉ", valor: 35, sufixo: "%", legenda: "DOS IDOSOS CAEM|PELO MENOS *1 VEZ POR ANO*",
-    fracao: [1, 3], fracao_texto: "QUASE 1 EM CADA 3", fonte: "OMS · RELATÓRIO GLOBAL SOBRE QUEDAS DE IDOSOS · 2007", y: 400, veu: true
+    fracao: [1, 3], fracao_texto: "QUASE 1 EM CADA 3", fonte: "OMS · RELATÓRIO GLOBAL SOBRE QUEDAS DE IDOSOS · 2007", y: 400, cartao: true
   }, function (P, K) {
     const { ESC, rico, rotulo, apaga, respira } = MB.lux;
     const t0 = K.t(), t1 = t0 + P.dur, R = 220, cx = 540, cy = P.y + 140 + R, C = 2 * Math.PI * R, ts = Math.max(t1 - 0.65, t0 + 3.4);
-    // o anel fica direto sobre o vídeo: véu mais forte e mais desfoque
-    if (P.veu !== false) veu(K, t0, ts + 0.05, 0.56, 14);
-    const rt = K.el(ESC(P.rotulo), `left:0;width:1080px;top:${P.y}px;text-align:center;opacity:0`); rt.classList.add("lx-rot", "az");
+    // o anel, a legenda e a fonte ficam num cartão de vidro (como os outros do grupo): o vídeo em volta fica com a cor
+    // original. cartao: false tira o cartão (só para vídeo escuro, onde o texto lê sozinho).
+    if (P.cartao !== false && P.veu !== false) {
+      const yC = P.y - 56, fim = P.fonte ? cy + R + 436 : (P.fracao ? cy + R + 344 : cy + R + 180);
+      placa(K, 60, yC, 960, fim + 40 - yC, t0, ts + 0.1);
+    }
+    const rt = K.el(ESC(P.rotulo), `left:0;width:1080px;top:${P.y}px;text-align:center;opacity:0`); rt.classList.add("lx-rot", "az", "lx-sombra");
     rotulo(K, rt, t0 + 0.2, 1.0); respira(K, rt, t0 + 1.25, ts); apaga(K, [rt], ts, 0.4);
     // anel fino: trilho, marcas de 5 em 5 e o arco que anda até o valor
     let marcas = "";
@@ -227,7 +226,7 @@
       texto(K, ESC(P.fracao_texto || `${a} EM CADA ${b}`), `left:0;width:1080px;top:${yf + tam + 22}px;text-align:center;font-size:24px;letter-spacing:.3em`, tp + dp + 0.35, ts, ["lx-rot"]);
     }
     if (P.fonte) {
-      const [fz, ls] = cabeMono(("FONTE   " + P.fonte).length, 960, 21, 0.16);
+      const [fz, ls] = cabeMono(("FONTE   " + P.fonte).length, 860, 21, 0.16);
       const fo = K.el(`<span style="color:#9fbcff">FONTE</span>&nbsp;&nbsp;&nbsp;${ESC(P.fonte)}`, `left:0;width:1080px;top:${cy + R + 404}px;text-align:center;font-size:${fz}px;opacity:0;color:rgba(255,255,255,.72)`);
       fo.classList.add("lx-rot"); rotulo(K, fo, tp + dp + 0.5, 1.0, ls); apaga(K, [fo], ts, 0.4);
     }

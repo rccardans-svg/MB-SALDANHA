@@ -10,7 +10,7 @@ Leia isto antes de montar qualquer Reel com motion da MB Saldanha. Ele junta o p
   - Maria é fisioterapeuta: dor, avaliação, quiropraxia e domiciliar.
 - **Estilo: premium em tudo** (decisão do Paulo em 2026-11-04). Use primeiro os motions premium: 41 a 64 e os `lux-*`. Os 01 a 40 são do estilo antigo, que ele achou amador; só entram quando nenhum premium faz o mesmo papel (a tabela da seção 3 mostra qual). Nada de quique, partícula, tremida ou som de pop. E ele pediu para ir melhorando sempre: a cada Reel, suba um pouco o acabamento.
 - **Logo:** branco, sem "domiciliar". `"logo": "domiciliar"` só em post sobre atendimento domiciliar.
-- **Cor:** não mexer na cor do vídeo (pedido do Paulo em 2026-11-04: "deixe nos parâmetros"). O `lux-grade` fica com contraste e saturação em 1, e o véu (`lux-veu`) só atrás do texto, no topo, com força até 0,62; véu grande na lateral ou embaixo deixa a imagem cinza e "pastel". Nada de flash ou tela branca, nada de lavar ou estourar a luz. O montar.py já converte o HLG do iPhone com a cor certa. Rastro de câmera lenta usa a peça `eco`, que não clareia.
+- **Cor:** não mexer na cor do vídeo (pedido do Paulo em 2026-11-04: "deixe nos parâmetros"). Nenhum filtro no vídeo, e o escuro fica só atrás do texto. O `lux-grade` fica com contraste e saturação em 1, e o véu (`lux-veu`) só atrás do texto, no topo, com força até 0,62; véu grande na lateral ou embaixo deixa a imagem cinza e "pastel". Os motions 41 a 64 já seguem isso (fundo suave só na área do texto, sem véu na tela toda; o 57 não tira mais a cor do erro; o 58 e o 63 usam fundo marinho sólido, que cobre o vídeo sem mudar a cor dele). Nada de flash ou tela branca, nada de lavar ou estourar a luz. O montar.py já converte o HLG do iPhone com a cor certa. Rastro de câmera lenta usa a peça `eco`, que não clareia.
 - **Proibido:** tela dividida, linhas ou rastreio presos no corpo (o Paulo achou "péssimo"). Motion fica sobre o vídeo, solto do corpo. A caneta na tela (51) e o transferidor (52) desenham sobre o vídeo **congelado**, como um professor no quadro; não seguem o corpo em movimento.
 - **Rosto em círculo:** sempre centralizado e inteiro (cabelo e queixo dentro). O extra `"id": "rosto"` já faz isso sozinho via `motor/rosto.py`; para outro nome de extra, use `"enquadrar_rosto": true`.
 - **Corte:** tire o começo da gravação ("pronto?", erros, respiração) e qualquer take errado.
@@ -65,9 +65,9 @@ Premium primeiro. A coluna da direita é o estilo antigo, só para quando faltar
 | pergunta para o público votar | 45 enquete | |
 | "comente X que eu te mando", "marque o amigo" | 42 comenta a palavra | |
 | "salve", "mande para alguém", "siga", "agende sua avaliação" | 41 botão que é tocado, `lux-salvar` | |
-| texto em cima de fundo claro | `lux-veu` (topo, base, esquerda ou tela toda) | |
+| texto em cima de fundo claro | `lux-veu` no topo (até 0,62) ou o fundo que cada motion premium já põe só atrás do próprio texto | |
 | corte entre cenas | `lux-passagem` | 31, 35 |
-| acabamento do vídeo todo (vinheta, contraste, aproximação lenta) | `lux-grade` | |
+| acabamento do vídeo todo (vinheta leve e aproximação lenta, sem mexer na cor) | `lux-grade` | |
 | momento forte (pico do salto, travou a carga) | `lux-grade` com `empurra` no trecho | 32, 33 |
 | onde dói (pescoço, lombar, joelho...) | 62 mapa da dor | 17 |
 | disco, vértebra, hérnia, "o que aparece no exame" | 63 raio-X da coluna (esquema ilustrativo) | 18 |
@@ -124,7 +124,8 @@ Quando precisar de um motion que só existe no estilo antigo (escada, estalo, m�
 - [ ] Motions premium (41 a 64 e `lux-*`); estilo antigo só onde não há premium.
 - [ ] Rosto centralizado no círculo.
 - [ ] Nenhum branco estourado, flash, tela dividida ou linha presa no corpo.
-- [ ] Texto dentro da tela, legível (com véu ou faixa em fundo claro), sem colidir com rosto, logo ou outro texto.
+- [ ] Texto dentro da tela, legível (fundo escuro só atrás do texto em fundo claro), sem colidir com rosto, logo ou outro texto.
+- [ ] Cor do vídeo igual à do original: compare um quadro sem motion com o mesmo quadro no Reel (nada de filtro, véu na tela toda ou imagem "pastel").
 - [ ] Número com fonte real, ou marcado como esquema ilustrativo.
 - [ ] Motion conversa com a fala, no tempo certo.
 - [ ] Começo sem "pronto?" ou erro de gravação.
