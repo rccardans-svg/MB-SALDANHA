@@ -34,3 +34,6 @@ Formato padrão: 1080x1920, 30 fps, H.264 + AAC, até 90 s. Responda sempre em p
 ## 6. Entrega
 - Salve o final em `/mnt/project-files/reels/AAAA-MM-DD-tema.mp4`, confira com `ffprobe` (1080x1920, duração) e gere um frame de capa com `ffmpeg -ss 1 -frames:v 1 capa.jpg`.
 - Anexe o vídeo na resposta.
+
+## Cor padrão (Paulo, 2026-11-04)
+**COR PADRÃO = a dos Reels v3 do Ullisses** (Paulo, 2026-11-04: mandou o v3 do terra como a cor certa e pediu para manter sempre). Receita: hable npl=203 + `curves=all='0/0 0.25/0.2 0.5/0.5 0.75/0.8 1/1',eq=saturation=1.1` (`TM` + `COR` no montar.py, igual ao GRADE do gen_azul.py; texto em reels/modelo-mb/COR-TREINO.txt). A receita antiga `eq=contrast=1.04:saturation=1.08` deixa a imagem apagada: não voltar a ela. Antes de entregar, compare um quadro do Reel com o mesmo trecho do v3 (reels/2026-11-03-ullisses-v3/).

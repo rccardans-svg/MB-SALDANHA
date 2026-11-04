@@ -21,6 +21,7 @@ O SPEC diz:
                                                                     "folga": 2.3 = tamanho do rosto, "enquadrar_rosto": false desliga)
                 {"id": "pessoa", "em": 0, "recorte": true, "base": [peças...]}   (pessoa recortada, fundo transparente)
   motions     lista de motions: {"id": "01", "em": 0.4, ...parâmetros do modelo}
+  sombra      "padrao" (degradê marinho embaixo) | "leve" (não muda a cor do vídeo, só um fio atrás do logo) | "nenhuma"
   logo        "sem" (padrão, sem DOMICILIAR) | "domiciliar" | "nenhum"
   espelhos    quantas cópias do fundo os motions podem usar (lupa, card 3D). Padrão: o que o catálogo pede
   musica      caminho de um áudio de música (opcional)   |  "batida": {"bpm": 120, "volume": 0.5}
@@ -36,10 +37,13 @@ ASSETS = os.path.join(AQUI, "assets")
 CAT = json.load(open(os.path.join(RAIZ, "modelos", "catalogo.json")))
 TM = ("zscale=t=linear:npl=203,format=gbrpf32le,zscale=p=bt709,tonemap=hable:desat=0,"
       "zscale=t=bt709:m=bt709:r=tv,format=yuv420p")
-COR = "eq=contrast=1.04:saturation=1.08"
+# mesma cor dos Reels v3 do Ullisses que o Paulo aprovou (gen_azul.py): curva em S leve + saturação 1.1 (2026-11-04)
+COR = "curves=all='0/0 0.25/0.2 0.5/0.5 0.75/0.8 1/1',eq=saturation=1.1"
 VOZ = ("highpass=f=90,lowpass=f=12000,afftdn=nf=-28:tn=1,equalizer=f=250:t=q:w=1.2:g=-2,"
        "equalizer=f=3500:t=q:w=1.0:g=3,acompressor=threshold=-22dB:ratio=3:attack=8:release=120:makeup=4")
 FPS = 30
+# "sombra" no spec: "padrao" (degradê marinho embaixo, padrão do Insta da Maria) | "leve" (só um fio escuro atrás do logo, cor do vídeo intacta) | "nenhuma"
+SOMBRA = {"leve": ' style="background:linear-gradient(180deg, rgba(0,0,0,0) 86%, rgba(0,0,0,.28) 100%)"', "nenhuma": ' style="display:none"'}
 
 
 def sh(cmd, **kw):
@@ -159,7 +163,7 @@ def html_pagina(spec, dur, extras, espelhos, js_arquivos, verde=False):
     vid = (lambda tr: "") if verde else (lambda tr: f'<video src="assets/base.mp4" data-start="0" data-duration="{dur:.3f}" '
                                                     f'data-track-index="{tr}" class="clip" muted playsinline></video>')
     b = [f'<div id="cam" class="cam clip" data-start="0" data-duration="{dur:.3f}" data-track-index="0">{vid(1)}</div>',
-         f'<div id="sombra" class="clip" data-start="0" data-duration="{dur:.3f}" data-track-index="2"></div>']
+         f'<div id="sombra" class="clip" data-start="0" data-duration="{dur:.3f}" data-track-index="2"{SOMBRA.get(spec.get("sombra", "padrao"), "")}></div>']
     for i in range(espelhos):
         b.append(f'<div id="mir{i+1}" class="mir clip" data-start="0" data-duration="{dur:.3f}" data-track-index="{3+i}">{vid(6+i)}</div>')
     for j, (xid, em, xd, arq) in enumerate(extras):

@@ -63,7 +63,7 @@
    ],
    "contraste": 1.0,
    "saturacao": 1.0,
-   "vinheta": 0.16
+   "vinheta": 0
   },
   {
    "id": "lux-veu",
@@ -175,5 +175,6 @@
    "rotulo": "GUARDE ESTE TREINO",
    "resto": "E TREINE COM O ULLISSES"
   }
- ]
+ ],
+ "sombra": "leve"
 }
