@@ -430,3 +430,93 @@ Prévia: `previa-40.mp4`. Exemplo de spec: `exemplos/previa-40.json`.
 - `botao`: `"AGENDE SEU TREINO"`
 - `sub`: `"CENTRO DE ALTA PERFORMANCE · MB SALDANHA"`
 - `domiciliar`: `false`
+
+## G. Série com história (vilões)
+
+### 41. Vilão entra em cena
+Exemplo: episódio completo em `exemplos/ep1-gordurinha.json` (prévia `2026-11-04-ep1-gordurinha-ullisses.mp4`).
+
+- `em`: `0`
+- `vilao`: `"gordurinha"`
+- `alvo`: `"v"`
+- `x`: `800`
+- `y`: `1560`
+- `tam`: `340`
+- `entrada`: `"cai"`
+- `lado`: `"esq"`
+- `olhar`: `"esq"`
+- `falas`: `[[0.7, "HOJE VOCÊ|NÃO TREINA!", 1.8]]`
+- `vida`: `100`
+- `ate`: `null`
+- `kg`: `20`
+
+### 42. Barra de vida do vilão
+Exemplo: episódio completo em `exemplos/ep1-gordurinha.json` (prévia `2026-11-04-ep1-gordurinha-ullisses.mp4`).
+
+- `em`: `0`
+- `alvo`: `"v"`
+- `nome`: `null`
+- `y`: `200`
+- `episodio`: `""`
+
+### 43. Golpe da espada azul
+Exemplo: episódio completo em `exemplos/ep1-gordurinha.json` (prévia `2026-11-04-ep1-gordurinha-ullisses.mp4`).
+
+- `em`: `0`
+- `alvo`: `"v"`
+- `angulo`: `-24`
+- `dano`: `"tudo"`
+- `nome`: `"EXERCÍCIO *CERTO*"`
+- `mostra`: `0.9`
+
+### 44. Martelo de anilha (uma anilha cai no vilão a cada repetição)
+Exemplo: episódio completo em `exemplos/ep1-gordurinha.json` (prévia `2026-11-04-ep1-gordurinha-ullisses.mp4`).
+
+- `em`: `0`
+- `alvo`: `"v"`
+- `golpes`: `[0, 1.2, 2.4, 3.6, 4.8]`
+- `dano`: `20`
+
+### 45. Vilão recupera vida (quando a pessoa erra)
+Exemplo: episódio completo em `exemplos/ep1-gordurinha.json` (prévia `2026-11-04-ep1-gordurinha-ullisses.mp4`).
+
+- `em`: `0`
+- `alvo`: `"v"`
+- `cura`: `20`
+- `carimbo`: `true`
+- `legenda`: `""`
+- `y`: `760`
+
+### 46. Placa VILÃO DERROTADO
+Exemplo: episódio completo em `exemplos/ep1-gordurinha.json` (prévia `2026-11-04-ep1-gordurinha-ullisses.mp4`).
+
+- `em`: `0`
+- `dur`: `3`
+- `titulo`: `"VILÃO|*DERROTADO*"`
+- `estrelas`: `3`
+- `xp`: `150`
+- `licao`: `"CADA REPETIÇÃO|*CERTA* É UM GOLPE"`
+- `y`: `520`
+
+### 47. Mapa da jornada (vilões vencidos e o próximo)
+Exemplo: episódio completo em `exemplos/ep1-gordurinha.json` (prévia `2026-11-04-ep1-gordurinha-ullisses.mp4`).
+
+- `em`: `0`
+- `dur`: `3.4`
+- `titulo`: `"A *JORNADA*"`
+- `viloes`: `["gordurinha", "preguica", "plato", "dor", "torta", "desculpinha"]`
+- `vencidos`: `1`
+- `legenda`: `"PRÓXIMO VILÃO"`
+
+### 48. Dor grudada num ponto do vídeo congelado (sem rastreio)
+Exemplo: episódio completo em `exemplos/ep1-gordurinha.json` (prévia `2026-11-04-ep1-gordurinha-ullisses.mp4`).
+
+- `em`: `0`
+- `x`: `600`
+- `y`: `1150`
+- `tam`: `210`
+- `regiao`: `"LOMBAR"`
+- `alvo`: `"dor"`
+- `lado`: `"esq"`
+- `falas`: `[[0.7, "ESSA LOMBAR|É MINHA!", 1.8]]`
+- `ate`: `null`

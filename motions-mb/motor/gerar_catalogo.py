@@ -5,7 +5,7 @@ AQUI = os.path.dirname(os.path.abspath(__file__)); RAIZ = os.path.dirname(AQUI)
 d = json.loads(subprocess.run(["node", os.path.join(AQUI, "params.js"), os.path.join(RAIZ, "modelos")],
                               capture_output=True, text=True, check=True).stdout)
 GRUPOS = {"A": "Academia e performance", "B": "Erro x certo", "C": "Corpo e fisioterapia (Maria)",
-          "D": "Texto e legenda", "E": "Transições e câmera", "F": "Séries e app X1"}
+          "D": "Texto e legenda", "E": "Transições e câmera", "F": "Séries e app X1", "G": "Série com história (vilões)"}
 linhas = ["# Catálogo dos motions MB Saldanha", "",
           "Gerado por `motor/gerar_catalogo.py`. Cada motion se pede pelo número. Os tempos são em segundos, contados a partir do `em`.",
           "Texto: `*palavra*` vira faixa azul, `_palavra_` vira faixa vermelha (erro) e `|` quebra a linha.", ""]
@@ -15,7 +15,10 @@ for k in sorted(d):
     if g != grupo:
         grupo = g; linhas += [f"## {g}. {GRUPOS[g]}", ""]
     linhas.append(f"### {k}. {m['__titulo']}")
-    linhas.append(f"Prévia: `previa-{k}.mp4`. Exemplo de spec: `exemplos/previa-{k}.json`.")
+    if g == "G":
+        linhas.append("Exemplo: episódio completo em `exemplos/ep1-gordurinha.json` (prévia `2026-11-04-ep1-gordurinha-ullisses.mp4`).")
+    else:
+        linhas.append(f"Prévia: `previa-{k}.mp4`. Exemplo de spec: `exemplos/previa-{k}.json`.")
     linhas.append("")
     for p, v in m.items():
         if p.startswith("__"): continue

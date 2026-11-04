@@ -75,9 +75,34 @@ Leia isto antes de montar qualquer Reel com motion da MB Saldanha. Ele junta o p
 - **Desafio X1:** 37 com a meta, 38 tela do app, 35 no ritmo, CTA "baixe o app".
 - **Domiciliar:** 21 casa segura, 24 linha do tempo, 29 balões, logo `"domiciliar"`.
 
-## 5. Série com história (motions 41 em diante)
+## 5. Série com história (motions 41 a 48)
 
-Vilões desenhados (Gordurinha, Dona Dor, Preguiça, Platô, Postura Torta, Desculpinha) com barra de vida, vencidos pelo exercício certo. O plano está na aba "Série com história" do doc do Instagram (claude.ai/artifact/FF2X3CLQcahFiohRWWaT8n). Os vilões da dor são da Maria; os de performance são do Ullisses.
+Vilões desenhados que o exercício certo derrota. Os de performance são do Ullisses (Gordurinha, Preguiça, Platô, Desculpinha). Os de dor são da Maria (Dona Dor, Postura Torta). O plano dos 12 episódios está na aba "Série com história" do doc do Instagram (claude.ai/artifact/FF2X3CLQcahFiohRWWaT8n). Pôster do elenco: `/mnt/project-files/reels/serie-historia/os-viloes-do-treino.png`.
+
+**Como montar um episódio** (exemplo pronto: `exemplos/ep1-gordurinha.json`):
+
+1. **Marcar as repetições:** anote o segundo em que cada repetição chega no topo. É nesse instante que o golpe acerta o vilão.
+2. **Montar a base:**
+   - Um trecho por repetição, de 1,6 a 2 s, com o topo cerca de 1,1 s depois do começo do trecho.
+   - Uma repetição errada no meio (é ela que cura o vilão).
+3. **Escolher os motions:**
+   - **41** no começo: o vilão cai e provoca (`falas`). Coloque num canto livre, longe da cabeça da pessoa em todos os trechos (`olhar` vira os olhos para ela).
+   - **42** logo depois da primeira fala: a barra de vida. `episodio` escreve "EPISÓDIO N · ULLISSES" em cima da barra.
+   - **44** nas repetições certas: `golpes` com os tempos do vídeo final e `em: 0`. Cada golpe é uma anilha caindo na cabeça do vilão.
+   - **43** para a espada azul (bom para os episódios da Maria). Ela aparece mirando o vilão com o nome do exercício (`nome`) e corta no tempo `em`.
+   - **45** na repetição errada: carimbo ERRADO e o vilão recupera vida rindo. Use `y` baixo (1250) para o carimbo não esconder o erro.
+4. **Fechar a conta da vida:** some os golpes para zerar no último. Exemplo: vida 100 e dano 25 dão 5 golpes certos e 1 erro (+25). O golpe que zera derrota o vilão sozinho (a anilha estoura o vilão, a espada corta ao meio).
+5. **Fechamento:**
+   - **46**: placa de vitória.
+   - **47**: mapa com o próximo vilão, só com os vilões do dono do vídeo.
+   - **40**: assinatura.
+
+**Regras da série:**
+
+- O vilão nunca cobre o rosto da pessoa.
+- O balão de fala vai sozinho para o lado do vilão quando a barra de vida ocupa o alto da tela.
+- Nada preso no corpo: o 48 (dor grudada num ponto) só vai sobre quadro congelado.
+- Episódio do Ullisses fala de performance; dor é com a Maria.
 
 ## 6. Conferência final (sempre)
 

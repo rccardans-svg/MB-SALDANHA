@@ -3,7 +3,7 @@
    K = ferramentas (elementos, tweens com tempo absoluto, sons, contadores, partículas com sorteio fixo). */
 (function () {
   const W = 1080, H = 1920;
-  const MB = { defs: {}, sfx: [], W, H };
+  const MB = { defs: {}, sfx: [], W, H, _depois: [] };
   window.MB = MB;
   window.__timelines = window.__timelines || {};
 
@@ -94,6 +94,8 @@
     K.espelho = (i) => document.getElementById("mir" + (i || 1));
     K.extra = (id) => document.getElementById("x-" + id);
     K.usar = function (id, params) { return MB.rodar(tl, Object.assign({ id }, params), n * 100 + 1, D); };
+    // roda fn depois que todos os motions do spec foram montados (para motions que dependem uns dos outros)
+    K.depois = function (fn) { MB._depois.push(fn); };
     return K;
   }
 
@@ -109,6 +111,7 @@
   MB.iniciar = function (spec) {
     const tl = gsap.timeline({ paused: true });
     (spec.motions || []).forEach((m, i) => MB.rodar(tl, m, i + 1, spec.dur));
+    for (let i = 0; i < MB._depois.length; i++) MB._depois[i]();
     tl.set({}, {}, spec.dur); // garante a duração total
     window.__timelines["main"] = tl;
     window.__MB_SFX = MB.sfx;

@@ -131,5 +131,35 @@
  },
  "40": {
   "arquivo": "F-series-app.js"
+ },
+ "41": {
+  "arquivo": "G-serie-historia.js"
+ },
+ "42": {
+  "arquivo": "G-serie-historia.js"
+ },
+ "43": {
+  "arquivo": "G-serie-historia.js"
+ },
+ "44": {
+  "arquivo": "G-serie-historia.js"
+ },
+ "45": {
+  "arquivo": "G-serie-historia.js",
+  "usa": [
+   "11"
+  ]
+ },
+ "46": {
+  "arquivo": "G-serie-historia.js"
+ },
+ "47": {
+  "arquivo": "G-serie-historia.js"
+ },
+ "48": {
+  "arquivo": "G-serie-historia.js",
+  "usa": [
+   "41"
+  ]
  }
 }

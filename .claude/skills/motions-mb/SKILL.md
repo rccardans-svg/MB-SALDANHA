@@ -1,6 +1,6 @@
 ---
 name: "motions-mb"
-description: "Use para colocar motion (animação, contadores, carimbos, lupa, anatomia, transições, fechamento) em Reels da MB Saldanha usando a biblioteca motions-mb, pedindo os motions pelo número (01 a 40)."
+description: "Use para colocar motion (animação, contadores, carimbos, lupa, anatomia, transições, fechamento) em Reels da MB Saldanha usando a biblioteca motions-mb, pedindo os motions pelo número (01 a 48), incluindo a série com história dos vilões (41 a 48)."
 ---
 
 # Motions MB Saldanha
@@ -13,6 +13,9 @@ A biblioteca fica em `motions-mb/` neste repo. Leia primeiro `motions-mb/ROTEIRO
 3. Rode `python3 motions-mb/motor/montar.py SPEC.json --saida SAIDA --so-html` e confira quadros com `hyperframes snapshot PASTA --at t1,t2 --no-end`. Olhe as imagens: texto cortado, rótulo batendo, número fora do lugar.
 4. Rode sem `--so-html` (use `--final` para a entrega) e entregue `NOME.mp4`, `NOME-leve.mp4` e `NOME-capa.jpg` no chat do thread (o conector do Drive não aceita vídeo grande).
 
+## Quando o Paulo pedir um episódio da série com história (vilões)
+Siga a seção 5 do `motions-mb/ROTEIRO.md` e parta de `motions-mb/exemplos/ep1-gordurinha.json`: marque o topo de cada repetição, um golpe (44 anilha ou 43 espada) por repetição certa, 45 na repetição errada, vida somando até zerar no último golpe, depois 46, 47 e 40. Vilões do Ullisses: Gordurinha, Preguiça, Platô, Desculpinha. Vilões da Maria: Dona Dor, Postura Torta.
+
 ## Regras do padrão (não negociáveis)
 - Azul #1F66E5, marinho #0A1B3F, Montserrat em caixa alta, palavra-chave em faixa azul, logo branco no canto.
 - Logo sem "domiciliar" por padrão; `"logo": "domiciliar"` só em post do atendimento domiciliar.
@@ -22,4 +25,4 @@ A biblioteca fica em `motions-mb/` neste repo. Leia primeiro `motions-mb/ROTEIRO
 - Motion tem que fazer sentido com a fala (pesos, anilhas, contadores, elementos de academia), variado entre vídeos.
 
 ## Criar motion novo
-Siga a seção "Como criar um motion novo" do README, numere a partir de 41, registre em `modelos/catalogo.json`, rode `motor/gerar_catalogo.py`, faça uma prévia e confira com snapshot antes de entregar. Commit no repo; nunca pedir ao Paulo para subir skill ou arquivo à mão.
+Siga a seção "Como criar um motion novo" do README, numere a partir de 49, registre em `modelos/catalogo.json`, rode `motor/gerar_catalogo.py`, faça uma prévia e confira com snapshot antes de entregar. Commit no repo; nunca pedir ao Paulo para subir skill ou arquivo à mão.
