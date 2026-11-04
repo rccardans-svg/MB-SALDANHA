@@ -1,0 +1,26 @@
+{
+ "nome": "2026-11-04-maria-faco-o-que-prescrevo",
+ "brutos": "PASTA_DOS_BRUTOS",
+ "sombra": "leve",
+ "capa": 1.6,
+ "base": [
+  {"src": "IMG_0888.MOV", "ss": 2.0, "dur": 3.4, "som": false},
+  {"src": "IMG_0891.MOV", "ss": 5.0, "dur": 2.6, "som": false},
+  {"src": "IMG_0890.MOV", "ss": 6.0, "dur": 2.6, "som": false},
+  {"src": "IMG_0892.MOV", "ss": 4.0, "dur": 2.6, "som": false},
+  {"src": "IMG_0887.MOV", "ss": 4.0, "dur": 2.6, "som": false},
+  {"src": "IMG_0889.MOV", "ss": 1.0, "dur": 2.6, "som": false},
+  {"tipo": "congela", "src": "IMG_0892.MOV", "ss": 7.0, "dur": 3.2},
+  {"src": "IMG_0888.MOV", "ss": 8.0, "dur": 4.0, "som": false}
+ ],
+ "motions": [
+  {"id": "lux-grade", "em": 0, "dur": 23.6, "contraste": 1, "saturacao": 1, "vinheta": 0, "empurra": [[0, 3.4], [16.4, 19.6], [19.6, 23.6]]},
+  {"id": "65", "em": 0, "dur": 16.4, "ponte_em": 2.3,
+   "itens": [[3.5, "COSTAS FORTES, *POSTURA*"], [6.1, "OMBRO *ESTÁVEL*"], [8.7, "FORÇA PARA *LEVANTAR PACIENTE*"], [11.3, "PREVENÇÃO DE *LESÃO*"], [13.9, "ENERGIA PARA *ATENDER*"]]},
+  {"id": "lux-passagem", "em": 16.4},
+  {"id": "lux-frase", "em": 16.4, "dur": 3.2, "rotulo": "MARIA BEATRIZ", "texto": "EU FAÇO O QUE|EU *PRESCREVO.*"},
+  {"id": "lux-passagem", "em": 19.6},
+  {"id": "43", "em": 19.7, "dur": 3.9, "y": 240},
+  {"id": "41", "em": 20.0, "dur": 3.6, "acao": "botao", "texto": "MOVIMENTO É|*REMÉDIO.*", "botao": "AGENDE SUA AVALIAÇÃO"}
+ ]
+}

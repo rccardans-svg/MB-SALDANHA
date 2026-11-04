@@ -313,10 +313,15 @@
   // frase: linhas com | e *forte*; itens: [[segundo (a partir do "em"), "TEXTO com *forte*"], ...]. O item novo entra subindo
   // da fenda e os anteriores ficam mais apagados (um foco por vez). A lista fica embaixo (sobre o chão, que é escuro).
   MB.def("65", { em: 0, dur: 16, rotulo: "MARIA BEATRIZ · FISIOTERAPEUTA", frase: "VOCÊ PODE ACHAR QUE|EU SÓ ESTOU *TREINANDO.*", y: 236, tam: 70,
-    ponte: "MAS O QUE EU VEJO É", ponte_em: 2.2, itens: [], y_lista: 1080, tam_item: 46, largura: 936, x: 72 }, function (P, K) {
+    ponte: "MAS O QUE EU VEJO É", ponte_em: 2.2, itens: [], y_lista: 1080, tam_item: 46, largura: 936, x: 72, fundo: 0.5 }, function (P, K) {
     const t0 = K.t(), t1 = t0 + P.dur, X = P.x, L = P.largura;
-    const rot = K.el(ESC(P.rotulo), `left:${X}px;top:${P.y}px;opacity:0`); rot.classList.add("lx-rot", "lx-sombra");
     const linhas = P.frase.split("|");
+    // fundo escuro só atrás do texto (a cor do vídeo fica intacta no resto da tela)
+    const fz0 = Math.min(P.tam, Math.floor(L / (0.7 * Math.max(...linhas.map((l) => limpo(l).length)))));
+    fundo(K, X, P.y, Math.min(L, 960 - X), 50 + linhas.length * Math.round(fz0 * 1.08), t0, t1 - 0.5, P.fundo);
+    const nIt = P.itens.length, hL = 80 + nIt * Math.round(P.tam_item * 1.62);
+    fundo(K, X, P.y_lista, Math.min(L, 960 - X), hL, t0 + P.ponte_em - 0.2, t1 - 0.5, P.fundo);
+    const rot = K.el(ESC(P.rotulo), `left:${X}px;top:${P.y}px;opacity:0`); rot.classList.add("lx-rot", "lx-sombra");
     const fz = Math.min(P.tam, Math.floor(L / (0.7 * Math.max(...linhas.map((l) => limpo(l).length)))));
     const fr = linhas.map((l, i) => {
       const r = fenda(K, rico(l), `left:${X - 3}px;top:${P.y + 50 + i * Math.round(fz * 1.08)}px;font-size:${fz}px`);
