@@ -381,4 +381,38 @@
     K.sfx("lux_ar", t0, 0.4);
     apaga(K, sai, t1 - 0.45, 0.4);
   });
+  // ---------- 67 "Sou fisioterapeuta, mas também sou..." (trend do canivete suíço, ref. @niall.physio / @bradmason_physio) ----------
+  // titulo fixo em serifada no meio + dezenas de papéis que aparecem espalhados pela tela, cada vez mais rápido.
+  // palavras: lista de textos (aparecem na ordem); inicio: segundo da 1ª; gap0 -> gap1: intervalo que vai encurtando.
+  // zonas: faixas [y0, y1] onde as palavras podem cair (fora do rosto e do título). Posições sorteadas com semente fixa.
+  MB.def("67", { em: 0, dur: 12, titulo: "Sou fisioterapeuta", sub: "_mas também sou_", y: 880, tam: 104, tam_sub: 60,
+    palavras: [], inicio: 2.6, gap0: 0.5, gap1: 0.1, tam_p: 50, zonas: [[470, 820], [1090, 1700]], semente: 7, cor: "#f6f1e7", destaque: "#9fbcff", fundo: 0.45 }, function (P, K) {
+    const t0 = K.t(), t1 = t0 + P.dur;
+    const it = (x) => ESC(x).replace(/_([^_]+)_/g, `<i style="color:${P.destaque}">$1</i>`);
+    fundo(K, 120, P.y - 20, 840, P.tam + P.tam_sub + 30, t0, t1 - 0.4, P.fundo, 140);
+    const ti = K.el(it(P.titulo), `left:0;top:${P.y}px;width:1080px;text-align:center;font-size:${P.tam}px;color:${P.cor};opacity:0`);
+    const su = K.el(it(P.sub), `left:0;top:${P.y + Math.round(P.tam * 0.98)}px;width:1080px;text-align:center;font-size:${P.tam_sub}px;color:${P.cor};opacity:0`);
+    [ti, su].forEach((e, i) => { e.classList.add("lx-serif", "lx-sombra");
+      K.ft(e, { opacity: 0, y: 22, filter: "blur(10px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.7, ease: "expo.out" }, t0 + 0.15 + i * 0.45); });
+    K.sfx("lux_ar", t0, 0.4);
+    let r = P.semente * 9301 + 49297; const rnd = () => (r = (r * 9301 + 49297) % 233280) / 233280;
+    const caixas = [], els = []; const n = P.palavras.length; let at = t0 + P.inicio;
+    P.palavras.forEach((w, i) => {
+      const tam = Math.round(P.tam_p * (0.85 + rnd() * 0.35)), larg = Math.round(String(w).length * tam * 0.5) + 28, alt = Math.round(tam * 1.25);
+      let x = 0, y = 0, ok = false;
+      for (let k = 0; k < 400 && !ok; k++) {
+        const z = P.zonas[Math.floor(rnd() * P.zonas.length)];
+        x = 50 + rnd() * Math.max(10, 980 - larg); y = z[0] + rnd() * Math.max(10, z[1] - z[0] - alt);
+        ok = caixas.every(([a, b, c, d]) => x + larg < a || x > a + c || y + alt < b || y > b + d);
+      }
+      if (!ok) return;  // não cabe sem encostar em outra: fica de fora
+      caixas.push([x, y, larg, alt]);
+      const e = K.el(ESC(w), `left:${Math.round(x)}px;top:${Math.round(y)}px;font-size:${tam}px;white-space:nowrap;color:${P.cor};opacity:0;text-shadow:0 2px 6px rgba(5,13,32,.9),0 0 22px rgba(5,13,32,.75)`);
+      e.classList.add("lx-serif", "lx-sombra"); els.push(e);
+      K.ft(e, { opacity: 0, y: 10, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.35, ease: "expo.out" }, at);
+      if (i % 4 === 0) K.sfx("lux_toque", at, 0.16);
+      at += P.gap0 + (P.gap1 - P.gap0) * (n > 1 ? i / (n - 1) : 0);
+    });
+    apaga(K, els.concat([ti, su]), t1 - 0.45, 0.4);
+  });
 })();

@@ -1,0 +1,57 @@
+{
+ "nome": "2026-11-04-maria-sou-fisio-mas-tambem-sou",
+ "brutos": "PASTA_DOS_BRUTOS",
+ "sombra": "leve",
+ "logo": "domiciliar",
+ "capa": 9.5,
+ "base": [
+  {
+   "src": "VID_20261008_101105.mp4",
+   "ss": 44.0,
+   "dur": 14.4,
+   "som": false
+  }
+ ],
+ "motions": [
+  {
+   "id": "67",
+   "em": 0,
+   "dur": 10.8,
+   "palavras": [
+    "motorista",
+    "GPS humano",
+    "detetive da dor",
+    "ouvinte",
+    "psicóloga",
+    "torcida",
+    "despertador",
+    "professora",
+    "caça-mitos",
+    "vigia de tapete solto",
+    "tradutora de exame",
+    "quiropraxista",
+    "neta adotiva",
+    "organizadora de agenda",
+    "carregadora de equipamento",
+    "fotógrafa",
+    "motivadora",
+    "especialista em escada",
+    "amiga da família",
+    "treinadora de equilíbrio",
+    "enfermeira de plantão",
+    "ombro amigo"
+   ],
+   "inicio": 2.4,
+   "gap0": 0.45,
+   "gap1": 0.1
+  },
+  {
+   "id": "41",
+   "em": 10.6,
+   "dur": 3.8,
+   "acao": "botao",
+   "texto": "FISIOTERAPIA|*DOMICILIAR.*",
+   "botao": "CHAME NO DIRECT"
+  }
+ ]
+}

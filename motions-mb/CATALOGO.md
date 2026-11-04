@@ -831,6 +831,71 @@ Prévia: `previa-61.mp4`. Exemplo de spec: `exemplos/previa-61.json`.
 - `y`: `1150`
 - `tam`: `296`
 
+### 65. Frase + lista que empilha ("você pode achar que... mas o que eu vejo é:")
+Prévia: `previa-65.mp4`. Exemplo de spec: `exemplos/previa-65.json`.
+
+> frase: linhas com | e *forte*; itens: [[segundo (a partir do "em"), "TEXTO com *forte*"], ...]. O item novo entra subindo da fenda e os anteriores ficam mais apagados (um foco por vez). A lista fica embaixo (sobre o chão, que é escuro).
+
+- `em`: `0`
+- `dur`: `16`
+- `rotulo`: `"MARIA BEATRIZ · FISIOTERAPEUTA"`
+- `frase`: `"VOCÊ PODE ACHAR QUE|EU SÓ ESTOU *TREINANDO.*"`
+- `y`: `236`
+- `tam`: `70`
+- `ponte`: `"MAS O QUE EU VEJO É"`
+- `ponte_em`: `2.2`
+- `itens`: `[]`
+- `y_lista`: `1080`
+- `tam_item`: `46`
+- `largura`: `936`
+- `x`: `72`
+- `fundo`: `0.5`
+
+### 66. Poema palavra por palavra (fonte serifada viral, Instrument Serif)
+Prévia: `previa-66.mp4`. Exemplo de spec: `exemplos/previa-66.json`.
+
+> linhas: [[segundo (a partir do "em"), "texto", tamanho em px], ...] empilhadas e centralizadas, uma por vez.
+>
+> _texto_ = itálico. troca: {"linha": índice da linha que troca, "palavras": [[segundo, "texto"], ...]} (a palavra em destaque troca no mesmo lugar, em azul claro). Para frase de impacto curta, fala de abertura ou fechamento.
+
+- `em`: `0`
+- `dur`: `8`
+- `y`: `260`
+- `cor`: `"#f6f1e7"`
+- `destaque`: `"#9fbcff"`
+- `fundo`: `0.42`
+- `linhas`: `[]`
+- `troca`: `null`
+- `entrada`: `0.55`
+- `saida`: `0.3`
+
+### 67. "Sou fisioterapeuta, mas também sou..." (trend do canivete suíço, ref. @niall.physio / @bradmason_physio)
+Prévia: `previa-67.mp4`. Exemplo de spec: `exemplos/previa-67.json`.
+
+> titulo fixo em serifada no meio + dezenas de papéis que aparecem espalhados pela tela, cada vez mais rápido.
+>
+> palavras: lista de textos (aparecem na ordem); inicio: segundo da 1ª; gap0 -> gap1: intervalo que vai encurtando.
+>
+> zonas: faixas [y0, y1] onde as palavras podem cair (fora do rosto e do título). Posições sorteadas com semente fixa.
+
+- `em`: `0`
+- `dur`: `12`
+- `titulo`: `"Sou fisioterapeuta"`
+- `sub`: `"_mas também sou_"`
+- `y`: `880`
+- `tam`: `104`
+- `tam_sub`: `60`
+- `palavras`: `[]`
+- `inicio`: `2.6`
+- `gap0`: `0.5`
+- `gap1`: `0.1`
+- `tam_p`: `50`
+- `zonas`: `[[470, 820], [1090, 1700]]`
+- `semente`: `7`
+- `cor`: `"#f6f1e7"`
+- `destaque`: `"#9fbcff"`
+- `fundo`: `0.45`
+
 ### lux-cracha. nome em placa de vidro marinho, com a coluna do logo como emblema
 Aparece na amostra do grupo. Spec da amostra: `exemplos/amostra-premium.json`.
 
